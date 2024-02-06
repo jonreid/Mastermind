@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "2CA07FD1-6ECE-47A5-A107-3C4F9760B650",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Mastermind.xcodeproj",
+      "identifier" : "0F7025142B72E88B006327F4",
+      "name" : "Mastermind"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Mastermind.xcodeproj",
+        "identifier" : "0F7025292B72E913006327F4",
+        "name" : "MastermindTests"
+      }
+    }
+  ],
+  "version" : 1
+}

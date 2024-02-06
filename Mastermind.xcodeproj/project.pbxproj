@@ -32,6 +32,7 @@
 		0F70251F2B72E88C006327F4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0F70252A2B72E913006327F4 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F70252C2B72E913006327F4 /* MastermindTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindTests.swift; sourceTree = "<group>"; };
+		0F7025332B72EB4B006327F4 /* MastermindTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MastermindTests.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +56,7 @@
 		0F70250C2B72E88B006327F4 = {
 			isa = PBXGroup;
 			children = (
+				0F7025332B72EB4B006327F4 /* MastermindTests.xctestplan */,
 				0F7025172B72E88B006327F4 /* Mastermind */,
 				0F70252B2B72E913006327F4 /* MastermindTests */,
 				0F7025162B72E88B006327F4 /* Products */,
