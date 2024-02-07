@@ -9,6 +9,7 @@
     }
   ],
   "defaultOptions" : {
+    "codeCoverage" : false,
     "targetForVariableExpansion" : {
       "containerPath" : "container:Mastermind.xcodeproj",
       "identifier" : "0F7025142B72E88B006327F4",
