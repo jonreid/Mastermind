@@ -8,10 +8,16 @@
 import SwiftUI
 
 @main
-struct MastermindApp: App {
+struct ProductionApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isProduction {
+                ContentView()
+            }
         }
+    }
+
+    private var isProduction: Bool {
+        NSClassFromString("XCTestCase") == nil
     }
 }
