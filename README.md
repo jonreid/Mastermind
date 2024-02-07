@@ -1,3 +1,5 @@
+[![Build](https://github.com/jonreid/Mastermind/actions/workflows/build.yml/badge.svg)](https://github.com/jonreid/Mastermind/actions/workflows/build.yml)
+
 # Mastermind (exploring TDD in a SwiftUI World)
 
 I'm writing a Mastermind game to explore [TDD in a SwiftUI World](https://qualitycoding.org/tdd-swiftui-series/). Read [the first article](https://qualitycoding.org/tdd-for-swiftui-lets-begin) to learn about my goals.
