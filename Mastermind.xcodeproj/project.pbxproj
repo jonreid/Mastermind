@@ -11,7 +11,7 @@
 		0F70251B2B72E88B006327F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70251A2B72E88B006327F4 /* ContentView.swift */; };
 		0F70251D2B72E88C006327F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F70251C2B72E88C006327F4 /* Assets.xcassets */; };
 		0F7025202B72E88C006327F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F70251F2B72E88C006327F4 /* Preview Assets.xcassets */; };
-		0F70252D2B72E913006327F4 /* MastermindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70252C2B72E913006327F4 /* MastermindTests.swift */; };
+		0FF5DCE32B73497600D7E358 /* PlaceholderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF5DCE22B73497600D7E358 /* PlaceholderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,8 +31,8 @@
 		0F70251C2B72E88C006327F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F70251F2B72E88C006327F4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0F70252A2B72E913006327F4 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F70252C2B72E913006327F4 /* MastermindTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindTests.swift; sourceTree = "<group>"; };
 		0F7025332B72EB4B006327F4 /* MastermindTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MastermindTests.xctestplan; sourceTree = "<group>"; };
+		0FF5DCE22B73497600D7E358 /* PlaceholderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +94,7 @@
 		0F70252B2B72E913006327F4 /* MastermindTests */ = {
 			isa = PBXGroup;
 			children = (
-				0F70252C2B72E913006327F4 /* MastermindTests.swift */,
+				0FF5DCE22B73497600D7E358 /* PlaceholderTests.swift */,
 			);
 			path = MastermindTests;
 			sourceTree = "<group>";
@@ -208,7 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F70252D2B72E913006327F4 /* MastermindTests.swift in Sources */,
+				0FF5DCE32B73497600D7E358 /* PlaceholderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
