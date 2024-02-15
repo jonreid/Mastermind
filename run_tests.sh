@@ -1,3 +1,6 @@
 #!/bin/bash
 
-xcodebuild test -project Mastermind.xcodeproj -scheme Mastermind -sdk iphonesimulator -destination "platform=iOS Simulator,OS=latest,name=iPhone 15"
+SCHEME='Mastermind'
+DESTINATION='platform=iOS Simulator,OS=latest,name=iPhone 15'
+
+xcodebuild test -scheme $SCHEME -sdk iphonesimulator -destination "$DESTINATION" CODE_SIGNING_ALLOWED='NO'
