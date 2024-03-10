@@ -227,6 +227,7 @@
 /* Begin XCBuildConfiguration section */
 		0F7025212B72E88C006327F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F92CB1D2B9E56DF001F8E20 /* XcodeWarnings.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -286,7 +287,6 @@
 		};
 		0F7025242B72E88C006327F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F92CB1D2B9E56DF001F8E20 /* XcodeWarnings.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
