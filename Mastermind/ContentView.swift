@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Circle().fill(.red).id("id")
+        Circle().foregroundColor(.red)
     }
 }
 

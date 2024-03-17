@@ -9,8 +9,8 @@ final class PlaceholderTests: XCTestCase {
         // make ContentView
         let view = ContentView()
         // find Circle
-        try view.inspect().find(viewWithId: "id").shape()
+        let color = try view.inspect().shape().foregroundColor()
         // test that fill color is red
-//        XCTAssertEqual(color, Color.red)
+        XCTAssertEqual(color, Color.red)
     }
 }
