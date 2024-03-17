@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F1F6ED12BA759C7001611A4 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 0F1F6ED02BA759C7001611A4 /* ViewInspector */; };
 		0F7025192B72E88B006327F4 /* MastermindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7025182B72E88B006327F4 /* MastermindApp.swift */; };
 		0F70251B2B72E88B006327F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70251A2B72E88B006327F4 /* ContentView.swift */; };
 		0F70251D2B72E88C006327F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F70251C2B72E88C006327F4 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F1F6ED12BA759C7001611A4 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +137,9 @@
 				0F70252F2B72E913006327F4 /* PBXTargetDependency */,
 			);
 			name = MastermindTests;
+			packageProductDependencies = (
+				0F1F6ED02BA759C7001611A4 /* ViewInspector */,
+			);
 			productName = MastermindTests;
 			productReference = 0F70252A2B72E913006327F4 /* MastermindTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -167,6 +172,9 @@
 				Base,
 			);
 			mainGroup = 0F70250C2B72E88B006327F4;
+			packageReferences = (
+				0F1F6ECF2BA759C7001611A4 /* XCRemoteSwiftPackageReference "ViewInspector" */,
+			);
 			productRefGroup = 0F7025162B72E88B006327F4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -409,6 +417,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0F1F6ECF2BA759C7001611A4 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.10;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0F1F6ED02BA759C7001611A4 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0F1F6ECF2BA759C7001611A4 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0F70250D2B72E88B006327F4 /* Project object */;
 }
