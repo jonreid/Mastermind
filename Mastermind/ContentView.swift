@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Mastermind
-//
-//  Created by Jon Reid on 2/6/24.
-//
-
 import SwiftUI
 
 struct ContentView: View {
