@@ -5,7 +5,7 @@ struct ProductionApp: App {
     var body: some Scene {
         WindowGroup {
             if isProduction {
-                ContentView()
+                GameScreen()
             }
         }
     }

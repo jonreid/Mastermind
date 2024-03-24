@@ -6,7 +6,7 @@ import SwiftUI
 @MainActor
 final class PlaceholderTests: XCTestCase {
     func test_circleIsRed() throws {
-        let view = ContentView()
+        let view = GameScreen()
         let color = try view.inspect().shape().foregroundColor()
         XCTAssertEqual(color, Color.red)
     }

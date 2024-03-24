@@ -1,11 +1,11 @@
 import SwiftUI
 
-struct ContentView: View {
+struct GameScreen: View {
     var body: some View {
         Circle().foregroundColor(.red)
     }
 }
 
 #Preview {
-    ContentView()
+    GameScreen()
 }
