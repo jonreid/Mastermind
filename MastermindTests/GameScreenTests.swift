@@ -1,7 +1,7 @@
 @testable import Mastermind
-import XCTest
-import ViewInspector
 import SwiftUI
+@testable import ViewInspector
+import XCTest
 
 @MainActor
 final class GameScreenTests: XCTestCase {
@@ -10,20 +10,23 @@ final class GameScreenTests: XCTestCase {
         ViewHosting.host(view: sut)
         wait(for: [expectation], timeout: 0.01)
     }
-    
+
     private func getColorOfGuess(_ view: InspectableView<ViewType.View<GameScreen>>) throws -> Color? {
         return try view.button().labelView().shape().foregroundColor()
     }
-    
+
+    private func getColorOfGuess2<V: ViewInspector.KnownViewType>(_ view: InspectableView<V>) throws -> Color? {
+        try view.asInspectableView().button().labelView().shape().foregroundColor()
+    }
+
     func test_tappingCircleTurnsItOrange() throws {
         var sut = GameScreen()
-        let inspectedView = try sut.inspect()
-        var color = try inspectedView.button().labelView().shape().foregroundColor()
+        var color = try getColorOfGuess2(try sut.inspect())
         XCTAssertNotEqual(color, Color.orange, "Precondition")
 
         display(&sut) { view in
             try view.button().tap()
-            color = try self.getColorOfGuess(view)
+            color = try self.getColorOfGuess2(view)
         }
 
         XCTAssertEqual(color, Color.orange)
