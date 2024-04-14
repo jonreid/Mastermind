@@ -2,7 +2,7 @@ import SwiftUI
 
 struct GameScreen: View {
     @State private var buttonColor = Color.red
-    internal var didAppear: ((Self) -> Void)?
+    internal var viewInspectorHook: ((Self) -> Void)?
 
     var body: some View {
         Button(action: {
@@ -10,7 +10,7 @@ struct GameScreen: View {
         }, label: {
             Circle().foregroundColor(buttonColor)
         })
-        .onAppear { self.didAppear?(self) }
+        .onAppear { self.viewInspectorHook?(self) }
     }
 }
 

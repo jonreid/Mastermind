@@ -10,7 +10,7 @@ final class GameScreenTests: XCTestCase {
         var color = try sut.inspect().button().labelView().shape().foregroundColor()
         XCTAssertNotEqual(color, Color.orange, "Precondition")
 
-        let expectation = sut.on(\.didAppear) { view in
+        let expectation = sut.on(\.viewInspectorHook) { view in
             try view.button().tap()
 
             color = try view.button().labelView().shape().foregroundColor()
