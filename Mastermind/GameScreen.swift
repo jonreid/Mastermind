@@ -5,13 +5,18 @@ struct GameScreen: View {
     internal var viewInspectorHook: ((Self) -> Void)?
 
     var body: some View {
-        VStack {
+        HStack {
             Button(action: {
-                buttonColor = .orange
             }, label: {
                 Circle().foregroundColor(buttonColor)
             })
             .id("guess1")
+            Button(action: {
+                buttonColor = .blue
+            }, label: {
+                Circle().foregroundColor(.blue)
+            })
+            .id("color1")
         }
         .onAppear { self.viewInspectorHook?(self) }
     }
