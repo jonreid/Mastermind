@@ -26,7 +26,7 @@ final class GameScreenTests: XCTestCase {
         XCTAssertNotEqual(color, Color.orange, "Precondition")
 
         display(&sut) { view in
-            try view.vStack()[0].button().tap()
+            try view.find(viewWithId: "guess1").button().tap()
             color = try self.getColorOfGuess(view)
         }
 
