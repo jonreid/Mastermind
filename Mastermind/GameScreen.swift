@@ -17,21 +17,21 @@ struct GameScreen: View {
                 Circle().foregroundColor(guess1?.color ?? .red)
             })
             .id("guess1")
-            CodePegForYourGuess(codePeg1: codePeg1, id: "color1", guess1: $guess1)
+            CodePegForYourGuess(codePeg: codePeg1, id: "color1", guess: $guess1)
         }
         .onAppear { self.viewInspectorHook?(self) }
     }
 }
 
 struct CodePegForYourGuess: View {
-    var codePeg1: CodePeg
+    var codePeg: CodePeg
     var id: String
-    @Binding var guess1: CodePeg?
+    @Binding var guess: CodePeg?
     var body: some View {
         Button(action: {
-            guess1 = codePeg1
+            guess = codePeg
         }, label: {
-            Circle().foregroundColor(codePeg1.color)
+            Circle().foregroundColor(codePeg.color)
         })
         .id(id)
     }
