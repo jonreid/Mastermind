@@ -17,16 +17,17 @@ struct GameScreen: View {
                 Circle().foregroundColor(guess1?.color ?? .red)
             })
             .id("guess1")
-            CodePegForYourGuess(codePeg: codePeg1, id: "color1", guess: $guess1)
+            CodeChoiceView(codePeg: codePeg1, id: "color1", guess: $guess1)
         }
         .onAppear { self.viewInspectorHook?(self) }
     }
 }
 
-struct CodePegForYourGuess: View {
+struct CodeChoiceView: View {
     var codePeg: CodePeg
     var id: String
     @Binding var guess: CodePeg?
+
     var body: some View {
         Button(action: {
             guess = codePeg
