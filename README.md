@@ -10,6 +10,8 @@ Stick around to find out.
 
 My plan is to live-code this project on Twitch, post the recordings on YouTube, and then turn what we discover into articles.
 
+You can see [the whiteboard I'm using on Miro](https://miro.com/app/board/uXjVNNVlS6k=/?share_link_id=500104344113).
+
 ## Live-Coding on Twitch
 
 I’ll be streaming Sundays at 9:30 am Pacific (14:30 UTC) for roughly 90 minutes. Join so you can **chat with me live.** Chances are, you know more about SwiftUI than I do, and I’ll need your help. But I’ll be trying to apply the interesting practices listed in the [introductory article](https://qualitycoding.org/tdd-for-swiftui-lets-begin). This will be real, warts and all!
