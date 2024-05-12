@@ -4,7 +4,7 @@ struct CodePeg {
     var color: Color
 }
 
-let key1 = CodePeg(color: .blue)
+let codePeg1 = CodePeg(color: .blue)
 
 struct GameScreen: View {
     @State private var buttonColor = Color.red
@@ -19,9 +19,9 @@ struct GameScreen: View {
             })
             .id("guess1")
             Button(action: {
-                guess1 = key1
+                guess1 = codePeg1
             }, label: {
-                Circle().foregroundColor(key1.color)
+                Circle().foregroundColor(codePeg1.color)
             })
             .id("color1")
         }
