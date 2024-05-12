@@ -3,7 +3,6 @@ import SwiftUI
 @testable import ViewInspector
 import XCTest
 
-@MainActor
 final class GameScreenTests: XCTestCase {
     func test_tappingBlueColorTurnsGuessBlue() throws {
         var sut = GameScreen()
