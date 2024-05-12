@@ -23,6 +23,7 @@ struct GameScreen: View {
     }
 }
 
+private
 struct CodeChoiceView: View {
     var codePeg: CodePeg
     var id: String
