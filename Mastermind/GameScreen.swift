@@ -1,14 +1,14 @@
 import SwiftUI
 
-struct Key {
+struct CodePeg {
     var color: Color
 }
 
-let key1 = Key(color: .blue)
+let key1 = CodePeg(color: .blue)
 
 struct GameScreen: View {
     @State private var buttonColor = Color.red
-    @State private var guess1: Key?
+    @State private var guess1: CodePeg?
     internal var viewInspectorHook: ((Self) -> Void)?
 
     var body: some View {
