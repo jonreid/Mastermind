@@ -7,7 +7,6 @@ struct CodePeg {
 let codePeg1 = CodePeg(color: .blue)
 
 struct GameScreen: View {
-    @State private var buttonColor = Color.red
     @State private var guess1: CodePeg?
     internal var viewInspectorHook: ((Self) -> Void)?
 
