@@ -15,14 +15,13 @@ struct GameScreen: View {
         HStack {
             Button(action: {
             }, label: {
-                Circle().foregroundColor(buttonColor)
+                Circle().foregroundColor(guess1?.color ?? .red)
             })
             .id("guess1")
             Button(action: {
-                buttonColor = .blue
                 guess1 = key1
             }, label: {
-                Circle().foregroundColor(guess1?.color ?? .red)
+                Circle().foregroundColor(key1.color)
             })
             .id("color1")
         }
