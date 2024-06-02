@@ -20,9 +20,9 @@ struct GameScreen: View {
             backgroundColor.ignoresSafeArea()
             HStack {
                 Button(action: {}, label: {
-                    Circle().foregroundColor(guess1?.color ?? .red)
+                    Circle()
+                        .foregroundColor(guess1?.color ?? .red)
                         .frame(width: 100, height: 100)
-
                 })
                 .id("guess1")
                 CodeChoiceView(codePeg: codePeg1, id: "color1", guess: $guess1)
