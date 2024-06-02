@@ -38,6 +38,11 @@ private struct CodeGuessView: View {
     var body: some View {
         Button(action: {}, label: {
             Circle()
+                .padding(10)
+                .overlay(
+                    Circle()
+                        .strokeBorder(unselectedColor, lineWidth: 2)
+                )
                 .foregroundColor(guess?.color ?? unselectedColor)
                 .frame(width: 100, height: 100)
         })
