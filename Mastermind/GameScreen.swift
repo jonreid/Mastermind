@@ -10,11 +10,6 @@ let backgroundColor = Color(
     green: 231/255,
     blue: 234/255
 )
-let unselectedColor = Color(
-    red: 185/255,
-    green: 195/255,
-    blue: 198/255
-)
 
 struct GameScreen: View {
     @State private var guess1: CodePeg?
@@ -24,12 +19,7 @@ struct GameScreen: View {
         ZStack {
             backgroundColor.ignoresSafeArea()
             HStack {
-                Button(action: {}, label: {
-                    Circle()
-                        .foregroundColor(guess1?.color ?? unselectedColor)
-                        .frame(width: 100, height: 100)
-                })
-                .id("guess1")
+                ExtractedView(guess1: $guess1)
                 CodeChoiceView(codePeg: codePeg1, id: "color1", guess: $guess1)
             }
         }
@@ -37,8 +27,18 @@ struct GameScreen: View {
     }
 }
 
-private
-struct CodeChoiceView: View {
+private struct ExtractedView: View {
+    @Binding var guess1: CodePeg?
+
+    var body: some View {
+        Button(action: {}, label: {
+            Circle().foregroundColor(guess1?.color ?? .red)
+        })
+        .id("guess1")
+    }
+}
+
+private struct CodeChoiceView: View {
     var codePeg: CodePeg
     var id: String
     @Binding var guess: CodePeg?
@@ -49,10 +49,9 @@ struct CodeChoiceView: View {
         }, label: {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.white)
-                .frame(width: 100, height: 100)
+                .frame(width: 50, height: 50)
                 .overlay(
                     Circle().foregroundColor(codePeg.color)
-                        .padding(10)
                 )
         })
         .id(id)
