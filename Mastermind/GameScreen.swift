@@ -5,7 +5,11 @@ struct CodePeg {
 }
 
 let codePeg1 = CodePeg(color: .blue)
-let backgroundColor = Color(red: 246/255, green: 248/255, blue: 250/255)
+let backgroundColor = Color(
+    red: 227/255,
+    green: 231/255,
+    blue: 234/255
+)
 
 struct GameScreen: View {
     @State private var guess1: CodePeg?
