@@ -10,6 +10,11 @@ let backgroundColor = Color(
     green: 231/255,
     blue: 234/255
 )
+let unselectedColor = Color(
+    red: 185/255,
+    green: 195/255,
+    blue: 198/255
+)
 
 struct GameScreen: View {
     @State private var guess1: CodePeg?
@@ -32,7 +37,9 @@ private struct CodeGuessView: View {
 
     var body: some View {
         Button(action: {}, label: {
-            Circle().foregroundColor(guess?.color ?? .red)
+            Circle()
+                .foregroundColor(guess?.color ?? unselectedColor)
+                .frame(width: 100, height: 100)
         })
         .id("guess1")
     }
@@ -49,9 +56,11 @@ private struct CodeChoiceView: View {
         }, label: {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.white)
-                .frame(width: 50, height: 50)
+                .frame(width: 100, height: 100)
                 .overlay(
-                    Circle().foregroundColor(codePeg.color)
+                    Circle()
+                        .foregroundColor(codePeg.color)
+                        .padding(10)
                 )
         })
         .id(id)
