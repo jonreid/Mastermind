@@ -4,7 +4,7 @@ import SwiftUI
 import XCTest
 
 final class GameScreenTests: XCTestCase {
-    func test_tappingBlueColorTurnsGuessBlue() throws {
+    func test_tappingColor1SetsGuessColor() throws {
         var sut = GameScreen()
         var color = try getColorOfGuess(try sut.inspect())
         XCTAssertNotEqual(color, codePeg1.color, "Precondition")
