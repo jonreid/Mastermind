@@ -7,14 +7,14 @@ final class GameScreenTests: XCTestCase {
     func test_tappingColor1SetsGuessColor() throws {
         var sut = GameScreen()
         var color = try getColorOfGuess(try sut.inspect())
-        XCTAssertNotEqual(color, codePeg1.color, "Precondition")
+        XCTAssertNotEqual(color, codeChoice1.color, "Precondition")
 
         display(&sut) { view in
             try view.find(viewWithId: "color1").button().tap()
             color = try self.getColorOfGuess(view)
         }
 
-        XCTAssertEqual(color, codePeg1.color)
+        XCTAssertEqual(color, codeChoice1.color)
     }
 
     private func display(
