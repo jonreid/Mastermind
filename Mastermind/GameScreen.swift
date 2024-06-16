@@ -1,13 +1,13 @@
 import SwiftUI
 
-struct CodePeg {
+struct CodeChoice {
     var color: Color
 }
 
-let codePeg1 = CodePeg(color: .blue)
+let codePeg1 = CodeChoice(color: .blue)
 
 struct GameScreen: View {
-    @State private var guess1: CodePeg?
+    @State private var guess1: CodeChoice?
     var viewInspectorHook: ((Self) -> Void)?
 
     var body: some View {
@@ -23,7 +23,7 @@ struct GameScreen: View {
 }
 
 private struct CodeGuessView: View {
-    @Binding var guess: CodePeg?
+    @Binding var guess: CodeChoice?
 
     var body: some View {
         Button(action: {}, label: {
@@ -41,9 +41,9 @@ private struct CodeGuessView: View {
 }
 
 private struct CodeChoiceView: View {
-    var codePeg: CodePeg
+    var codePeg: CodeChoice
     var id: String
-    @Binding var guess: CodePeg?
+    @Binding var guess: CodeChoice?
 
     var body: some View {
         Button(action: {
