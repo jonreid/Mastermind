@@ -5,11 +5,6 @@ struct CodePeg {
 }
 
 let codePeg1 = CodePeg(color: .blue)
-let backgroundColor = Color(
-    red: 227/255,
-    green: 231/255,
-    blue: 234/255
-)
 let unselectedColor = Color(
     red: 185/255,
     green: 195/255,
@@ -22,7 +17,7 @@ struct GameScreen: View {
 
     var body: some View {
         ZStack {
-            backgroundColor.ignoresSafeArea()
+            Color.background.ignoresSafeArea()
             HStack {
                 CodeGuessView(guess: $guess1)
                 CodeChoiceView(codePeg: codePeg1, id: "color1", guess: $guess1)
