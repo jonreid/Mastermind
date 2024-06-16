@@ -5,11 +5,6 @@ struct CodePeg {
 }
 
 let codePeg1 = CodePeg(color: .blue)
-let unselectedColor = Color(
-    red: 185/255,
-    green: 195/255,
-    blue: 198/255
-)
 
 struct GameScreen: View {
     @State private var guess1: CodePeg?
@@ -36,9 +31,9 @@ private struct CodeGuessView: View {
                 .padding(10)
                 .overlay(
                     Circle()
-                        .strokeBorder(unselectedColor, lineWidth: 2)
+                        .strokeBorder(Color.unselected, lineWidth: 2)
                 )
-                .foregroundColor(guess?.color ?? unselectedColor)
+                .foregroundColor(guess?.color ?? Color.unselected)
                 .frame(width: 100, height: 100)
         })
         .id("guess1")
