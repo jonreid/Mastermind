@@ -4,7 +4,7 @@ import SwiftUI
 import XCTest
 
 final class GameScreenTests: XCTestCase {
-    func test_tappingCodeChoiceSetsGuessColor() throws {
+    @MainActor func test_tappingCodeChoiceSetsGuessColor() throws {
         var sut = GameScreen()
         var color = try getColorOfGuess(try sut.inspect())
         let codeChoice = codeChoices[0]
@@ -18,7 +18,7 @@ final class GameScreenTests: XCTestCase {
         XCTAssertEqual(color, codeChoice.color)
     }
 
-    private func display(
+    @MainActor private func display(
         _ sut: inout GameScreen,
         using: @escaping ((InspectableView<ViewType.View<GameScreen>>) throws -> Void),
         file: StaticString = #filePath,
