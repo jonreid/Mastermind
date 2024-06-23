@@ -11,7 +11,7 @@ struct CodeChoiceGenerator {
 //            throw CodeChoiceGeneratorError.notEnoughColors
 //        }
         return colors.prefix(count).enumerated().map { index, color in
-            CodeChoice(color: color, codeValue: 1)
+            CodeChoice(color: color, codeValue: index + 1)
         }
     }
 }
