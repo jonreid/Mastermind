@@ -20,6 +20,15 @@ struct CodeChoiceGenerator {
     }
 }
 
+let codeColors: [Color] = [.brown, .black, .blue, .green, .yellow, .orange, .red, .gray]
+
 let codeChoice1 = CodeChoice(color: .brown, codeValue: 1)
-//let codeChoice2 = CodeChoice(color: .black, codeValue: 2)
 let codeChoices = [codeChoice1]
+
+class Game {
+    let codeChoices: [CodeChoice]
+
+    init() throws {
+        try codeChoices = CodeChoiceGenerator.generate(from: codeColors, take: 1)
+    }
+}
