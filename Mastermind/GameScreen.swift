@@ -19,6 +19,7 @@ struct GameScreen: TestableView {
                         CodeChoiceView(codePeg: codeChoice, id: codeChoice.codeValue, guess: $guess1)
                     }
                 }
+                .id("codeChoices")
             }
         }
         .onAppear { self.viewInspectorHook?(self) }
