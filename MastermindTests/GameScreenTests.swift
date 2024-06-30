@@ -4,12 +4,15 @@ import SwiftUI
 import XCTest
 
 final class GameScreenTests: XCTestCase {
-    func test_displayCodeChoicesBottomUp() throws {
-        try XCTSkipIf(true, "Disabled")
+    @MainActor func test_displayCodeChoicesBottomUp() throws {
         let game = try Game(numberOfCodeChoices: 2)
         let sut = GameScreen(game: game)
-        try sut.inspect().find(viewWithId: "codeChoices").vStack(0).forEach(0)
-        XCTFail("continue here")
+
+        let choice1 = try sut.inspect().find(viewWithId: "codeChoices").vStack(0).forEach(0)[0].button().labelView().shape().overlay().shape().foregroundColor()
+        let choice2 = try sut.inspect().find(viewWithId: "codeChoices").vStack(0).forEach(0)[0].button().labelView().shape().overlay().shape().foregroundColor()
+
+        XCTAssertEqual(choice1, game.codeChoices[0].color)
+        XCTAssertEqual(choice2, game.codeChoices[1].color)
     }
 
     @MainActor func test_initialColorGuessIsUnselected() throws {
