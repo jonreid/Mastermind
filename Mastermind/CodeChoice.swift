@@ -22,7 +22,7 @@ struct CodeChoiceGenerator {
 
 let codeColors: [Color] = [.brown, .black, .blue, .green, .yellow, .orange, .red, .gray]
 
-class Game {
+final class Game {
     let codeChoices: [CodeChoice]
 
     init(numberOfCodeChoices: Int) throws {
