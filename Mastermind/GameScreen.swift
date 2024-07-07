@@ -14,12 +14,7 @@ struct GameScreen: TestableView {
             Color.background.ignoresSafeArea()
             HStack {
                 CodeGuessView(guess: $guess1)
-                VStack {
-                    ForEach(game.codeChoices.reversed(), id: \.codeValue) { codeChoice in
-                        CodeChoiceView(codePeg: codeChoice, id: codeChoice.codeValue, guess: $guess1)
-                    }
-                }
-                .id("codeChoices")
+                CodeChoicesView(game: $game, guess1: $guess1)
             }
         }
         .onAppear { self.viewInspectorHook?(self) }
