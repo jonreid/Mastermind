@@ -4,15 +4,15 @@ import SwiftUI
 import XCTest
 
 final class GameScreenTests: XCTestCase {
-    @MainActor func test_displaysCodeChoices() throws {
+    @MainActor func test_displaysCodeChoicesBottomUp() throws {
         let game = try Game(numberOfCodeChoices: 2)
         let sut = GameScreen(game: game)
 
         let choice1 = try getCodeChoiceColor(sut.inspect(), 0)
         let choice2 = try getCodeChoiceColor(sut.inspect(), 1)
 
-        XCTAssertEqual(choice1, game.codeChoices[0].color)
-        XCTAssertEqual(choice2, game.codeChoices[1].color)
+        XCTAssertEqual(choice1, game.codeChoices[1].color)
+        XCTAssertEqual(choice2, game.codeChoices[0].color)
     }
 
     @MainActor func test_initialColorGuessIsUnselected() throws {
