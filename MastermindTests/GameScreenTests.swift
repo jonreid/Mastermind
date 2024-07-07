@@ -8,8 +8,8 @@ final class GameScreenTests: XCTestCase {
         let game = try Game(numberOfCodeChoices: 2)
         let sut = GameScreen(game: game)
 
-        let choice1 = try sut.inspect().find(viewWithId: "codeChoices").vStack(0).forEach(0)[0].button().labelView().shape().overlay().shape().foregroundColor()
-        let choice2 = try sut.inspect().find(viewWithId: "codeChoices").vStack(0).forEach(0)[1].button().labelView().shape().overlay().shape().foregroundColor()
+        let choice1 = try getCodeChoiceColor(sut.inspect(), 0)
+        let choice2 = try getCodeChoiceColor(sut.inspect(), 1)
 
         XCTAssertEqual(choice1, game.codeChoices[0].color)
         XCTAssertEqual(choice2, game.codeChoices[1].color)
@@ -40,5 +40,9 @@ final class GameScreenTests: XCTestCase {
 
     private func getColorOfGuess<V: ViewInspector.KnownViewType>(_ view: InspectableView<V>) throws -> Color? {
         try view.asInspectableView().find(viewWithId: "guess1").button().labelView().shape().foregroundColor()
+    }
+
+    private func getCodeChoiceColor<V: ViewInspector.KnownViewType>(_ view: InspectableView<V>, _ index: Int) throws -> Color? {
+        try view.asInspectableView().find(viewWithId: "codeChoices").vStack(0).forEach(0)[index].button().labelView().shape().overlay().shape().foregroundColor()
     }
 }
