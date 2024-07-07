@@ -30,7 +30,7 @@ final class GameScreenTests: XCTestCase {
         let codeChoice = game.codeChoices[0]
         var color: Color?
 
-        update(&sut) { view in
+        inspectChangingView(&sut) { view in
             try view.find(viewWithId: codeChoice.codeValue).button().tap()
             color = try self.getColorOfGuess(view)
         }
