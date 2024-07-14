@@ -3,6 +3,8 @@ import SwiftUI
 @testable import ViewInspector
 import XCTest
 
+extension InspectableSheet: PopupPresenter {}
+
 final class GameScreenTests: XCTestCase {
     @MainActor func test_displaysCodeChoicesBottomUp() throws {
         let game = try Game(numberOfCodeChoices: 2)
@@ -39,14 +41,13 @@ final class GameScreenTests: XCTestCase {
     }
 
     @MainActor func test_showsGameOverWhenCodeChoiceIsFilled() throws {
-        try XCTSkipIf(true, "Disabled")
         let game = try Game(numberOfCodeChoices: 2)
         var sut = GameScreen(game: game)
         let codeChoice = game.codeChoices[0]
 
         inspectChangingView(&sut) { view in
             try view.find(viewWithId: codeChoice.codeValue).button().tap()
-            XCTAssertNoThrow(try view.sheet())
+            XCTAssertNoThrow(try view.zStack().sheet())
         }
     }
 

@@ -17,6 +17,12 @@ struct GameScreen: TestableView {
                 CodeChoicesView(game: $game, guess1: $guess1)
             }
         }
+        .inspectableSheet(isPresented: .constant(true), content: {
+            Text("Boo")
+        })
+//        .sheet(isPresented: .constant(guess1 != nil)) {
+//            GameOverScreen(game: game)
+//        }
         .onAppear { self.viewInspectorHook?(self) }
     }
 }
