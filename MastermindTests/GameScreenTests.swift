@@ -47,7 +47,7 @@ final class GameScreenTests: XCTestCase {
 
         inspectChangingView(&sut) { view in
             try view.find(viewWithId: codeChoice.codeValue).button().tap()
-            XCTAssertNoThrow(try view.zStack().sheet())
+            XCTAssertNoThrow(try view.find(ViewType.Sheet.self))
         }
     }
 
