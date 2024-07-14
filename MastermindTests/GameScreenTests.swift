@@ -51,6 +51,12 @@ final class GameScreenTests: XCTestCase {
         }
     }
 
+    @MainActor func test_doesNotShowGameOverWhenCodeChoiceIsEmpty() throws {
+        let game = try Game(numberOfCodeChoices: 2)
+        let sut = GameScreen(game: game)
+        XCTAssertThrowsError(try sut.inspect().find(ViewType.Sheet.self))
+    }
+
     private func getColorOfGuess<V: ViewInspector.KnownViewType>(_ view: InspectableView<V>) throws -> Color? {
         try view.asInspectableView().find(viewWithId: "guess1").button().labelView().shape().foregroundColor()
     }
