@@ -38,6 +38,18 @@ final class GameScreenTests: XCTestCase {
         XCTAssertEqual(color, codeChoice.color)
     }
 
+    @MainActor func test_showsGameOverWhenCodeChoiceIsFilled() throws {
+        try XCTSkipIf(true, "Disabled")
+        let game = try Game(numberOfCodeChoices: 2)
+        var sut = GameScreen(game: game)
+        let codeChoice = game.codeChoices[0]
+
+        inspectChangingView(&sut) { view in
+            try view.find(viewWithId: codeChoice.codeValue).button().tap()
+            XCTAssertNoThrow(try view.sheet())
+        }
+    }
+
     private func getColorOfGuess<V: ViewInspector.KnownViewType>(_ view: InspectableView<V>) throws -> Color? {
         try view.asInspectableView().find(viewWithId: "guess1").button().labelView().shape().foregroundColor()
     }
