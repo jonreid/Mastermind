@@ -1,8 +1,8 @@
 [![Build](https://github.com/jonreid/Mastermind/actions/workflows/build.yml/badge.svg)](https://github.com/jonreid/Mastermind/actions/workflows/build.yml)
 
-# Mastermind (exploring TDD in a SwiftUI World)
+# Mastermind (exploring TDD with SwiftUI)
 
-I'm writing a Mastermind game to explore [TDD in a SwiftUI World](https://qualitycoding.org/tdd-swiftui-series/). Read [the first article](https://qualitycoding.org/tdd-for-swiftui-lets-begin) to learn about my goals.
+I'm writing a Mastermind game to explore [TDD with SwiftUI](https://qualitycoding.org/tdd-swiftui-series/). Read [the first article](https://qualitycoding.org/tdd-for-swiftui-lets-begin) to learn about my goals.
 
 There will be Xcode project configuration. There will be architecture, design, and refactoring. There will be test-driven development (TDD). And how will I approach SwiftUI?
 
@@ -10,7 +10,7 @@ Stick around to find out.
 
 My plan is to live-code this project on Twitch, post the recordings on YouTube, and then turn what we discover into articles.
 
-You can see [the whiteboard I'm using on Miro](https://miro.com/app/board/uXjVNNVlS6k=/?share_link_id=500104344113).
+You can see [the Discovery Tree I'm using on Miro](https://miro.com/app/board/uXjVNNVlS6k=/?share_link_id=500104344113).
 
 ## Live-Coding on Twitch
 
