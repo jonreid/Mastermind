@@ -60,8 +60,7 @@ final class GameScreenTests: XCTestCase {
     @MainActor func test_gameOverShowsYouLoseWhenGuessDoesNotMatchSecret() throws {
         let game = try Game(numberOfCodeChoices: 2)
         var sut = GameScreen(game: game)
-        let secret = game.codeChoices[1]
-        game.secret = [secret]
+        game.secret = [game.codeChoices[1]]
         let codeChoiceToTap = game.codeChoices[0]
         var gameOverText: String?
 
