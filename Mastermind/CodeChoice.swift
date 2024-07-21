@@ -29,4 +29,8 @@ final class Game {
     init(numberOfCodeChoices: Int) throws {
         try codeChoices = CodeChoiceGenerator.generate(from: codeColors, take: numberOfCodeChoices)
     }
+
+    func isGuessCorrect(_ guess: [CodeChoice]) -> Bool {
+        return secret == guess
+    }
 }

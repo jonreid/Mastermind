@@ -8,10 +8,6 @@ struct GameScreen: TestableView {
     init(game: Game) {
         self.game = game
     }
-
-    fileprivate func isGuessCorrect(_ guess: [CodeChoice]) -> Bool {
-        return game.secret == guess
-    }
     
     var body: some View {
         Color.background.ignoresSafeArea().overlay {
@@ -21,7 +17,7 @@ struct GameScreen: TestableView {
             }
         }
         .inspectableSheet(isPresented: .constant(guess1 != nil), content: {
-            if (isGuessCorrect([guess1!])) {
+            if (game.isGuessCorrect([guess1!])) {
                 Text("You win!")
             } else {
                 Text("You lose!")
