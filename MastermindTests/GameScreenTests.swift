@@ -57,6 +57,22 @@ final class GameScreenTests: XCTestCase {
         XCTAssertThrowsError(try sut.inspect().find(ViewType.Sheet.self))
     }
 
+    @MainActor func test_gameOverShowsYouLoseWhenGuessDoesNotMatchSecret() throws {
+        let game = try Game(numberOfCodeChoices: 2)
+        var sut = GameScreen(game: game)
+        let secret = game.codeChoices[1]
+        game.secret = [secret]
+        let codeChoiceToTap = game.codeChoices[0]
+        var gameOverText: String?
+
+        inspectChangingView(&sut) { view in
+            try view.find(viewWithId: codeChoiceToTap.codeValue).button().tap()
+            gameOverText = try view.find(ViewType.Sheet.self).text().string()
+        }
+
+        XCTAssertEqual(gameOverText, "You lose!")
+    }
+
     private func getColorOfGuess<V: ViewInspector.KnownViewType>(_ view: InspectableView<V>) throws -> Color? {
         try view.asInspectableView().find(viewWithId: "guess1").button().labelView().shape().foregroundColor()
     }

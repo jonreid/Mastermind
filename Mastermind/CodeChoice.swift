@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CodeChoice: Equatable {
     let color: Color
-    let codeValue: Int
+let codeValue: Int
 }
 
 enum CodeChoiceGeneratorError: Error {
@@ -24,6 +24,7 @@ let codeColors: [Color] = [.brown, .black, .blue, .green, .yellow, .orange, .red
 
 final class Game {
     let codeChoices: [CodeChoice]
+    var secret: [CodeChoice] = []
 
     init(numberOfCodeChoices: Int) throws {
         try codeChoices = CodeChoiceGenerator.generate(from: codeColors, take: numberOfCodeChoices)
