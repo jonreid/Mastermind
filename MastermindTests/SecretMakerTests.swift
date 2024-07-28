@@ -27,6 +27,15 @@ final class SecretMakerTests: XCTestCase {
         XCTAssertTrue(result.contains(codeChoices[1]))
     }
 
-    // Test that non-null SecretMaker returns array that is sometimes not equal to codeChoices
+    func test_notNull_notEqual() throws {
+        let sut = SecretMaker()
 
+        for _ in 0..<100 {
+            let result = sut.makeSecret(from: codeChoices)
+            if result != codeChoices {
+                return
+            }
+        }
+        XCTFail("Failed to shuffle code choices after 100 attempts")
+    }
 }
