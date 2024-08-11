@@ -14,6 +14,6 @@ final class GameTests: XCTestCase {
 
         game.makeNewSecret()
 
-        XCTAssertEqual(game.secret, game.codeChoices)
+        XCTAssertEqual(game.secret, game.codeChoices.options)
     }
 }
