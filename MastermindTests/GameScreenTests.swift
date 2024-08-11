@@ -3,6 +3,12 @@ import SwiftUI
 @testable import ViewInspector
 import XCTest
 
+extension Game {
+    fileprivate convenience init(numberOfCodeChoices: Int) throws {
+        try self.init(numberOfCodeChoices: numberOfCodeChoices, SecretMaker.createNull())
+    }
+}
+
 extension InspectableSheet: PopupPresenter {}
 
 final class GameScreenTests: XCTestCase {
@@ -93,11 +99,5 @@ final class GameScreenTests: XCTestCase {
 
     private func getCodeChoiceColor<V: ViewInspector.KnownViewType>(_ view: InspectableView<V>, _ index: Int) throws -> Color? {
         try view.asInspectableView().find(viewWithId: "codeChoices").vStack(0).forEach(0)[index].button().labelView().shape().overlay().shape().foregroundColor()
-    }
-}
-
-extension Game {
-    fileprivate convenience init(numberOfCodeChoices: Int) throws {
-        try self.init(numberOfCodeChoices: numberOfCodeChoices, SecretMaker.createNull())
     }
 }
