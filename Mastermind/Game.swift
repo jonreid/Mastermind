@@ -6,6 +6,10 @@ final class Game {
         try codeChoices = CodeChoiceGenerator.generate(from: codeColors, take: numberOfCodeChoices)
     }
 
+    func makeNewSecret() {
+//        secret = secretMaker.makeSecret(from: codeChoices)
+    }
+
     func isGuessCorrect(_ guess: [CodeChoice]) -> Bool {
         return secret == guess
     }

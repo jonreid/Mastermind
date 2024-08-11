@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CodeChoice: Equatable {
     let color: Color
-let codeValue: Int
+    let codeValue: Int
 }
 
 enum CodeChoiceGeneratorError: Error {

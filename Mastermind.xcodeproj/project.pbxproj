@@ -20,6 +20,7 @@
 		0F70251D2B72E88C006327F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F70251C2B72E88C006327F4 /* Assets.xcassets */; };
 		0F7025202B72E88C006327F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F70251F2B72E88C006327F4 /* Preview Assets.xcassets */; };
 		0FBA16252C6927FE00D1D3EF /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBA16242C6927FE00D1D3EF /* Game.swift */; };
+		0FBA16272C69288100D1D3EF /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBA16262C69288100D1D3EF /* GameTests.swift */; };
 		0FF5DCE32B73497600D7E358 /* GameScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF5DCE22B73497600D7E358 /* GameScreenTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		0F7025332B72EB4B006327F4 /* MastermindTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MastermindTests.xctestplan; sourceTree = "<group>"; };
 		0F92CB1D2B9E56DF001F8E20 /* XcodeWarnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XcodeWarnings.xcconfig; sourceTree = "<group>"; };
 		0FBA16242C6927FE00D1D3EF /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		0FBA16262C69288100D1D3EF /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		0FF5DCE22B73497600D7E358 /* GameScreenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScreenTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 				0FF5DCE22B73497600D7E358 /* GameScreenTests.swift */,
 				0F131FAB2C288E2500C2DA67 /* CodeChoiceTests.swift */,
 				0F3891372C56AF00008BE930 /* SecretMakerTests.swift */,
+				0FBA16262C69288100D1D3EF /* GameTests.swift */,
 			);
 			path = MastermindTests;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				0FF5DCE32B73497600D7E358 /* GameScreenTests.swift in Sources */,
 				0F3891382C56AF00008BE930 /* SecretMakerTests.swift in Sources */,
 				0F131FA82C28871300C2DA67 /* UpdateTestableView.swift in Sources */,
+				0FBA16272C69288100D1D3EF /* GameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
