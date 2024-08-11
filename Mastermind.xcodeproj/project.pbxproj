@@ -19,6 +19,7 @@
 		0F70251B2B72E88B006327F4 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70251A2B72E88B006327F4 /* GameScreen.swift */; };
 		0F70251D2B72E88C006327F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F70251C2B72E88C006327F4 /* Assets.xcassets */; };
 		0F7025202B72E88C006327F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F70251F2B72E88C006327F4 /* Preview Assets.xcassets */; };
+		0FBA16252C6927FE00D1D3EF /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBA16242C6927FE00D1D3EF /* Game.swift */; };
 		0FF5DCE32B73497600D7E358 /* GameScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF5DCE22B73497600D7E358 /* GameScreenTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		0F70252A2B72E913006327F4 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7025332B72EB4B006327F4 /* MastermindTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MastermindTests.xctestplan; sourceTree = "<group>"; };
 		0F92CB1D2B9E56DF001F8E20 /* XcodeWarnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XcodeWarnings.xcconfig; sourceTree = "<group>"; };
+		0FBA16242C6927FE00D1D3EF /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		0FF5DCE22B73497600D7E358 /* GameScreenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScreenTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +101,7 @@
 				0F70251C2B72E88C006327F4 /* Assets.xcassets */,
 				0F70251E2B72E88C006327F4 /* Preview Content */,
 				0F131FA92C288DA500C2DA67 /* CodeChoice.swift */,
+				0FBA16242C6927FE00D1D3EF /* Game.swift */,
 				0F12C64A2C443BCB00899BE6 /* InspectableSheet.swift */,
 				0F3891392C56B201008BE930 /* SecretMaker.swift */,
 			);
@@ -232,6 +235,7 @@
 			files = (
 				0F131FA62C2886FF00C2DA67 /* TestableView.swift in Sources */,
 				0F12C64B2C443BCB00899BE6 /* InspectableSheet.swift in Sources */,
+				0FBA16252C6927FE00D1D3EF /* Game.swift in Sources */,
 				0F131FAA2C288DA500C2DA67 /* CodeChoice.swift in Sources */,
 				0F70251B2B72E88B006327F4 /* GameScreen.swift in Sources */,
 				0F38913A2C56B201008BE930 /* SecretMaker.swift in Sources */,
