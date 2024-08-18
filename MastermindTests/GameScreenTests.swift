@@ -19,8 +19,8 @@ final class GameScreenTests: XCTestCase {
         let choice1 = try getCodeChoiceColor(sut.inspect(), 0)
         let choice2 = try getCodeChoiceColor(sut.inspect(), 1)
 
-        XCTAssertEqual(choice1, game.codeChoices[1].color)
-        XCTAssertEqual(choice2, game.codeChoices[0].color)
+        XCTAssertEqual(choice1, game.codeChoiceColor(1))
+        XCTAssertEqual(choice2, game.codeChoiceColor(0))
     }
 
     @MainActor func test_initialColorGuessIsUnselected() throws {
