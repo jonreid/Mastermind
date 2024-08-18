@@ -2,11 +2,6 @@ import SwiftUI
 
 final class Game {
     let _codeChoices: CodeChoices
-    var codeChoices: [CodeChoice] {
-        get {
-            return _codeChoices.options
-        }
-    }
 
     var secret: [CodeChoice] = []
 
@@ -15,7 +10,7 @@ final class Game {
     }
 
     func codeChoice(_ index: Int) -> CodeChoice {
-        return codeChoices[index]
+        return _codeChoices.options[index]
     }
 
     func codeChoiceColor(_ index: Int) -> Color {

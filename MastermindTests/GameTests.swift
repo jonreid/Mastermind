@@ -8,12 +8,12 @@ final class GameTests: XCTestCase {
         XCTAssertEqual(game.secret, [])
     }
 
-    func test_makeNewSecret() throws {
-        try XCTSkipIf(true, "Disabled")
-        let game = try Game(numberOfCodeChoices: 2, SecretMaker.createNull())
-
-        game.makeNewSecret()
-
-        XCTAssertEqual(game.secret, game.codeChoices)
-    }
+//    func test_makeNewSecret() throws {
+//        try XCTSkipIf(true, "Disabled")
+//        let game = try Game(numberOfCodeChoices: 2, SecretMaker.createNull())
+//
+//        game.makeNewSecret()
+//
+//        XCTAssertEqual(game.secret, game.codeChoices)
+//    }
 }
