@@ -12,7 +12,7 @@ final class Game {
     var secret: [CodeChoice] = []
 
     init(numberOfCodeChoices: Int, _ secretMaker: SecretMaker) throws {
-        try codeChoices = CodeChoiceGenerator.generate2(from: codeColors, take: numberOfCodeChoices).options
+        try codeChoices = CodeChoiceGenerator.generate(from: codeColors, take: numberOfCodeChoices).options
     }
 
     func makeNewSecret() {

@@ -6,7 +6,7 @@ final class SecretMakerTests: XCTestCase {
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        codeChoices = try CodeChoiceGenerator.generate2(from: codeColors, take: 8).options
+        codeChoices = try CodeChoiceGenerator.generate(from: codeColors, take: 8).options
     }
 
     func test_nullable() throws {
