@@ -5,6 +5,10 @@ struct CodeChoice: Equatable {
     let codeValue: Int
 }
 
+struct CodeChoices {
+    let options: [CodeChoice]
+}
+
 enum CodeChoiceGeneratorError: Error {
     case notEnoughColors
 }
