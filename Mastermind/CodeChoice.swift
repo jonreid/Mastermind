@@ -8,7 +8,7 @@ struct CodeChoice: Equatable {
 struct CodeChoices {
     let options: [CodeChoice]
 
-    var topToBottom: [CodeChoice] {
+    var lastToFirst: [CodeChoice] {
         return options.reversed()
     }
 }
