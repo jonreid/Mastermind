@@ -1,11 +1,11 @@
 final class Game {
-    private var _codeChoices: [CodeChoice] = []
+    private var _codeChoices: CodeChoices = CodeChoices(options: [])
     var codeChoices: [CodeChoice] {
         get {
-            return _codeChoices
+            return _codeChoices.options
         }
         set {
-            _codeChoices = newValue
+            _codeChoices = CodeChoices(options: newValue)
         }
     }
 
@@ -22,4 +22,8 @@ final class Game {
     func isGuessCorrect(_ guess: [CodeChoice]) -> Bool {
         return secret == guess
     }
+}
+
+struct CodeChoices {
+    let options: [CodeChoice]
 }
