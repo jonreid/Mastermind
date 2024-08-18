@@ -35,7 +35,7 @@ final class GameScreenTests: XCTestCase {
     @MainActor func test_tappingCodeChoiceSetsGuessColor() throws {
         let game = try Game(numberOfCodeChoices: 1)
         var sut = GameScreen(game: game)
-        let codeChoice = game.codeChoices[0]
+        let codeChoice = game.codeChoice(0)
         var color: Color?
 
         inspectChangingView(&sut) { view in
@@ -49,7 +49,7 @@ final class GameScreenTests: XCTestCase {
     @MainActor func test_showsGameOverWhenCodeChoiceIsFilled() throws {
         let game = try Game(numberOfCodeChoices: 2)
         var sut = GameScreen(game: game)
-        let codeChoice = game.codeChoices[0]
+        let codeChoice = game.codeChoice(0)
 
         inspectChangingView(&sut) { view in
             try view.find(viewWithId: codeChoice.codeValue).button().tap()
@@ -66,8 +66,8 @@ final class GameScreenTests: XCTestCase {
     @MainActor func test_gameOverShowsYouLoseWhenGuessDoesNotMatchSecret() throws {
         let game = try Game(numberOfCodeChoices: 2)
         var sut = GameScreen(game: game)
-        game.secret = [game.codeChoices[1]]
-        let codeChoiceToTap = game.codeChoices[0]
+        game.secret = [game.codeChoice(1)]
+        let codeChoiceToTap = game.codeChoice(0)
         var gameOverText: String?
 
         inspectChangingView(&sut) { view in
@@ -81,7 +81,7 @@ final class GameScreenTests: XCTestCase {
     @MainActor func test_gameOverShowsYouWinWhenGuessMatchesSecret() throws {
         let game = try Game(numberOfCodeChoices: 2)
         var sut = GameScreen(game: game)
-        game.secret = [game.codeChoices[1]]
+        game.secret = [game.codeChoice(1)]
         let codeChoiceToTap = game.secret[0]
         var gameOverText: String?
 
