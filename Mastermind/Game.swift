@@ -1,5 +1,14 @@
 final class Game {
-    let codeChoices: [CodeChoice]
+    private var _codeChoices: [CodeChoice] = []
+    var codeChoices: [CodeChoice] {
+        get {
+            return _codeChoices
+        }
+        set {
+            _codeChoices = newValue
+        }
+    }
+
     var secret: [CodeChoice] = []
 
     init(numberOfCodeChoices: Int, _ secretMaker: SecretMaker) throws {
