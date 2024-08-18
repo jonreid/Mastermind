@@ -1,5 +1,5 @@
 final class Game {
-    let codeChoices: CodeChoices
+    let codeChoices: [CodeChoice]
     var secret: [CodeChoice] = []
 
     init(numberOfCodeChoices: Int, _ secretMaker: SecretMaker) throws {

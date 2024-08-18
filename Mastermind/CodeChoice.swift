@@ -9,10 +9,8 @@ enum CodeChoiceGeneratorError: Error {
     case notEnoughColors
 }
 
-typealias CodeChoices = [CodeChoice]
-
 struct CodeChoiceGenerator {
-    static func generate(from colors: [Color], take count: Int) throws -> CodeChoices {
+    static func generate(from colors: [Color], take count: Int) throws -> [CodeChoice] {
         guard colors.count >= count else {
             throw CodeChoiceGeneratorError.notEnoughColors
         }
