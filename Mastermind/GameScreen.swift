@@ -51,7 +51,7 @@ private struct CodeChoicesView: View {
 
     var body: some View {
         VStack {
-            ForEach(game.codeChoices.options.reversed(), id: \.codeValue) { codeChoice in
+            ForEach(game.codeChoices.reversed(), id: \.codeValue) { codeChoice in
                 CodeChoiceView(codePeg: codeChoice, id: codeChoice.codeValue, guess: $guess1)
             }
         }
