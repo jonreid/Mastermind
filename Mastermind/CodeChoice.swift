@@ -14,10 +14,6 @@ enum CodeChoiceGeneratorError: Error {
 }
 
 struct CodeChoiceGenerator {
-    static func generate(from colors: [Color], take count: Int) throws -> [CodeChoice] {
-        return try generate2(from: colors, take: count).options
-    }
-
     static func generate2(from colors: [Color], take count: Int) throws -> CodeChoices {
         guard colors.count >= count else {
             throw CodeChoiceGeneratorError.notEnoughColors
