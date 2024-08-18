@@ -1,7 +1,7 @@
 import SwiftUI
 
 final class Game {
-    private var _codeChoices: CodeChoices
+    let _codeChoices: CodeChoices
     var codeChoices: [CodeChoice] {
         get {
             return _codeChoices.options
