@@ -2,11 +2,11 @@
 import XCTest
 
 final class SecretMakerTests: XCTestCase {
-    private var codeChoices: [CodeChoice] = []
+    private var codeChoices: CodeChoices!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        codeChoices = try CodeChoiceGenerator.generate(from: codeColors, take: 8).options
+        codeChoices = try CodeChoiceGenerator.generate(from: codeColors, take: 8)
     }
 
     func test_nullable() throws {
@@ -14,7 +14,7 @@ final class SecretMakerTests: XCTestCase {
 
         let result = sut.makeSecret(from: codeChoices)
 
-        XCTAssertEqual(result, codeChoices)
+        XCTAssertEqual(result, codeChoices.options)
     }
 
     func test_containsAllCodeChoices() throws {
@@ -22,10 +22,10 @@ final class SecretMakerTests: XCTestCase {
 
         let result = sut.makeSecret(from: codeChoices)
 
-        XCTAssertEqual(result.count, codeChoices.count)
+        XCTAssertEqual(result.count, codeChoices.options.count)
         XCTAssertTrue(
-            codeChoices.allSatisfy({ result.contains($0) }),
-            "Expected \(result.map(\.color)) to contain all elements of \(codeChoices.map(\.color))"
+            codeChoices.options.allSatisfy({ result.contains($0) }),
+            "Expected \(result.map(\.color)) to contain all elements of \(codeChoices.options.map(\.color))"
         )
     }
 
@@ -34,7 +34,7 @@ final class SecretMakerTests: XCTestCase {
 
         for _ in 0..<100 {
             let result = sut.makeSecret(from: codeChoices)
-            if result != codeChoices {
+            if result != codeChoices.options {
                 return
             }
         }
