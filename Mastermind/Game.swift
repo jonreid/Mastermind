@@ -15,10 +15,6 @@ final class Game {
         return codeChoices.options[index]
     }
 
-    func codeChoiceColor(_ index: Int) -> Color {
-        return codeChoice(index).color
-    }
-
     func makeNewSecret() {
         secret = secretMaker.makeSecret(from: codeChoices)
     }
