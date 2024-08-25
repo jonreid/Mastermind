@@ -1,11 +1,13 @@
 import SwiftUI
 
 final class Game {
+    private let secretMaker: SecretMaker
     let codeChoices: CodeChoices
 
     var secret = Secret(code: [])
 
     init(numberOfCodeChoices: Int, _ secretMaker: SecretMaker) throws {
+        self.secretMaker = secretMaker
         try codeChoices = CodeChoiceGenerator.generate(from: codeColors, take: numberOfCodeChoices)
     }
 
@@ -18,7 +20,7 @@ final class Game {
     }
 
     func makeNewSecret() {
-//        secret = secretMaker.makeSecret(from: codeChoices)
+        secret = secretMaker.makeSecret(from: codeChoices)
     }
 
     func isGuessCorrect(_ guess: [CodeChoice]) -> Bool {
