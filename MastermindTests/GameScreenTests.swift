@@ -23,6 +23,13 @@ final class GameScreenTests: XCTestCase {
         XCTAssertEqual(choice2, game.codeChoiceColor(0))
     }
 
+    @MainActor func test_showingGameScreen_setsGameSecret() throws {
+        let game = try Game(numberOfCodeChoices: 2)
+        let sut = GameScreen(game: game)
+
+        XCTAssertFalse(game.secret.code.isEmpty)
+    }
+
     @MainActor func test_initialColorGuessIsUnselected() throws {
         let game = try Game(numberOfCodeChoices: 1)
         let sut = GameScreen(game: game)

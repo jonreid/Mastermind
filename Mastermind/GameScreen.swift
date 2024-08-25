@@ -7,6 +7,7 @@ struct GameScreen: TestableView {
 
     init(game: Game) {
         self.game = game
+        game.makeNewSecret()
     }
     
     var body: some View {
@@ -18,6 +19,7 @@ struct GameScreen: TestableView {
         }
         .inspectableSheet(isPresented: .constant(guess1 != nil), content: {
             if (game.isGuessCorrect([guess1!])) {
+//            if (game.secret.code[0] == guess1) {
                 Text("You win!")
             } else {
                 Text("You lose!")
