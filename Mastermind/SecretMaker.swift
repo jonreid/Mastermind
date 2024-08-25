@@ -1,8 +1,8 @@
 struct Secret {
     let code: [CodeChoice]
 
-    init(options: [CodeChoice]) {
-        self.code = options
+    init(code: [CodeChoice]) {
+        self.code = code
     }
 }
 
@@ -17,6 +17,6 @@ struct SecretMaker {
 
     func makeSecret(from codeChoices: CodeChoices) -> Secret {
         let colors = isNull ? codeChoices.options : codeChoices.options.shuffled()
-        return Secret(options: colors)
+        return Secret(code: colors)
     }
 }
