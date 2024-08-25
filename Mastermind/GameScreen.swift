@@ -22,7 +22,7 @@ struct GameScreen: TestableView {
             if (game.secret.code[0] == guess1) {
                 Text("You win!")
             } else {
-                Text("You lose!")
+                Text("You lose! The secret was \(game.secret.code[0].color)")
             }
         })
         .onAppear { self.viewInspectorHook?(self) }
