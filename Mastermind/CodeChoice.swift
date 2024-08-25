@@ -7,10 +7,6 @@ struct CodeChoice: Equatable {
 
 struct CodeChoices {
     let options: [CodeChoice]
-
-    var lastToFirst: [CodeChoice] {
-        return options.reversed()
-    }
 }
 
 enum CodeChoiceGeneratorError: Error {
