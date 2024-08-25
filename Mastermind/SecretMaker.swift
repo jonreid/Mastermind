@@ -1,3 +1,11 @@
+struct Secret {
+    let options: [CodeChoice]
+
+    init(options: [CodeChoice]) {
+        self.options = options
+    }
+}
+
 struct SecretMaker {
     static func createNull() -> SecretMaker {
         var secretMaker = SecretMaker()
@@ -7,7 +15,7 @@ struct SecretMaker {
 
     private var isNull = false
 
-    func makeSecret(from codeChoices: CodeChoices) -> [CodeChoice] {
-        return isNull ? codeChoices.options : codeChoices.options.shuffled()
+    func makeSecret(from codeChoices: CodeChoices) -> Secret {
+        return Secret(options: isNull ? codeChoices.options : codeChoices.options.shuffled())
     }
 }
