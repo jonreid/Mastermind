@@ -16,6 +16,7 @@ struct SecretMaker {
     private var isNull = false
 
     func makeSecret(from codeChoices: CodeChoices) -> Secret {
-        return Secret(options: isNull ? codeChoices.options : codeChoices.options.shuffled())
+        let colors = isNull ? codeChoices.options : codeChoices.options.shuffled()
+        return Secret(options: colors)
     }
 }
