@@ -1,8 +1,8 @@
 struct Secret {
-    let options: [CodeChoice]
+    let code: [CodeChoice]
 
     init(options: [CodeChoice]) {
-        self.options = options
+        self.code = options
     }
 }
 

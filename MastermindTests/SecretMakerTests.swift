@@ -14,7 +14,7 @@ final class SecretMakerTests: XCTestCase {
 
         let result = sut.makeSecret(from: codeChoices)
 
-        XCTAssertEqual(result.options, codeChoices.options)
+        XCTAssertEqual(result.code, codeChoices.options)
     }
 
     func test_containsAllCodeChoices() throws {
@@ -22,10 +22,10 @@ final class SecretMakerTests: XCTestCase {
 
         let result = sut.makeSecret(from: codeChoices)
 
-        XCTAssertEqual(result.options.count, codeChoices.options.count)
+        XCTAssertEqual(result.code.count, codeChoices.options.count)
         XCTAssertTrue(
-            codeChoices.options.allSatisfy({ result.options.contains($0) }),
-            "Expected \(result.options.map(\.color)) to contain all elements of \(codeChoices.options.map(\.color))"
+            codeChoices.options.allSatisfy({ result.code.contains($0) }),
+            "Expected \(result.code.map(\.color)) to contain all elements of \(codeChoices.options.map(\.color))"
         )
     }
 
@@ -34,7 +34,7 @@ final class SecretMakerTests: XCTestCase {
 
         for _ in 0..<100 {
             let result = sut.makeSecret(from: codeChoices)
-            if result.options != codeChoices.options {
+            if result.code != codeChoices.options {
                 return
             }
         }
