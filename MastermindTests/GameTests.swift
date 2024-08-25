@@ -5,7 +5,7 @@ final class GameTests: XCTestCase {
     func test_gameHasNoSecretInitially() throws {
         let game = try Game(numberOfCodeChoices: 2, SecretMaker.createNull())
 
-        XCTAssertEqual(game.secret, [])
+        XCTAssertEqual(game.secret.code, [])
     }
 
 //    func test_makeNewSecret() throws {
