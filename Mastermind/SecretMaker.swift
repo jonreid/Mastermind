@@ -1,9 +1,5 @@
 struct Secret {
     let code: [CodeChoice]
-
-    init(code: [CodeChoice]) {
-        self.code = code
-    }
 }
 
 struct SecretMaker {
