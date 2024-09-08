@@ -13,6 +13,6 @@ struct SecretMaker {
 
     func makeSecret(from codeChoices: CodeChoices, secretSize: Int) -> Secret {
         let colors = isNull ? codeChoices.options : codeChoices.options.shuffled()
-        return Secret(code: colors)
+        return Secret(code: Array(colors.prefix(secretSize)))
     }
 }
