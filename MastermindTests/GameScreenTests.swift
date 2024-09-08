@@ -32,7 +32,7 @@ final class GameScreenTests: XCTestCase {
     }
 
     @MainActor func test_initialColorGuessIsUnselected() throws {
-        let game = try Game(numberOfCodeChoices: 1)
+        let game = try Game(numberOfCodeChoices: 2)
         let sut = GameScreen(game: game)
 
         let color = try getColorOfGuess(try sut.inspect())
@@ -41,7 +41,7 @@ final class GameScreenTests: XCTestCase {
     }
 
     @MainActor func test_tappingCodeChoiceSetsGuessColor() throws {
-        let game = try Game(numberOfCodeChoices: 1)
+        let game = try Game(numberOfCodeChoices: 2)
         var sut = GameScreen(game: game)
         let codeChoice = game.codeChoice(0)
         var color: Color?
