@@ -17,7 +17,7 @@ final class SecretMakerTests: XCTestCase {
         XCTAssertEqual(result.code, codeChoices.options)
     }
 
-    func test_secretSizeCanBeLessThanCodeChoices() throws {
+    func test_useSecretSize() throws {
         let sut = SecretMaker.createNull()
 
         let result = sut.makeSecret(from: codeChoices, secretSize: 2)
