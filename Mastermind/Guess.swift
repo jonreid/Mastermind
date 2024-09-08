@@ -8,4 +8,13 @@ class Guess {
     func setGuessAt(_ index: Int, _ choice: CodeChoice) {
         code[index] = choice
     }
+
+    subscript(index: Int) -> CodeChoice? {
+        get {
+            return code[index]
+        }
+        set {
+            code[index] = newValue
+        }
+    }
 }
