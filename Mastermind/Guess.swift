@@ -1,5 +1,5 @@
 class Guess {
-    var code: [CodeChoice?]
+    private var code: [CodeChoice?]
 
     init(secretSize: Int) {
         code = Array(repeating: nil, count: secretSize)
