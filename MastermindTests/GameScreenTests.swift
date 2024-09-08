@@ -25,7 +25,8 @@ final class GameScreenTests: XCTestCase {
 
     @MainActor func test_showingGameScreen_setsGameSecret() throws {
         let game = try Game(numberOfCodeChoices: 2)
-        let sut = GameScreen(game: game)
+        
+        _ = GameScreen(game: game)
 
         XCTAssertFalse(game.secret.code.isEmpty)
     }
