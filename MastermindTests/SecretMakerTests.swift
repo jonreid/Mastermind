@@ -12,7 +12,7 @@ final class SecretMakerTests: XCTestCase {
     func test_nullable() throws {
         let sut = SecretMaker.createNull()
 
-        let result = sut.makeSecret(from: codeChoices)
+        let result = sut.makeSecret(from: codeChoices, secretSize: 8)
 
         XCTAssertEqual(result.code, codeChoices.options)
     }
@@ -20,7 +20,7 @@ final class SecretMakerTests: XCTestCase {
     func test_containsAllCodeChoices() throws {
         let sut = SecretMaker()
 
-        let result = sut.makeSecret(from: codeChoices)
+        let result = sut.makeSecret(from: codeChoices, secretSize: 8)
 
         XCTAssertEqual(result.code.count, codeChoices.options.count)
         XCTAssertTrue(
@@ -33,7 +33,7 @@ final class SecretMakerTests: XCTestCase {
         let sut = SecretMaker()
 
         for _ in 0..<100 {
-            let result = sut.makeSecret(from: codeChoices)
+            let result = sut.makeSecret(from: codeChoices, secretSize: 8)
             if result.code != codeChoices.options {
                 return
             }

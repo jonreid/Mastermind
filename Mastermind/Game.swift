@@ -16,7 +16,7 @@ final class Game {
     }
 
     func makeNewSecret() {
-        secret = secretMaker.makeSecret(from: codeChoices)
+        secret = secretMaker.makeSecret(from: codeChoices, secretSize: 2)
     }
 
     func isGuessCorrect(_ guess: [CodeChoice]) -> Bool {
