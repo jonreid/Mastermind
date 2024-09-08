@@ -7,4 +7,15 @@ final class GuessTests: XCTestCase {
 
         XCTAssertEqual(sut.code, [nil, nil])
     }
+
+    func test_setGuessAt() throws {
+        let sut = Guess(secretSize: 2)
+        let choice0 = CodeChoice(color: .red, codeValue: 1)
+        let choice1 = CodeChoice(color: .green, codeValue: 2)
+
+        sut.setGuessAt(0, choice0)
+        sut.setGuessAt(1, choice1)
+
+        XCTAssertEqual(sut.code, [choice0, choice1])
+    }
 }
