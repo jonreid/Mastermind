@@ -9,7 +9,7 @@ struct GameScreen: TestableView {
         self.game = game
         game.makeNewSecret()
     }
-    
+
     var body: some View {
         Color.background.ignoresSafeArea().overlay {
             HStack {
@@ -91,5 +91,6 @@ private extension CodeChoices {
 
 
 #Preview {
-    return GameScreen(game: try! Game(numberOfCodeChoices: 1, SecretMaker.createNull()))
+    let game = try! Game(numberOfCodeChoices: 1, secretSize: 1, SecretMaker.createNull())
+    return GameScreen(game: game)
 }

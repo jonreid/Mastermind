@@ -5,7 +5,7 @@ import XCTest
 
 extension Game {
     fileprivate convenience init(numberOfCodeChoices: Int) throws {
-        try self.init(numberOfCodeChoices: numberOfCodeChoices, SecretMaker.createNull())
+        try self.init(numberOfCodeChoices: numberOfCodeChoices, secretSize: 1, SecretMaker.createNull())
     }
 }
 
