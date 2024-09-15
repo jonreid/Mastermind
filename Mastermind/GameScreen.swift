@@ -2,7 +2,6 @@ import SwiftUI
 
 struct GameScreen: TestableView {
     @State private var game: Game
-    @State private var guess1: CodeChoice?
     @State private var guess: Guess
     var viewInspectorHook: ((Self) -> Void)?
 
