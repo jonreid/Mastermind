@@ -5,10 +5,6 @@ class Guess {
         code = Array(repeating: nil, count: secretSize)
     }
 
-    func setGuessAt(_ index: Int, _ choice: CodeChoice) {
-        code[index] = choice
-    }
-
     subscript(index: Int) -> CodeChoice? {
         get {
             return code[index]
