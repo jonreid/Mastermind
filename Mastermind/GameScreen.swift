@@ -15,7 +15,7 @@ struct GameScreen: TestableView {
     var body: some View {
         Color.background.ignoresSafeArea().overlay {
             HStack {
-                CodeGuessView(guess1: $guess1, guess: $guess)
+                CodeGuessView(guess: $guess)
                 CodeChoicesView(game: $game, guess: $guess)
             }
         }
@@ -31,7 +31,6 @@ struct GameScreen: TestableView {
 }
 
 private struct CodeGuessView: View {
-    @Binding var guess1: CodeChoice?
     @Binding var guess: Guess
 
     var body: some View {
