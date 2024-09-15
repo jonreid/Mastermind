@@ -9,10 +9,10 @@ final class GameTests: XCTestCase {
     }
 
     func test_makeNewSecret() throws {
-        let game = try Game(numberOfCodeChoices: 2, SecretMaker.createNull())
+        let game = try Game(numberOfCodeChoices: 2, secretSize: 1, SecretMaker.createNull())
 
         game.makeNewSecret()
 
-        XCTAssertEqual(game.secret.code, game.codeChoices.options)
+        XCTAssertEqual(game.secret.code.first, game.codeChoices.options.first)
     }
 }
