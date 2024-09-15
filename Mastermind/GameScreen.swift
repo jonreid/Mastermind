@@ -74,6 +74,7 @@ private struct CodeChoiceView: View {
     var body: some View {
         Button(action: {
             guess1ToSet = codePeg
+            guessToSet[0] = codePeg
         }, label: {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.white)
