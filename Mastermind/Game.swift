@@ -2,7 +2,7 @@ import SwiftUI
 
 final class Game {
     private let secretMaker: SecretMaker
-    private let secretSize: Int
+    let secretSize: Int
     let codeChoices: CodeChoices
 
     var secret = Secret(code: [])
