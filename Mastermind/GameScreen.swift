@@ -34,17 +34,19 @@ private struct CodeGuessView: View {
 
     var body: some View {
         HStack {
-            Button(action: {}, label: {
-                Circle()
-                    .padding(10)
-                    .overlay(
-                        Circle()
-                            .strokeBorder(Color.unselected, lineWidth: 2)
-                    )
-                    .foregroundColor(guess[0]?.color ?? Color.unselected)
-                    .frame(width: 100, height: 100)
-            })
-            .id("guess1")
+            ForEach(0 ..< guess.size, id: \.self) { index in
+                Button(action: {}, label: {
+                    Circle()
+                        .padding(10)
+                        .overlay(
+                            Circle()
+                                .strokeBorder(Color.unselected, lineWidth: 2)
+                        )
+                        .foregroundColor(guess[index]?.color ?? Color.unselected)
+                        .frame(width: 100, height: 100)
+                })
+                .id("guess\(index + 1)")
+            }
         }
     }
 }
