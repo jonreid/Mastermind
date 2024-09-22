@@ -5,8 +5,14 @@ final class GuessTests: XCTestCase {
     func test_createGuess_setsGuessSize() throws {
         let sut = Guess(secretSize: 2)
 
-        XCTAssertEqual(sut[0], nil)
-        XCTAssertEqual(sut[1], nil)
+        XCTAssertNil(sut[0])
+        XCTAssertNil(sut[1])
+    }
+
+    func test_size() throws {
+        let sut = Guess(secretSize: 4)
+
+        XCTAssertEqual(sut.size, 4)
     }
 
     func test_setAndGetAtIndices() throws {
