@@ -26,4 +26,10 @@ final class GuessTests: XCTestCase {
         XCTAssertEqual(sut[0], choice0)
         XCTAssertEqual(sut[1], choice1)
     }
+
+    func test_isObservable_soThatViewsCanObserveChanges() throws {
+        let sut = Guess(secretSize: 2)
+
+        XCTAssertTrue(sut is Observable)
+    }
 }
