@@ -30,6 +30,6 @@ final class GuessTests: XCTestCase {
     func test_isObservable_soThatViewsCanObserveChanges() throws {
         let sut = Guess(secretSize: 2)
 
-        XCTAssertTrue(sut is Observable)
+        XCTAssertTrue(sut is (any Observable))
     }
 }
