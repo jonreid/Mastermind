@@ -1,3 +1,6 @@
+import Observation
+
+@Observable
 class Guess {
     private var code: [CodeChoice?]
 
