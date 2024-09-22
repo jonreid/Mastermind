@@ -101,16 +101,16 @@
 		0F7025172B72E88B006327F4 /* Mastermind */ = {
 			isa = PBXGroup;
 			children = (
-				0F131FA52C2886FF00C2DA67 /* TestableView.swift */,
-				0F7025182B72E88B006327F4 /* MastermindApp.swift */,
-				0F70251A2B72E88B006327F4 /* GameScreen.swift */,
 				0F70251C2B72E88C006327F4 /* Assets.xcassets */,
-				0F70251E2B72E88C006327F4 /* Preview Content */,
 				0F131FA92C288DA500C2DA67 /* CodeChoice.swift */,
 				0FBA16242C6927FE00D1D3EF /* Game.swift */,
-				0F12C64A2C443BCB00899BE6 /* InspectableSheet.swift */,
-				0F3891392C56B201008BE930 /* SecretMaker.swift */,
+				0F70251A2B72E88B006327F4 /* GameScreen.swift */,
 				0FEFB6D32C8E1757006F05D7 /* Guess.swift */,
+				0F12C64A2C443BCB00899BE6 /* InspectableSheet.swift */,
+				0F7025182B72E88B006327F4 /* MastermindApp.swift */,
+				0F70251E2B72E88C006327F4 /* Preview Content */,
+				0F3891392C56B201008BE930 /* SecretMaker.swift */,
+				0F131FA52C2886FF00C2DA67 /* TestableView.swift */,
 			);
 			path = Mastermind;
 			sourceTree = "<group>";
@@ -126,12 +126,12 @@
 		0F70252B2B72E913006327F4 /* MastermindTests */ = {
 			isa = PBXGroup;
 			children = (
-				0F131FA72C28871300C2DA67 /* UpdateTestableView.swift */,
-				0FF5DCE22B73497600D7E358 /* GameScreenTests.swift */,
 				0F131FAB2C288E2500C2DA67 /* CodeChoiceTests.swift */,
-				0F3891372C56AF00008BE930 /* SecretMakerTests.swift */,
+				0FF5DCE22B73497600D7E358 /* GameScreenTests.swift */,
 				0FBA16262C69288100D1D3EF /* GameTests.swift */,
 				0FEFB6D12C8E1678006F05D7 /* GuessTests.swift */,
+				0F3891372C56AF00008BE930 /* SecretMakerTests.swift */,
+				0F131FA72C28871300C2DA67 /* UpdateTestableView.swift */,
 			);
 			path = MastermindTests;
 			sourceTree = "<group>";
