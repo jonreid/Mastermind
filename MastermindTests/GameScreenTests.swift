@@ -93,6 +93,23 @@ final class GameScreenTests: XCTestCase {
         XCTAssertEqual(gameOverText, "You win!")
     }
 
+    @MainActor func test_gameOverShowsYouWinWhenGuessMatchesSecret_secretSize2() throws {
+        try XCTSkipIf(true, "Disabled")
+        let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
+        var sut = GameScreen(game: game)
+        let firstCodeChoice = game.codeChoice(0)
+        let secondCodeChoice = game.codeChoice(1)
+        var gameOverText: String?
+
+        inspectChangingView(&sut) { view in
+            try view.find(viewWithId: firstCodeChoice.codeValue).button().tap()
+            try view.find(viewWithId: secondCodeChoice.codeValue).button().tap()
+            gameOverText = try view.find(ViewType.Sheet.self).text().string()
+        }
+
+        XCTAssertEqual(gameOverText, "You win!")
+    }
+
     private func makeGame(numberOfCodeChoices: Int, secretSize: Int) throws -> Game {
         try Game(numberOfCodeChoices: numberOfCodeChoices, secretSize: secretSize, SecretMaker.createNull())
     }

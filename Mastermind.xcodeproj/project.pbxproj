@@ -19,6 +19,7 @@
 		0F70251B2B72E88B006327F4 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70251A2B72E88B006327F4 /* GameScreen.swift */; };
 		0F70251D2B72E88C006327F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F70251C2B72E88C006327F4 /* Assets.xcassets */; };
 		0F7025202B72E88C006327F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F70251F2B72E88C006327F4 /* Preview Assets.xcassets */; };
+		0F92F81E2CB2FDD2001B2656 /* SecretTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F92F81D2CB2FDD2001B2656 /* SecretTests.swift */; };
 		0FBA16252C6927FE00D1D3EF /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBA16242C6927FE00D1D3EF /* Game.swift */; };
 		0FBA16272C69288100D1D3EF /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBA16262C69288100D1D3EF /* GameTests.swift */; };
 		0FEFB6D22C8E1678006F05D7 /* GuessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEFB6D12C8E1678006F05D7 /* GuessTests.swift */; };
@@ -52,6 +53,7 @@
 		0F70252A2B72E913006327F4 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7025332B72EB4B006327F4 /* MastermindTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MastermindTests.xctestplan; sourceTree = "<group>"; };
 		0F92CB1D2B9E56DF001F8E20 /* XcodeWarnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XcodeWarnings.xcconfig; sourceTree = "<group>"; };
+		0F92F81D2CB2FDD2001B2656 /* SecretTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretTests.swift; sourceTree = "<group>"; };
 		0FBA16242C6927FE00D1D3EF /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		0FBA16262C69288100D1D3EF /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		0FEFB6D12C8E1678006F05D7 /* GuessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessTests.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				0FBA16262C69288100D1D3EF /* GameTests.swift */,
 				0FEFB6D12C8E1678006F05D7 /* GuessTests.swift */,
 				0F3891372C56AF00008BE930 /* SecretMakerTests.swift */,
+				0F92F81D2CB2FDD2001B2656 /* SecretTests.swift */,
 				0F131FA72C28871300C2DA67 /* UpdateTestableView.swift */,
 			);
 			path = MastermindTests;
@@ -262,6 +265,7 @@
 				0F3891382C56AF00008BE930 /* SecretMakerTests.swift in Sources */,
 				0F131FA82C28871300C2DA67 /* UpdateTestableView.swift in Sources */,
 				0FBA16272C69288100D1D3EF /* GameTests.swift in Sources */,
+				0F92F81E2CB2FDD2001B2656 /* SecretTests.swift in Sources */,
 				0FEFB6D22C8E1678006F05D7 /* GuessTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

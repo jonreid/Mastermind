@@ -19,6 +19,7 @@ struct GameScreen: TestableView {
             }
         }
         .inspectableSheet(isPresented: .constant(guess[0] != nil), content: {
+//            if (game.secret.matches(guess)) {
             if (game.secret.code[0] == guess[0]) {
                 Text("You win!")
             } else {

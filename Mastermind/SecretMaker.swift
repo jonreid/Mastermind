@@ -1,5 +1,9 @@
 struct Secret {
     let code: [CodeChoice]
+
+    func matches(_ guess: Guess) -> Bool {
+        true
+    }
 }
 
 struct SecretMaker {
