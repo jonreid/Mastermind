@@ -4,8 +4,8 @@ import SwiftUI
 import XCTest
 
 extension Game {
-    fileprivate convenience init(numberOfCodeChoices: Int) throws {
-        try self.init(numberOfCodeChoices: numberOfCodeChoices, secretSize: 1, SecretMaker.createNull())
+    fileprivate convenience init(numberOfCodeChoices: Int, secretSize: Int = 1) throws {
+        try self.init(numberOfCodeChoices: numberOfCodeChoices, secretSize: secretSize, SecretMaker.createNull())
     }
 }
 
