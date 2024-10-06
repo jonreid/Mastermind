@@ -20,6 +20,7 @@
 		0F70251D2B72E88C006327F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F70251C2B72E88C006327F4 /* Assets.xcassets */; };
 		0F7025202B72E88C006327F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F70251F2B72E88C006327F4 /* Preview Assets.xcassets */; };
 		0F92F81E2CB2FDD2001B2656 /* SecretTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F92F81D2CB2FDD2001B2656 /* SecretTests.swift */; };
+		0F92F8202CB30316001B2656 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F92F81F2CB30316001B2656 /* Secret.swift */; };
 		0FBA16252C6927FE00D1D3EF /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBA16242C6927FE00D1D3EF /* Game.swift */; };
 		0FBA16272C69288100D1D3EF /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBA16262C69288100D1D3EF /* GameTests.swift */; };
 		0FEFB6D22C8E1678006F05D7 /* GuessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEFB6D12C8E1678006F05D7 /* GuessTests.swift */; };
@@ -54,6 +55,7 @@
 		0F7025332B72EB4B006327F4 /* MastermindTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MastermindTests.xctestplan; sourceTree = "<group>"; };
 		0F92CB1D2B9E56DF001F8E20 /* XcodeWarnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XcodeWarnings.xcconfig; sourceTree = "<group>"; };
 		0F92F81D2CB2FDD2001B2656 /* SecretTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretTests.swift; sourceTree = "<group>"; };
+		0F92F81F2CB30316001B2656 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		0FBA16242C6927FE00D1D3EF /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		0FBA16262C69288100D1D3EF /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		0FEFB6D12C8E1678006F05D7 /* GuessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessTests.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				0F7025182B72E88B006327F4 /* MastermindApp.swift */,
 				0F70251E2B72E88C006327F4 /* Preview Content */,
 				0F3891392C56B201008BE930 /* SecretMaker.swift */,
+				0F92F81F2CB30316001B2656 /* Secret.swift */,
 				0F131FA52C2886FF00C2DA67 /* TestableView.swift */,
 			);
 			path = Mastermind;
@@ -252,6 +255,7 @@
 				0F70251B2B72E88B006327F4 /* GameScreen.swift in Sources */,
 				0FEFB6D42C8E1757006F05D7 /* Guess.swift in Sources */,
 				0F38913A2C56B201008BE930 /* SecretMaker.swift in Sources */,
+				0F92F8202CB30316001B2656 /* Secret.swift in Sources */,
 				0F7025192B72E88B006327F4 /* MastermindApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
