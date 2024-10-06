@@ -2,7 +2,12 @@ struct Secret {
     let code: [CodeChoice]
 
     func matches(_ guess: Guess) -> Bool {
-        true
+        for (index, secret) in code.enumerated() {
+            if guess[index] != secret {
+                return false
+            }
+        }
+        return true
     }
 }
 
