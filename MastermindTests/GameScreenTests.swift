@@ -76,7 +76,7 @@ final class GameScreenTests: XCTestCase {
             gameOverText = try view.find(ViewType.Sheet.self).text().string()
         }
 
-        XCTAssertEqual(gameOverText?.hasPrefix("You lose!"), true, "Text was \(String(describing: gameOverText))")
+        XCTAssertEqual(gameOverText, "You lose! The secret was brown")
     }
 
     @MainActor func test_gameOverShowsYouWinWhenGuessMatchesSecret_secretSize1() throws {
