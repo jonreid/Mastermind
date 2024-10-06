@@ -95,6 +95,6 @@ private extension CodeChoices {
 
 
 #Preview {
-    let game = try! Game(numberOfCodeChoices: 1, secretSize: 1, SecretMaker.createNull())
+    let game = try! Game(numberOfCodeChoices: 2, secretSize: 2, SecretMaker.createNull())
     return GameScreen(game: game)
 }
