@@ -113,8 +113,8 @@
 				0F12C64A2C443BCB00899BE6 /* InspectableSheet.swift */,
 				0F7025182B72E88B006327F4 /* MastermindApp.swift */,
 				0F70251E2B72E88C006327F4 /* Preview Content */,
-				0F3891392C56B201008BE930 /* SecretMaker.swift */,
 				0F92F81F2CB30316001B2656 /* Secret.swift */,
+				0F3891392C56B201008BE930 /* SecretMaker.swift */,
 				0F131FA52C2886FF00C2DA67 /* TestableView.swift */,
 			);
 			path = Mastermind;
