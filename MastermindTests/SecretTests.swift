@@ -23,8 +23,8 @@ final class SecretTests: XCTestCase {
     func test_secretMatchesGuess() throws {
         let secret = Secret(code: [red, green])
         let guess = Guess(secretSize: 2)
-        guess.placeChoiceInEmptySlot(red)
-        guess.placeChoiceInEmptySlot(green)
+        guess.placeChoiceInNextSlot(red)
+        guess.placeChoiceInNextSlot(green)
 
         XCTAssertTrue(secret.matches(guess))
     }
@@ -32,8 +32,8 @@ final class SecretTests: XCTestCase {
     func test_secretDoesNotMatchGuess() throws {
         let secret = Secret(code: [red, green])
         let guess = Guess(secretSize: 2)
-        guess.placeChoiceInEmptySlot(red)
-        guess.placeChoiceInEmptySlot(blue)
+        guess.placeChoiceInNextSlot(red)
+        guess.placeChoiceInNextSlot(blue)
 
         XCTAssertFalse(secret.matches(guess))
     }
@@ -41,7 +41,7 @@ final class SecretTests: XCTestCase {
     func test_secretDoesNotMatchGuessOfDifferentSize() throws {
         let secret = Secret(code: [red, green])
         let guess = Guess(secretSize: 1)
-        guess.placeChoiceInEmptySlot(red)
+        guess.placeChoiceInNextSlot(red)
 
         XCTAssertFalse(secret.matches(guess))
     }
