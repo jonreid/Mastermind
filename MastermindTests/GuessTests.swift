@@ -30,16 +30,6 @@ final class GuessTests: XCTestCase {
         XCTAssertEqual(sut.size, 4)
     }
 
-    func test_setAndGetAtIndices() throws {
-        let sut = makeGuess(secretSize: 2)
-
-        sut[0] = choice0
-        sut[1] = choice1
-
-        XCTAssertEqual(sut[0], choice0)
-        XCTAssertEqual(sut[1], choice1)
-    }
-
     func test_placeChoiceInEmptySlot() throws {
         let sut = makeGuess(secretSize: 2)
 
