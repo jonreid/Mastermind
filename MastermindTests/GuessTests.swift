@@ -32,4 +32,13 @@ final class GuessTests: XCTestCase {
 
         XCTAssertTrue(sut is (any Observable))
     }
+
+    func test_isComplete_withEmptySlot() throws {
+        let sut = Guess(secretSize: 2)
+        let choice0 = CodeChoice(color: .red, codeValue: 1)
+
+        sut[0] = choice0
+
+        XCTAssertFalse(sut.isComplete)
+    }
 }
