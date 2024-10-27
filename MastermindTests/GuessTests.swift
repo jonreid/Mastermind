@@ -2,6 +2,21 @@
 import XCTest
 
 final class GuessTests: XCTestCase {
+    private var choice0: CodeChoice!
+    private var choice1: CodeChoice!
+
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        choice0 = CodeChoice(color: .red, codeValue: 1)
+        choice1 = CodeChoice(color: .green, codeValue: 2)
+    }
+
+    override func tearDownWithError() throws {
+        choice0 = nil
+        choice1 = nil
+        try super.tearDownWithError()
+    }
+
     func test_createGuess_setsGuessSize() throws {
         let sut = Guess(secretSize: 2)
 
@@ -17,8 +32,6 @@ final class GuessTests: XCTestCase {
 
     func test_setAndGetAtIndices() throws {
         let sut = Guess(secretSize: 2)
-        let choice0 = CodeChoice(color: .red, codeValue: 1)
-        let choice1 = CodeChoice(color: .green, codeValue: 2)
 
         sut[0] = choice0
         sut[1] = choice1
@@ -35,7 +48,6 @@ final class GuessTests: XCTestCase {
 
     func test_isComplete_withEmptySlot() throws {
         let sut = Guess(secretSize: 2)
-        let choice0 = CodeChoice(color: .red, codeValue: 1)
 
         sut[0] = choice0
 
