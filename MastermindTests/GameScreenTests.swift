@@ -29,7 +29,7 @@ final class GameScreenTests: XCTestCase {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
         let sut = GameScreen(game: game)
 
-        let color = try getColorOfGuess(try sut.inspect())
+        let color = try getColorOfGuess(try sut.inspect(), id: "guess1")
 
         XCTAssertEqual(color, Color.unselected)
     }
@@ -42,7 +42,7 @@ final class GameScreenTests: XCTestCase {
 
         inspectChangingView(&sut) { view in
             try view.find(viewWithId: codeChoice.codeValue).button().tap()
-            color = try self.getColorOfGuess(view)
+            color = try self.getColorOfGuess(view, id: "guess1")
         }
 
         XCTAssertEqual(color, codeChoice.color)
@@ -114,8 +114,8 @@ final class GameScreenTests: XCTestCase {
         try Game(numberOfCodeChoices: numberOfCodeChoices, secretSize: secretSize, SecretMaker.createNull())
     }
 
-    private func getColorOfGuess<V: ViewInspector.KnownViewType>(_ view: InspectableView<V>) throws -> Color? {
-        try view.asInspectableView().find(viewWithId: "guess1").button().labelView().shape().foregroundColor()
+    private func getColorOfGuess<V: ViewInspector.KnownViewType>(_ view: InspectableView<V>, id: String) throws -> Color? {
+        try view.asInspectableView().find(viewWithId: id).button().labelView().shape().foregroundColor()
     }
 
     private func getCodeChoiceColor<V: ViewInspector.KnownViewType>(_ view: InspectableView<V>, _ index: Int) throws -> Color? {
