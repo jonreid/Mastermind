@@ -48,6 +48,26 @@ final class GameScreenTests: XCTestCase {
         XCTAssertEqual(color, codeChoice.color)
     }
 
+    @MainActor func test_tappingCodeChoicesSetsGuessColors() throws {
+        try XCTSkipIf(true, "Disabled")
+        let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
+        var sut = GameScreen(game: game)
+        let codeChoice1 = game.codeChoice(0)
+        let codeChoice2 = game.codeChoice(1)
+        var color1: Color?
+        var color2: Color?
+
+        inspectChangingView(&sut) { view in
+            try view.find(viewWithId: codeChoice1.codeValue).button().tap()
+            try view.find(viewWithId: codeChoice2.codeValue).button().tap()
+            color1 = try self.getColorOfGuess(view, id: "guess1")
+            color2 = try self.getColorOfGuess(view, id: "guess2")
+        }
+
+        XCTAssertEqual(color1, codeChoice1.color)
+        XCTAssertEqual(color2, codeChoice2.color)
+    }
+
     @MainActor func test_showsGameOverWhenCodeChoiceIsFilled() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
         var sut = GameScreen(game: game)
