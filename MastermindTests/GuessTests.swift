@@ -40,6 +40,16 @@ final class GuessTests: XCTestCase {
         XCTAssertEqual(sut[1], choice1)
     }
 
+    func test_placeCodeChoiceInFirstEmptySlot() throws {
+        let sut = makeSUT(secretSize: 2)
+
+        sut.placeCodeChoiceInFirstEmptySlot(choice0)
+        sut.placeCodeChoiceInFirstEmptySlot(choice1)
+
+        XCTAssertEqual(sut[0], choice0)
+        XCTAssertEqual(sut[1], choice1)
+    }
+
     func test_isObservable_soThatViewsCanObserveChanges() throws {
         let sut = makeSUT(secretSize: 2)
 
