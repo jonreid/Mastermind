@@ -49,7 +49,6 @@ final class GameScreenTests: XCTestCase {
     }
 
     @MainActor func test_tappingCodeChoicesSetsGuessColors() throws {
-        try XCTSkipIf(true, "Disabled")
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
         var sut = GameScreen(game: game)
         let codeChoice1 = game.codeChoice(0)

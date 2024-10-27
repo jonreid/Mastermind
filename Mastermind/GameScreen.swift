@@ -72,7 +72,7 @@ private struct CodeChoiceView: View {
 
     var body: some View {
         Button(action: {
-            guess[0] = codePeg
+            guess.placeChoiceInNextSlot(codePeg)
         }, label: {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.white)
