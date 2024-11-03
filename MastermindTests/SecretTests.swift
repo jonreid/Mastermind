@@ -45,4 +45,10 @@ final class SecretTests: XCTestCase {
 
         XCTAssertFalse(secret.matches(guess))
     }
+
+    func test_describesSecret() throws {
+        let secret = Secret(code: [red, green])
+
+        XCTAssertEqual(secret.description, "red, green")
+    }
 }
