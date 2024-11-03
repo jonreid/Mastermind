@@ -5,7 +5,7 @@ struct ProductionApp: App {
     var body: some Scene {
         WindowGroup {
             if isProduction {
-                GameScreen(game: try! Game(numberOfCodeChoices: 2, secretSize: 1, SecretMaker()))
+                GameScreen(game: try! Game(numberOfCodeChoices: 2, secretSize: 2, SecretMaker()))
             }
         }
     }
