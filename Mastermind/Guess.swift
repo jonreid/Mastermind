@@ -1,7 +1,7 @@
 import Observation
 
 @Observable
-class Guess {
+final class Guess {
     private var code: [CodeChoice?]
 
     init(secretSize: Int) {
