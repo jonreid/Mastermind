@@ -13,6 +13,10 @@ final class Game {
         guess.isComplete
     }
 
+    var isWin: Bool {
+        secret.matches(guess)
+    }
+
     init(numberOfCodeChoices: Int, secretSize: Int, _ secretMaker: SecretMaker) throws {
         self.secretMaker = secretMaker
         self.secretSize = secretSize

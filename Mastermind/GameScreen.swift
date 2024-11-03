@@ -17,7 +17,7 @@ struct GameScreen: TestableView {
             }
         }
         .inspectableSheet(isPresented: .constant(game.isComplete), content: {
-            if (game.secret.matches(game.guess)) {
+            if (game.isWin) {
                 Text("You win!")
             } else {
                 Text("You lose! The secret was \(game.secret)")
