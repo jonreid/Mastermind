@@ -5,7 +5,7 @@ final class Game {
     private let secretMaker: SecretMaker
     let secretSize: Int
     let codeChoices: CodeChoices
-    let guess: Guess
+    var guess: Guess
 
     var secret = Secret(code: [])
 

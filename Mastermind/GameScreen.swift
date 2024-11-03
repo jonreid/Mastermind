@@ -2,20 +2,21 @@ import SwiftUI
 
 struct GameScreen: TestableView {
     @State private var game: Game
-    @State private var guess: Guess
+    private var guess: Guess {
+        game.guess
+    }
     var viewInspectorHook: ((Self) -> Void)?
 
     init(game: Game) {
         self.game = game
         game.makeNewSecret()
-        guess = Guess(secretSize: game.secretSize)
     }
 
     var body: some View {
         Color.background.ignoresSafeArea().overlay {
             HStack {
-                CodeGuessView(guess: $guess)
-                CodeChoicesView(game: $game, guess: $guess)
+                CodeGuessView(guess: $game.guess)
+                CodeChoicesView(game: $game, guess: $game.guess)
             }
         }
         .inspectableSheet(isPresented: .constant(guess.isComplete), content: {
