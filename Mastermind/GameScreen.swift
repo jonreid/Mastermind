@@ -59,7 +59,7 @@ private struct CodeChoicesView: View {
     var body: some View {
         VStack {
             ForEach(game.codeChoices.lastToFirst, id: \.codeValue) { codeChoice in
-                CodeChoiceView(codePeg: codeChoice, codeChoiceId: codeChoice.codeValue, guess: $guess)
+                CodeChoiceView(codePeg: codeChoice, codeChoiceId: codeChoice.codeValue, guess: $game.guess)
             }
         }
         .id("codeChoices")
