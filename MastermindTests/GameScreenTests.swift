@@ -104,7 +104,7 @@ final class GameScreenTests: XCTestCase {
             gameOverText = try view.find(ViewType.Sheet.self).text().string()
         }
 
-        XCTAssertEqual(gameOverText, "You lose! The secret was brown")
+        XCTAssertEqual(gameOverText, "You lose! The secret was brown, black")
     }
 
     private func makeGame(numberOfCodeChoices: Int, secretSize: Int) throws -> Game {
