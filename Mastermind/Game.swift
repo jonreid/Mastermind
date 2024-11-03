@@ -9,6 +9,10 @@ final class Game {
 
     var secret = Secret(code: [])
 
+    var isComplete: Bool {
+        guess.isComplete
+    }
+
     init(numberOfCodeChoices: Int, secretSize: Int, _ secretMaker: SecretMaker) throws {
         self.secretMaker = secretMaker
         self.secretSize = secretSize
