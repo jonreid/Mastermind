@@ -2,9 +2,6 @@ import SwiftUI
 
 struct GameScreen: TestableView {
     @State private var game: Game
-    private var guess: Guess {
-        game.guess
-    }
     var viewInspectorHook: ((Self) -> Void)?
 
     init(game: Game) {
@@ -19,8 +16,8 @@ struct GameScreen: TestableView {
                 CodeChoicesView(game: $game)
             }
         }
-        .inspectableSheet(isPresented: .constant(guess.isComplete), content: {
-            if (game.secret.matches(guess)) {
+        .inspectableSheet(isPresented: .constant(game.guess.isComplete), content: {
+            if (game.secret.matches(game.guess)) {
                 Text("You win!")
             } else {
                 Text("You lose! The secret was \(game.secret)")
