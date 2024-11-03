@@ -5,6 +5,7 @@ final class Game {
     private let secretMaker: SecretMaker
     let secretSize: Int
     let codeChoices: CodeChoices
+    let guess: Guess
 
     var secret = Secret(code: [])
 
@@ -12,6 +13,7 @@ final class Game {
         self.secretMaker = secretMaker
         self.secretSize = secretSize
         try codeChoices = CodeChoiceGenerator.generate(from: codeColors, take: numberOfCodeChoices)
+        guess = Guess(secretSize: secretSize)
     }
 
     func codeChoice(_ index: Int) -> CodeChoice {
