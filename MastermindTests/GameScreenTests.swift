@@ -34,20 +34,6 @@ final class GameScreenTests: XCTestCase {
         XCTAssertEqual(color, Color.unselected)
     }
 
-    @MainActor func test_tappingCodeChoiceSetsGuessColor() throws {
-        let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
-        var sut = GameScreen(game: game)
-        let codeChoice = game.codeChoice(0)
-        var color: Color?
-
-        inspectChangingView(&sut) { view in
-            try view.find(viewWithId: codeChoice.codeValue).button().tap()
-            color = try self.getColorOfGuess(view, id: "guess1")
-        }
-
-        XCTAssertEqual(color, codeChoice.color)
-    }
-
     @MainActor func test_tappingCodeChoicesSetsGuessColors() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
         var sut = GameScreen(game: game)
@@ -78,12 +64,6 @@ final class GameScreenTests: XCTestCase {
         }
     }
 
-    @MainActor func test_doesNotShowGameOverWhenCodeChoiceIsEmpty() throws {
-        let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
-        let sut = GameScreen(game: game)
-        XCTAssertThrowsError(try sut.inspect().find(ViewType.Sheet.self))
-    }
-
     @MainActor func test_gameOverShowsYouLoseWhenGuessDoesNotMatchSecret_secretSize1() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
         var sut = GameScreen(game: game)
@@ -112,7 +92,7 @@ final class GameScreenTests: XCTestCase {
         XCTAssertEqual(gameOverText, "You win!")
     }
 
-    @MainActor func test_gameOverDoesNotShowWhenGuessIsNotFilled_secretSize2() throws {
+    @MainActor func test_doesNotShowGameOverWhenGuessIsNotFilled_secretSize2() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
         var sut = GameScreen(game: game)
         let firstCodeChoice = game.codeChoice(0)
