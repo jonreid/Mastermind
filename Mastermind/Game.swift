@@ -1,5 +1,6 @@
 import SwiftUI
 
+@Observable
 final class Game {
     private let secretMaker: SecretMaker
     let secretSize: Int
