@@ -16,7 +16,7 @@ struct GameScreen: TestableView {
         Color.background.ignoresSafeArea().overlay {
             HStack {
                 CodeGuessView(guess: $game.guess)
-                CodeChoicesView(game: $game, guess: $game.guess)
+                CodeChoicesView(game: $game)
             }
         }
         .inspectableSheet(isPresented: .constant(guess.isComplete), content: {
@@ -54,7 +54,6 @@ private struct CodeGuessView: View {
 
 private struct CodeChoicesView: View {
     @Binding var game: Game
-    @Binding var guess: Guess
 
     var body: some View {
         VStack {
