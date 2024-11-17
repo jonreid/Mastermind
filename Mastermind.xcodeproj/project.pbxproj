@@ -36,6 +36,8 @@
 				Domain/Tests/GuessTests.swift,
 				Domain/Tests/SecretMakerTests.swift,
 				Domain/Tests/SecretTests.swift,
+				UI/Tests/GameScreenTests.swift,
+				UI/Tests/UpdateTestableView.swift,
 			);
 			target = 0F7025142B72E88B006327F4 /* Mastermind */;
 		};
@@ -47,6 +49,8 @@
 				Domain/Tests/GuessTests.swift,
 				Domain/Tests/SecretMakerTests.swift,
 				Domain/Tests/SecretTests.swift,
+				UI/Tests/GameScreenTests.swift,
+				UI/Tests/UpdateTestableView.swift,
 			);
 			target = 0F7025292B72E913006327F4 /* MastermindTests */;
 		};
@@ -54,7 +58,6 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0FA0B6782CEA65E50094D7AD /* Mastermind */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (0FA0B6962CEA68B80094D7AD /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 0FA0B6972CEA68B80094D7AD /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Mastermind; sourceTree = "<group>"; };
-		0FA0B68B2CEA662C0094D7AD /* MastermindTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MastermindTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +85,6 @@
 				0F92CB1D2B9E56DF001F8E20 /* XcodeWarnings.xcconfig */,
 				0F7025332B72EB4B006327F4 /* MastermindTests.xctestplan */,
 				0FA0B6782CEA65E50094D7AD /* Mastermind */,
-				0FA0B68B2CEA662C0094D7AD /* MastermindTests */,
 				0F7025162B72E88B006327F4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -131,9 +133,6 @@
 			);
 			dependencies = (
 				0F70252F2B72E913006327F4 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				0FA0B68B2CEA662C0094D7AD /* MastermindTests */,
 			);
 			name = MastermindTests;
 			packageProductDependencies = (
