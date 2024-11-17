@@ -2,23 +2,9 @@
 import XCTest
 
 final class SecretTests: XCTestCase {
-    private var red: CodeChoice!
-    private var green: CodeChoice!
-    private var blue: CodeChoice!
-
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        red = CodeChoice(color: .red, codeValue: 1)
-        green = CodeChoice(color: .green, codeValue: 2)
-        blue = CodeChoice(color: .blue, codeValue: 3)
-    }
-
-    override func tearDownWithError() throws {
-        red = nil
-        green = nil
-        blue = nil
-        try super.tearDownWithError()
-    }
+    private let red = CodeChoice(color: .red, codeValue: 1)
+    private let green = CodeChoice(color: .green, codeValue: 2)
+    private let blue = CodeChoice(color: .blue, codeValue: 3)
 
     func test_secretMatchesGuess() throws {
         let secret = Secret(code: [red, green])
