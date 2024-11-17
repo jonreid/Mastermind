@@ -27,8 +27,33 @@
 		0F92CB1D2B9E56DF001F8E20 /* XcodeWarnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XcodeWarnings.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0FA0B6962CEA68B80094D7AD /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Domain/Tests/CodeChoiceTests.swift,
+				Domain/Tests/GameTests.swift,
+				Domain/Tests/GuessTests.swift,
+				Domain/Tests/SecretMakerTests.swift,
+				Domain/Tests/SecretTests.swift,
+			);
+			target = 0F7025142B72E88B006327F4 /* Mastermind */;
+		};
+		0FA0B6972CEA68B80094D7AD /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Domain/Tests/CodeChoiceTests.swift,
+				Domain/Tests/GameTests.swift,
+				Domain/Tests/GuessTests.swift,
+				Domain/Tests/SecretMakerTests.swift,
+				Domain/Tests/SecretTests.swift,
+			);
+			target = 0F7025292B72E913006327F4 /* MastermindTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		0FA0B6782CEA65E50094D7AD /* Mastermind */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Mastermind; sourceTree = "<group>"; };
+		0FA0B6782CEA65E50094D7AD /* Mastermind */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (0FA0B6962CEA68B80094D7AD /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 0FA0B6972CEA68B80094D7AD /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Mastermind; sourceTree = "<group>"; };
 		0FA0B68B2CEA662C0094D7AD /* MastermindTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MastermindTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
