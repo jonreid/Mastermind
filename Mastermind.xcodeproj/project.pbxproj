@@ -3,28 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F12C64B2C443BCB00899BE6 /* InspectableSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F12C64A2C443BCB00899BE6 /* InspectableSheet.swift */; };
-		0F131FA62C2886FF00C2DA67 /* TestableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F131FA52C2886FF00C2DA67 /* TestableView.swift */; };
 		0F131FA82C28871300C2DA67 /* UpdateTestableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F131FA72C28871300C2DA67 /* UpdateTestableView.swift */; };
-		0F131FAA2C288DA500C2DA67 /* CodeChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F131FA92C288DA500C2DA67 /* CodeChoice.swift */; };
 		0F131FAC2C288E2500C2DA67 /* CodeChoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F131FAB2C288E2500C2DA67 /* CodeChoiceTests.swift */; };
 		0F1F6ED12BA759C7001611A4 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 0F1F6ED02BA759C7001611A4 /* ViewInspector */; };
 		0F3891382C56AF00008BE930 /* SecretMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3891372C56AF00008BE930 /* SecretMakerTests.swift */; };
-		0F38913A2C56B201008BE930 /* SecretMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3891392C56B201008BE930 /* SecretMaker.swift */; };
-		0F7025192B72E88B006327F4 /* MastermindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7025182B72E88B006327F4 /* MastermindApp.swift */; };
-		0F70251B2B72E88B006327F4 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70251A2B72E88B006327F4 /* GameScreen.swift */; };
-		0F70251D2B72E88C006327F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F70251C2B72E88C006327F4 /* Assets.xcassets */; };
-		0F7025202B72E88C006327F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F70251F2B72E88C006327F4 /* Preview Assets.xcassets */; };
 		0F92F81E2CB2FDD2001B2656 /* SecretTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F92F81D2CB2FDD2001B2656 /* SecretTests.swift */; };
-		0F92F8202CB30316001B2656 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F92F81F2CB30316001B2656 /* Secret.swift */; };
-		0FBA16252C6927FE00D1D3EF /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBA16242C6927FE00D1D3EF /* Game.swift */; };
 		0FBA16272C69288100D1D3EF /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBA16262C69288100D1D3EF /* GameTests.swift */; };
 		0FEFB6D22C8E1678006F05D7 /* GuessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEFB6D12C8E1678006F05D7 /* GuessTests.swift */; };
-		0FEFB6D42C8E1757006F05D7 /* Guess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEFB6D32C8E1757006F05D7 /* Guess.swift */; };
 		0FF5DCE32B73497600D7E358 /* GameScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF5DCE22B73497600D7E358 /* GameScreenTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,29 +28,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0F12C64A2C443BCB00899BE6 /* InspectableSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectableSheet.swift; sourceTree = "<group>"; };
-		0F131FA52C2886FF00C2DA67 /* TestableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableView.swift; sourceTree = "<group>"; };
 		0F131FA72C28871300C2DA67 /* UpdateTestableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTestableView.swift; sourceTree = "<group>"; };
-		0F131FA92C288DA500C2DA67 /* CodeChoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeChoice.swift; sourceTree = "<group>"; };
 		0F131FAB2C288E2500C2DA67 /* CodeChoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeChoiceTests.swift; sourceTree = "<group>"; };
 		0F3891372C56AF00008BE930 /* SecretMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretMakerTests.swift; sourceTree = "<group>"; };
-		0F3891392C56B201008BE930 /* SecretMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretMaker.swift; sourceTree = "<group>"; };
 		0F7025152B72E88B006327F4 /* Mastermind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mastermind.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0F7025182B72E88B006327F4 /* MastermindApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MastermindApp.swift; sourceTree = "<group>"; };
-		0F70251A2B72E88B006327F4 /* GameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreen.swift; sourceTree = "<group>"; };
-		0F70251C2B72E88C006327F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0F70251F2B72E88C006327F4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0F70252A2B72E913006327F4 /* MastermindTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MastermindTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7025332B72EB4B006327F4 /* MastermindTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MastermindTests.xctestplan; sourceTree = "<group>"; };
 		0F92CB1D2B9E56DF001F8E20 /* XcodeWarnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XcodeWarnings.xcconfig; sourceTree = "<group>"; };
 		0F92F81D2CB2FDD2001B2656 /* SecretTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretTests.swift; sourceTree = "<group>"; };
-		0F92F81F2CB30316001B2656 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
-		0FBA16242C6927FE00D1D3EF /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		0FBA16262C69288100D1D3EF /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		0FEFB6D12C8E1678006F05D7 /* GuessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessTests.swift; sourceTree = "<group>"; };
-		0FEFB6D32C8E1757006F05D7 /* Guess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guess.swift; sourceTree = "<group>"; };
 		0FF5DCE22B73497600D7E358 /* GameScreenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScreenTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		0FA0B6782CEA65E50094D7AD /* Mastermind */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Mastermind; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0F7025122B72E88B006327F4 /* Frameworks */ = {
@@ -87,7 +69,7 @@
 			children = (
 				0F92CB1D2B9E56DF001F8E20 /* XcodeWarnings.xcconfig */,
 				0F7025332B72EB4B006327F4 /* MastermindTests.xctestplan */,
-				0F7025172B72E88B006327F4 /* Mastermind */,
+				0FA0B6782CEA65E50094D7AD /* Mastermind */,
 				0F70252B2B72E913006327F4 /* MastermindTests */,
 				0F7025162B72E88B006327F4 /* Products */,
 			);
@@ -100,32 +82,6 @@
 				0F70252A2B72E913006327F4 /* MastermindTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		0F7025172B72E88B006327F4 /* Mastermind */ = {
-			isa = PBXGroup;
-			children = (
-				0F70251C2B72E88C006327F4 /* Assets.xcassets */,
-				0F131FA92C288DA500C2DA67 /* CodeChoice.swift */,
-				0FBA16242C6927FE00D1D3EF /* Game.swift */,
-				0F70251A2B72E88B006327F4 /* GameScreen.swift */,
-				0FEFB6D32C8E1757006F05D7 /* Guess.swift */,
-				0F12C64A2C443BCB00899BE6 /* InspectableSheet.swift */,
-				0F7025182B72E88B006327F4 /* MastermindApp.swift */,
-				0F70251E2B72E88C006327F4 /* Preview Content */,
-				0F92F81F2CB30316001B2656 /* Secret.swift */,
-				0F3891392C56B201008BE930 /* SecretMaker.swift */,
-				0F131FA52C2886FF00C2DA67 /* TestableView.swift */,
-			);
-			path = Mastermind;
-			sourceTree = "<group>";
-		};
-		0F70251E2B72E88C006327F4 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				0F70251F2B72E88C006327F4 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		0F70252B2B72E913006327F4 /* MastermindTests */ = {
@@ -156,6 +112,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				0FA0B6782CEA65E50094D7AD /* Mastermind */,
 			);
 			name = Mastermind;
 			productName = Mastermind;
@@ -229,8 +188,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F7025202B72E88C006327F4 /* Preview Assets.xcassets in Resources */,
-				0F70251D2B72E88C006327F4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,15 +205,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F131FA62C2886FF00C2DA67 /* TestableView.swift in Sources */,
-				0F12C64B2C443BCB00899BE6 /* InspectableSheet.swift in Sources */,
-				0FBA16252C6927FE00D1D3EF /* Game.swift in Sources */,
-				0F131FAA2C288DA500C2DA67 /* CodeChoice.swift in Sources */,
-				0F70251B2B72E88B006327F4 /* GameScreen.swift in Sources */,
-				0FEFB6D42C8E1757006F05D7 /* Guess.swift in Sources */,
-				0F38913A2C56B201008BE930 /* SecretMaker.swift in Sources */,
-				0F92F8202CB30316001B2656 /* Secret.swift in Sources */,
-				0F7025192B72E88B006327F4 /* MastermindApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
