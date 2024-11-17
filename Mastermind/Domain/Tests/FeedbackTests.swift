@@ -8,8 +8,7 @@ struct FeedbackTests {
 
     @Test
     func noMatches() async throws {
-        let secret = Secret(code: [red, green])
-        let evaluator = FeedbackEvaluator(secret)
+        let evaluator = FeedbackEvaluator(Secret(code: [red, green]))
         let guess = Guess(secretSize: 2)
         guess.placeChoiceInNextSlot(blue)
         guess.placeChoiceInNextSlot(blue)
