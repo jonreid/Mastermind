@@ -2,20 +2,8 @@
 import XCTest
 
 final class GuessTests: XCTestCase {
-    private var choice0: CodeChoice!
-    private var choice1: CodeChoice!
-
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        choice0 = CodeChoice(color: .red, codeValue: 1)
-        choice1 = CodeChoice(color: .green, codeValue: 2)
-    }
-
-    override func tearDownWithError() throws {
-        choice0 = nil
-        choice1 = nil
-        try super.tearDownWithError()
-    }
+    private let choice0 = CodeChoice(color: .red, codeValue: 1)
+    private let choice1 = CodeChoice(color: .green, codeValue: 2)
 
     func test_createGuess_setsGuessSize() throws {
         let sut = makeGuess(secretSize: 2)
