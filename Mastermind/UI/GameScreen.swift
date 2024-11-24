@@ -15,19 +15,7 @@ struct GameScreen: TestableView {
                 CodeGuessView(guess: $game.guess)
                 VStack {
                     CodeChoicesView(game: $game)
-                    Button(action: {
-                    }, label: {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.blue)
-                            .frame(width: 100, height: 200)
-                            .overlay(
-                                Text("Check")
-                                    .foregroundColor(.white)
-                                    .font(.title)
-                                )
-                    })
-                    .tag("checkButton")
-                    .disabled(true)
+                    CheckButton()
                 }
             }
         }
@@ -105,6 +93,23 @@ private extension CodeChoices {
     }
 }
 
+struct CheckButton: View {
+    var body: some View {
+        Button(action: {
+        }, label: {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.blue)
+                .frame(width: 100, height: 200)
+                .overlay(
+                    Text("Check")
+                        .foregroundColor(.white)
+                        .font(.title)
+                )
+        })
+        .tag("checkButton")
+        .disabled(true)
+    }
+}
 
 #Preview {
     let game = try! Game(numberOfCodeChoices: 2, secretSize: 2, SecretMaker.createNull())
