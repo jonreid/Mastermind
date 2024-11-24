@@ -29,4 +29,8 @@ final class Guess {
         guard let index = code.firstIndex(of: nil) else { return }
         code[index] = choice
     }
+
+    func contains(_ choice: CodeChoice) -> Bool {
+        code.contains { $0 == choice }
+    }
 }
