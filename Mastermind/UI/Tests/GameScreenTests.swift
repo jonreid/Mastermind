@@ -53,6 +53,15 @@ final class GameScreenTests: XCTestCase {
         XCTAssertEqual(color2, codeChoice2.color)
     }
 
+    @MainActor func test_checkButtonIsInitiallyDisabled() throws {
+        let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
+        let sut = GameScreen(game: game)
+
+        let isEnabled = try sut.inspect().find(viewWithTag: "checkButton").button().isResponsive()
+
+        XCTAssertFalse(isEnabled)
+    }
+
     @MainActor func test_showsGameOverWhenCodeChoiceIsFilled() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
         var sut = GameScreen(game: game)
