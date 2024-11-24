@@ -1,7 +1,17 @@
 struct FeedbackEvaluator {
-    init(_ secret: Secret) {}
+    private let secret: Secret
+
+    init(_ secret: Secret) {
+        self.secret = secret
+    }
 
     func evaluate(_ guess: Guess) -> Feedback {
-        Feedback(inCorrectPosition: 0, inWrongPosition: 0)
+        var inCorrectPosition = 0
+        for (index, secret) in secret.code.enumerated() {
+            if guess[index] == secret {
+                inCorrectPosition += 1
+            }
+        }
+        return Feedback(inCorrectPosition: inCorrectPosition, inWrongPosition: 0)
     }
 }

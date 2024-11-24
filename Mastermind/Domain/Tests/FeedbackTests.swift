@@ -16,6 +16,16 @@ struct FeedbackTests {
         #expect(correctColorsFeedback.inWrongPosition == 0)
     }
 
+    @Test
+    func correctPosition() async throws {
+        let evaluator = FeedbackEvaluator(Secret(code: [red, green]))
+
+        let correctColorsFeedback = evaluator.evaluate(makeGuess(code: [red, blue]))
+
+        #expect(correctColorsFeedback.inCorrectPosition == 1)
+        #expect(correctColorsFeedback.inWrongPosition == 0)
+    }
+
     private func makeGuess(code: [CodeChoice]) -> Guess {
         let guess = Guess(secretSize: code.count)
         for choice in code {
