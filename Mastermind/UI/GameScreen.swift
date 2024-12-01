@@ -15,7 +15,8 @@ struct GameScreen: TestableView {
                 CodeGuessView(guess: $game.guess)
                 VStack {
                     CodeChoicesView(game: $game)
-                    CheckButton(guess: $game.guess)
+                    CheckButton()
+                        .disabled(!game.guess.isComplete)
                 }
             }
         }
@@ -94,8 +95,6 @@ private extension CodeChoices {
 }
 
 private struct CheckButton: View {
-    @Binding var guess: Guess
-
     var body: some View {
         Button(action: {
         }, label: {
@@ -109,7 +108,6 @@ private struct CheckButton: View {
                 )
         })
         .tag("checkButton")
-        .disabled(!guess.isComplete)
     }
 }
 
