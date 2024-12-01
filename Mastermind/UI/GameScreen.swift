@@ -93,7 +93,7 @@ private extension CodeChoices {
     }
 }
 
-struct CheckButton: View {
+private struct CheckButton: View {
     @Binding var guess: Guess
 
     var body: some View {
