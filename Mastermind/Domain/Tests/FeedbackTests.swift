@@ -6,10 +6,20 @@ struct FeedbackTests {
     private let green = CodeChoice(color: .green, codeValue: 2)
 
     @Test
-    func correctPosition() async throws {
+    func correctPositionInFirstPeg() async throws {
         let evaluator = FeedbackEvaluator(Secret(code: [red, green]))
 
         let correctColorsFeedback = evaluator.evaluate(makeGuess(code: [red, red]))
+
+        #expect(correctColorsFeedback.inCorrectPosition == 1)
+        #expect(correctColorsFeedback.inWrongPosition == 0)
+    }
+
+    @Test
+    func correctPositionInSecondPeg() async throws {
+        let evaluator = FeedbackEvaluator(Secret(code: [red, green]))
+
+        let correctColorsFeedback = evaluator.evaluate(makeGuess(code: [green, green]))
 
         #expect(correctColorsFeedback.inCorrectPosition == 1)
         #expect(correctColorsFeedback.inWrongPosition == 0)
