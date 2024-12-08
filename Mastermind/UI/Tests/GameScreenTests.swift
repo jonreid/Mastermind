@@ -67,8 +67,8 @@ final class GameScreenTests: XCTestCase {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
         let sut = GameScreen(game: game)
 
-        let shape = try sut.inspect().find(viewWithTag: "checkButton").button().labelView().shape()
-        let fillColor = try shape.fillShapeStyle(Color.self)
+        let fillColor = try sut.inspect().find(viewWithTag: "checkButton").button()
+            .labelView().shape().fillShapeStyle(Color.self)
 
         XCTAssertEqual(fillColor, Color.unselected)
     }
