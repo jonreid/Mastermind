@@ -98,11 +98,15 @@ private struct CheckButton: View {
     var body: some View {
         Button(action: {
         }, label: {
-            Text("Check")
-                .font(.title)
-                .frame(height: 200)
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.unselected)
+                .frame(width: 100, height: 200)
+                .overlay(
+                    Text("Check")
+                        .foregroundColor(.white)
+                        .font(.title)
+                )
         })
-        .buttonStyle(.bordered)
         .tag("checkButton")
     }
 }
