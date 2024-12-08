@@ -5,8 +5,9 @@ import XCTest
 
 extension InspectableSheet: @retroactive PopupPresenter {}
 
+@MainActor
 final class GameScreenTests: XCTestCase {
-    @MainActor func test_displaysCodeChoicesBottomUp() throws {
+    func test_displaysCodeChoicesBottomUp() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
         let sut = GameScreen(game: game)
 
@@ -17,7 +18,7 @@ final class GameScreenTests: XCTestCase {
         XCTAssertEqual(choice2, game.codeChoice(0).color)
     }
 
-    @MainActor func test_showingGameScreen_setsGameSecret() throws {
+    func test_showingGameScreen_setsGameSecret() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
 
         _ = GameScreen(game: game)
@@ -25,7 +26,7 @@ final class GameScreenTests: XCTestCase {
         XCTAssertFalse(game.secret.code.isEmpty)
     }
 
-    @MainActor func test_initialColorGuessIsUnselected() throws {
+    func test_initialColorGuessIsUnselected() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
         let sut = GameScreen(game: game)
 
@@ -34,7 +35,7 @@ final class GameScreenTests: XCTestCase {
         XCTAssertEqual(color, Color.unselected)
     }
 
-    @MainActor func test_tappingCodeChoicesSetsGuessColors() throws {
+    func test_tappingCodeChoicesSetsGuessColors() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
         var sut = GameScreen(game: game)
         let codeChoice1 = game.codeChoice(0)
@@ -53,7 +54,7 @@ final class GameScreenTests: XCTestCase {
         XCTAssertEqual(color2, codeChoice2.color)
     }
 
-    @MainActor func test_checkButtonIsInitiallyDisabled() throws {
+    func test_checkButtonIsInitiallyDisabled() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
         let sut = GameScreen(game: game)
 
@@ -62,7 +63,7 @@ final class GameScreenTests: XCTestCase {
         XCTAssertFalse(isEnabled)
     }
 
-    @MainActor func test_enablesCheckButtonWhenGuessIsFilled() throws {
+    func test_enablesCheckButtonWhenGuessIsFilled() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
         var sut = GameScreen(game: game)
         let codeChoice1 = game.codeChoice(0)
@@ -79,7 +80,7 @@ final class GameScreenTests: XCTestCase {
         XCTAssertTrue(isEnabled)
     }
 
-    @MainActor func test_showsGameOverWhenCodeChoiceIsFilled() throws {
+    func test_showsGameOverWhenCodeChoiceIsFilled() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
         var sut = GameScreen(game: game)
         let codeChoice = game.codeChoice(0)
@@ -90,7 +91,7 @@ final class GameScreenTests: XCTestCase {
         }
     }
 
-    @MainActor func test_doesNotShowGameOverWhenGuessIsNotFilled() throws {
+    func test_doesNotShowGameOverWhenGuessIsNotFilled() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
         var sut = GameScreen(game: game)
         let firstCodeChoice = game.codeChoice(0)
@@ -101,7 +102,7 @@ final class GameScreenTests: XCTestCase {
         }
     }
 
-    @MainActor func test_showsYouWinWhenGuessMatchesSecret() throws {
+    func test_showsYouWinWhenGuessMatchesSecret() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
         var sut = GameScreen(game: game)
         let firstCodeChoice = game.codeChoice(0)
@@ -117,7 +118,7 @@ final class GameScreenTests: XCTestCase {
         XCTAssertEqual(gameOverText, "You win!")
     }
 
-    @MainActor func test_showsYouLoseWhenGuessDoesNotMatchSecret() throws {
+    func test_showsYouLoseWhenGuessDoesNotMatchSecret() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
         var sut = GameScreen(game: game)
         let firstCodeChoice = game.codeChoice(0)
