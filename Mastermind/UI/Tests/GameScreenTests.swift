@@ -65,10 +65,16 @@ final class GameScreenTests: XCTestCase {
 
     func test_checkButton_disabledIsUnselected() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
-        let sut = GameScreen(game: game)
+        var sut = GameScreen(game: game)
+        var fillColor: Color?
 
-        let fillColor = try sut.inspect().find(viewWithTag: "checkButton").button()
-            .labelView().shape().fillShapeStyle(Color.self)
+        let expectation = sut.on(\.viewInspectorHook) { view in
+            fillColor = try sut.inspect().find(viewWithTag: "checkButton").button()
+                .labelView().shape().fillShapeStyle(Color.self)
+        }
+        ViewHosting.host(view: sut.environment(\.isEnabled, false))
+        defer { ViewHosting.expel() }
+        wait(for: [expectation], timeout: 0.4)
 
         XCTAssertEqual(fillColor, Color.unselected)
     }
