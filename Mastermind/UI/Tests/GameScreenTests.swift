@@ -69,7 +69,7 @@ final class GameScreenTests: XCTestCase {
         var fillColor: Color?
 
         let expectation = sut.on(\.viewInspectorHook) { view in
-            fillColor = try sut.inspect().find(viewWithTag: "checkButton").button()
+            fillColor = try view.find(viewWithTag: "checkButton").button()
                 .labelView().shape().fillShapeStyle(Color.self)
         }
         ViewHosting.host(view: sut.environment(\.isEnabled, false))
