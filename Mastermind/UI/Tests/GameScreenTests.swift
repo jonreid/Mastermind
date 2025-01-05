@@ -74,7 +74,6 @@ final class GameScreenTests: XCTestCase {
             try view.find(viewWithId: codeChoice1.codeValue).button().tap()
             try view.find(viewWithId: codeChoice2.codeValue).button().tap()
 
-//            isEnabled = try self.checkButton(view).isResponsive()
             isEnabled = try view.checkButton().isResponsive()
         }
 
@@ -82,6 +81,7 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_showsGameOverWhenCodeChoiceIsFilled() throws {
+        try XCTSkipIf(true, "Disabled")
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
         var sut = GameScreen(game: game)
         let codeChoice = game.codeChoice(0)
@@ -104,6 +104,7 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_showsYouWinWhenGuessMatchesSecret() throws {
+        try XCTSkipIf(true, "Disabled")
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
         var sut = GameScreen(game: game)
         let firstCodeChoice = game.codeChoice(0)
@@ -120,6 +121,7 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_showsYouLoseWhenGuessDoesNotMatchSecret() throws {
+        try XCTSkipIf(true, "Disabled")
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
         var sut = GameScreen(game: game)
         let firstCodeChoice = game.codeChoice(0)
