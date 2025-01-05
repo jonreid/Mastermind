@@ -62,7 +62,7 @@ private struct CodeChoicesView: View {
                 CodeChoiceView(codePeg: codeChoice, codeChoiceId: codeChoice.codeValue, guess: $game.guess)
             }
         }
-        .id("codeChoices")
+        .accessibilityIdentifier("codeChoices")
     }
 }
 
