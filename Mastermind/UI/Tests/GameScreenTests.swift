@@ -1,6 +1,6 @@
 @testable import Mastermind
 import SwiftUI
-@testable import ViewInspector
+import ViewInspector
 import XCTest
 
 extension InspectableSheet: @retroactive PopupPresenter {}
@@ -138,12 +138,12 @@ final class GameScreenTests: XCTestCase {
         try Game(numberOfCodeChoices: numberOfCodeChoices, secretSize: secretSize, SecretMaker.createNull())
     }
 
-    private func getColorOfGuess<V: ViewInspector.KnownViewType>(_ view: InspectableView<V>, id: String) throws -> Color? {
-        try view.asInspectableView().find(viewWithId: id).button().labelView().shape().foregroundColor()
+    private func getColorOfGuess<V>(_ view: InspectableView<V>, id: String) throws -> Color? {
+        try view.find(viewWithId: id).button().labelView().shape().foregroundColor()
     }
 
-    private func getCodeChoiceColor<V: ViewInspector.KnownViewType>(_ view: InspectableView<V>, _ index: Int) throws -> Color? {
-        let codeChoice = try view.asInspectableView().find(viewWithAccessibilityIdentifier: "codeChoices").vStack(0).forEach(0)[index]
+    private func getCodeChoiceColor<V>(_ view: InspectableView<V>, _ index: Int) throws -> Color? {
+        let codeChoice = try view.find(viewWithAccessibilityIdentifier: "codeChoices").vStack(0).forEach(0)[index]
         return try codeChoice.find(ViewType.Button.self).labelView().shape().overlay().shape().foregroundColor()
     }
 }
