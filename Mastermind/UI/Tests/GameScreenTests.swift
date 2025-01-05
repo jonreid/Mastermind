@@ -74,7 +74,8 @@ final class GameScreenTests: XCTestCase {
             try view.find(viewWithId: codeChoice1.codeValue).button().tap()
             try view.find(viewWithId: codeChoice2.codeValue).button().tap()
 
-            isEnabled = try self.checkButton(view).isResponsive()
+//            isEnabled = try self.checkButton(view).isResponsive()
+            isEnabled = try view.checkButton().isResponsive()
         }
 
         XCTAssertTrue(isEnabled)
@@ -146,8 +147,10 @@ final class GameScreenTests: XCTestCase {
         let codeChoice = try view.find(viewWithAccessibilityIdentifier: "codeChoices").vStack(0).forEach(0)[index]
         return try codeChoice.find(ViewType.Button.self).labelView().shape().overlay().shape().foregroundColor()
     }
+}
 
-    private func checkButton<V>(_ view: InspectableView<V>) throws -> InspectableView<ViewType.Button> {
-        try view.find(viewWithAccessibilityIdentifier: "checkButton").button()
+extension InspectableView {
+    func checkButton() throws -> InspectableView<ViewType.Button> {
+        try find(viewWithAccessibilityIdentifier: "checkButton").button()
     }
 }
