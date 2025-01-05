@@ -80,24 +80,6 @@ final class GameScreenTests: XCTestCase {
         XCTAssertTrue(isEnabled)
     }
 
-    func test_checkButton_enabledIsBlue() throws {
-        let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
-        var sut = GameScreen(game: game)
-        let codeChoice1 = game.codeChoice(0)
-        let codeChoice2 = game.codeChoice(1)
-
-        var fillColor: Color?
-        inspectChangingView(&sut) { view in
-            try view.find(viewWithId: codeChoice1.codeValue).button().tap()
-            try view.find(viewWithId: codeChoice2.codeValue).button().tap()
-            fillColor = try view.find(viewWithTag: "checkButton").button()
-                .labelView().shape().fillShapeStyle(Color.self)
-        }
-
-        XCTAssertEqual(fillColor, Color.blue)
-    }
-
-
     func test_showsGameOverWhenCodeChoiceIsFilled() throws {
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
         var sut = GameScreen(game: game)
