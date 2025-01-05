@@ -16,6 +16,6 @@ struct CheckButton: View {
                         .font(.title)
                 )
         })
-        .tag("checkButton")
+        .accessibilityIdentifier("checkButton")
     }
 }
