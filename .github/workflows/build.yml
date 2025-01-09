@@ -17,8 +17,8 @@ jobs:
     runs-on: macos-14
     steps:
     - uses: actions/checkout@v4
-    - name: List architecture
-      run: arch
+    - name: List runner info
+      run: sw_vers && arch
     - name: List available Xcode versions
       run: ls /Applications | grep Xcode
     - name: Set up Xcode version
