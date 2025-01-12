@@ -5,7 +5,7 @@ struct Secret: CustomStringConvertible {
         code.map(\.color.description).joined(separator: ", ")
     }
 
-    var secretSize: Int {
+    var size: Int {
         code.count
     }
 
