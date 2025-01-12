@@ -2,11 +2,12 @@
 import Testing
 
 final class FeedbackPegsTests: @unchecked Sendable {
+    private let red = CodeChoice(color: .red, codeValue: 1)
+    private let green = CodeChoice(color: .green, codeValue: 2)
+    private let blue = CodeChoice(color: .blue, codeValue: 3)
+
     @Test
     func numberOfPegsIsCodeLength() async throws {
-        let red = CodeChoice(color: .red, codeValue: 1)
-        let green = CodeChoice(color: .green, codeValue: 2)
-        let blue = CodeChoice(color: .blue, codeValue: 3)
         let secret = Secret(code: [red, green, blue])
 
         let feedbackPegs = FeedbackPegs(secret: secret)
