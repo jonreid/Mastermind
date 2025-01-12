@@ -7,9 +7,9 @@ struct FeedbackTests {
 
     @Test
     func correctPositionInFirstPeg() async throws {
-        let evaluator = Secret(code: [red, green])
+        let sut = makeSUT(code: [red, green])
 
-        let correctColorsFeedback = evaluator.evaluate(makeGuess(code: [red, red]))
+        let correctColorsFeedback = sut.evaluate(makeGuess(code: [red, red]))
 
         #expect(correctColorsFeedback.inCorrectPosition == 1)
         #expect(correctColorsFeedback.inWrongPosition == 0)
@@ -17,9 +17,9 @@ struct FeedbackTests {
 
     @Test
     func correctPositionInSecondPeg() async throws {
-        let evaluator = Secret(code: [red, green])
+        let sut = makeSUT(code: [red, green])
 
-        let correctColorsFeedback = evaluator.evaluate(makeGuess(code: [green, green]))
+        let correctColorsFeedback = sut.evaluate(makeGuess(code: [green, green]))
 
         #expect(correctColorsFeedback.inCorrectPosition == 1)
         #expect(correctColorsFeedback.inWrongPosition == 0)
@@ -27,12 +27,16 @@ struct FeedbackTests {
 
     @Test
     func wrongPosition() async throws {
-        let evaluator = Secret(code: [red, green])
+        let sut = makeSUT(code: [red, green])
 
-        let correctColorsFeedback = evaluator.evaluate(makeGuess(code: [green, red]))
+        let correctColorsFeedback = sut.evaluate(makeGuess(code: [green, red]))
 
         #expect(correctColorsFeedback.inCorrectPosition == 0)
         #expect(correctColorsFeedback.inWrongPosition == 2)
+    }
+
+    private func makeSUT(code: [CodeChoice]) -> Secret {
+        Secret(code: code)
     }
 
     private func makeGuess(code: [CodeChoice]) -> Guess {
