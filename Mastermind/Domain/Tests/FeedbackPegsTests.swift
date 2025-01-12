@@ -8,10 +8,13 @@ final class FeedbackPegsTests: @unchecked Sendable {
 
     @Test
     func numberOfPegsIsCodeLength() async throws {
-        let secret = Secret(code: [red, green, blue])
+        let secretCode = [red, green, blue]
+        let expectedCount = 3
+
+        let secret = Secret(code: secretCode)
 
         let feedbackPegs = FeedbackPegs(secret: secret)
 
-        #expect(feedbackPegs.count == 3)
+        #expect(feedbackPegs.count == expectedCount)
     }
 }
