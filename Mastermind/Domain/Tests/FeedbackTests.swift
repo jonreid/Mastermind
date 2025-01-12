@@ -7,7 +7,7 @@ struct FeedbackTests {
 
     @Test
     func correctPositionInFirstPeg() async throws {
-        let evaluator = FeedbackEvaluator(Secret(code: [red, green]))
+        let evaluator = Secret(code: [red, green])
 
         let correctColorsFeedback = evaluator.evaluate(makeGuess(code: [red, red]))
 
@@ -17,7 +17,7 @@ struct FeedbackTests {
 
     @Test
     func correctPositionInSecondPeg() async throws {
-        let evaluator = FeedbackEvaluator(Secret(code: [red, green]))
+        let evaluator = Secret(code: [red, green])
 
         let correctColorsFeedback = evaluator.evaluate(makeGuess(code: [green, green]))
 
@@ -27,7 +27,7 @@ struct FeedbackTests {
 
     @Test
     func wrongPosition() async throws {
-        let evaluator = FeedbackEvaluator(Secret(code: [red, green]))
+        let evaluator = Secret(code: [red, green])
 
         let correctColorsFeedback = evaluator.evaluate(makeGuess(code: [green, red]))
 
