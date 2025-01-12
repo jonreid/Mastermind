@@ -5,6 +5,10 @@ struct Secret: CustomStringConvertible {
         code.map(\.color.description).joined(separator: ", ")
     }
 
+    var secretSize: Int {
+        code.count
+    }
+
     func matches(_ guess: Guess) -> Bool {
         guard code.count == guess.size else {
             return false
