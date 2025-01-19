@@ -49,7 +49,11 @@ extension Secret {
     var testHooks: TestHooks { TestHooks(target: self) }
 
     struct TestHooks {
-        let target: Secret
+        private let target: Secret
+
+        fileprivate init(target: Secret) {
+            self.target = target
+        }
 
         var code: [CodeChoice] { target.code }
     }
