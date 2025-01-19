@@ -46,7 +46,9 @@ struct Secret: CustomStringConvertible {
 
 #if DEBUG
 extension Secret {
-    struct TestHook {
+    var testHooks: TestHooks { TestHooks(self) }
+
+    struct TestHooks {
         private let sut: Secret
 
         init(_ sut: Secret) {
@@ -56,10 +58,6 @@ extension Secret {
         public var code: [CodeChoice] {
             sut.code
         }
-    }
-
-    var testHook: TestHook {
-        TestHook(self)
     }
 }
 #endif

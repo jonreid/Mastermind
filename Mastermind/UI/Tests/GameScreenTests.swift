@@ -23,7 +23,7 @@ final class GameScreenTests: XCTestCase {
 
         _ = GameScreen(game: game)
 
-        XCTAssertFalse(game.secret.testHook.code.isEmpty)
+        XCTAssertFalse(game.secret.testHooks.code.isEmpty)
     }
 
     func test_initialColorGuessIsUnselected() throws {
