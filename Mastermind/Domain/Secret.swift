@@ -1,6 +1,10 @@
 struct Secret: CustomStringConvertible {
     let code: [CodeChoice]
 
+    init(code: [CodeChoice]) {
+        self.code = code
+    }
+
     var description: String {
         code.map(\.color.description).joined(separator: ", ")
     }
