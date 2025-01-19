@@ -27,3 +27,11 @@ jobs:
       run: xcodebuild -version
     - name: Run tests
       run: ./run_tests.sh
+
+  build-release:
+    name: Build release
+    runs-on: macos-14
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build
+      run: ./build_release.sh
