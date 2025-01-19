@@ -38,4 +38,8 @@ struct Secret: CustomStringConvertible {
         }
         return true
     }
+
+    func isGuessCorrect(_ guess: [CodeChoice]) -> Bool {
+        return code == guess
+    }
 }

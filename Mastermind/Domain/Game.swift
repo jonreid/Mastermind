@@ -33,6 +33,6 @@ final class Game {
     }
 
     func isGuessCorrect(_ guess: [CodeChoice]) -> Bool {
-        return secret.code == guess
+        secret.isGuessCorrect(guess)
     }
 }
