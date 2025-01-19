@@ -43,3 +43,23 @@ struct Secret: CustomStringConvertible {
         return code == guess
     }
 }
+
+#if DEBUG
+extension Secret {
+    struct TestHook {
+        private let sut: Secret
+
+        init(_ sut: Secret) {
+            self.sut = sut
+        }
+
+        public var code: [CodeChoice] {
+            sut.code
+        }
+    }
+
+    var testHook: TestHook {
+        TestHook(self)
+    }
+}
+#endif

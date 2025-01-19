@@ -8,7 +8,7 @@ final class SecretMakerTests: XCTestCase {
 
         let result = sut.makeSecret(from: codeChoices, secretSize: 8)
 
-        XCTAssertEqual(result.code, codeChoices.options)
+        XCTAssertEqual(result.testHook.code, codeChoices.options)
     }
 
     func test_useSecretSize() throws {
