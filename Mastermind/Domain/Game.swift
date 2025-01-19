@@ -30,7 +30,6 @@ final class Game {
 
     func makeNewSecret() {
         secret = secretMaker.makeSecret(from: codeChoices, secretSize: secretSize)
-        _ = secret.testHook.code
     }
 
     func isGuessCorrect(_ guess: [CodeChoice]) -> Bool {
