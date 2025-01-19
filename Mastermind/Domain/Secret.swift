@@ -1,5 +1,5 @@
 struct Secret: CustomStringConvertible {
-    let code: [CodeChoice]
+    private let code: [CodeChoice]
 
     init(code: [CodeChoice]) {
         self.code = code

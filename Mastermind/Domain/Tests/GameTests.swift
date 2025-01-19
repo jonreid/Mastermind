@@ -11,7 +11,7 @@ final class GameTests: XCTestCase {
     func test_gameHasNoSecretInitially() throws {
         let sut = try makeSUT()
 
-        XCTAssertEqual(sut.secret.code, [])
+        XCTAssertEqual(sut.secret.testHook.code, [])
     }
 
     func test_makeNewSecret() throws {
@@ -19,7 +19,7 @@ final class GameTests: XCTestCase {
 
         sut.makeNewSecret()
 
-        XCTAssertEqual(sut.secret.code.first, sut.codeChoices.options.first)
+        XCTAssertEqual(sut.secret.testHook.code.first, sut.codeChoices.options.first)
     }
 
     private func makeSUT() throws -> Game {
