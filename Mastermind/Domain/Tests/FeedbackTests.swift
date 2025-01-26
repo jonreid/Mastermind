@@ -1,17 +1,18 @@
 @testable import Mastermind
 import Testing
 
-struct FeedbackTests {
-    private let red = CodeChoice(color: .red, codeValue: 1)
-    private let green = CodeChoice(color: .green, codeValue: 2)
+private let red = CodeChoice(color: .red, codeValue: 1)
+private let green = CodeChoice(color: .green, codeValue: 2)
+private let blue = CodeChoice(color: .blue, codeValue: 3)
 
-    @Test
-    func totalCountIsSecretSize() async throws {
-        let sut = makeSUT(code: [red, green])
+struct FeedbackTests {
+    @Test(arguments: [([red, green], 2)])
+    func totalCountIsSecretSize(code: [CodeChoice], expectedCount: Int) async throws {
+        let sut = makeSUT(code: code)
 
         let feedback = sut.initialFeedback()
 
-        #expect(feedback.totalCount == 2)
+        #expect(feedback.totalCount == expectedCount)
     }
 
     @Test
