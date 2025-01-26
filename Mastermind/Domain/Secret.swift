@@ -15,7 +15,7 @@ struct Secret: CustomStringConvertible {
 
     func initialFeedback() -> Feedback {
         Feedback(
-            totalCount: 2, //code.count,
+            totalCount: size,
             inCorrectPosition: 0,
             inWrongPosition: 0
         )
