@@ -23,7 +23,11 @@ struct Secret: CustomStringConvertible {
                 inWrongPosition += 1
             }
         }
-        return Feedback(inCorrectPosition: inCorrectPosition, inWrongPosition: inWrongPosition)
+        return Feedback(
+            totalCount: -1,
+            inCorrectPosition: inCorrectPosition,
+            inWrongPosition: inWrongPosition
+        )
     }
 
 

@@ -1,16 +1,9 @@
 struct FeedbackPegs {
-    private let secret: Secret
-
-    var pegs: [FeedbackPeg] {
-        Array(repeating: .empty, count: secret.size)
-    }
-
-    init(secret: Secret) {
-        self.secret = secret
+    init(_ feedback: Feedback) {
     }
 
     var count: Int {
-        secret.size
+        0
     }
 }
 
