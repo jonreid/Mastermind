@@ -6,6 +6,15 @@ struct FeedbackTests {
     private let green = CodeChoice(color: .green, codeValue: 2)
 
     @Test
+    func totalCountIsSecretSize() async throws {
+        let sut = makeSUT(code: [red, green])
+
+        let feedback = sut.initialFeedback()
+
+        #expect(feedback.totalCount == 2)
+    }
+
+    @Test
     func correctPositionInFirstPeg() async throws {
         let sut = makeSUT(code: [red, green])
 

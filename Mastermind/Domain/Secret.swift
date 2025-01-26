@@ -13,6 +13,14 @@ struct Secret: CustomStringConvertible {
         code.count
     }
 
+    func initialFeedback() -> Feedback {
+        Feedback(
+            totalCount: 2, //code.count,
+            inCorrectPosition: 0,
+            inWrongPosition: 0
+        )
+    }
+
     func evaluate(_ guess: Guess) -> Feedback {
         var inCorrectPosition = 0
         var inWrongPosition = 0
