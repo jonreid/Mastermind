@@ -15,7 +15,7 @@ final class FeedbackPegsTests: @unchecked Sendable {
         #expect(feedbackPegs.count == expectedCount)
     }
 
-    @Test func initiallyBothEmpty() async throws {
+    @Test func pegsInitiallyEmpty() async throws {
         let feedbackPegs = FeedbackPegs(secret: Secret(code: [red, green]))
 
         #expect(feedbackPegs.pegs == [.empty, .empty])
