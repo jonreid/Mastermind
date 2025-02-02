@@ -9,9 +9,3 @@ struct FeedbackPegs {
         feedback.pegs
     }
 }
-
-enum FeedbackPeg {
-    case empty
-    case correct
-    case misplaced
-}
