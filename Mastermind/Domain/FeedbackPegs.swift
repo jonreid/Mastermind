@@ -6,10 +6,24 @@ struct FeedbackPegs {
     }
 
     var pegs: [FeedbackPeg] {
-        Array.init(repeating: .empty, count: feedback.totalCount)
+        var result: [FeedbackPeg] = []
+
+        // Fill in correct pegs
+        for _ in 0 ..< feedback.inCorrectPosition {
+            result.append(.correct)
+        }
+        // Fill in misplaced pegs
+
+        // Fill in empty
+        for _ in 0 ..< feedback.totalCount - feedback.inCorrectPosition {
+            result.append(.empty)
+        }
+
+        return result
     }
 }
 
 enum FeedbackPeg {
     case empty
+    case correct
 }

@@ -13,4 +13,13 @@ final class FeedbackPegsTests: @unchecked Sendable {
 
         #expect(feedbackPegs.pegs == expected)
     }
+
+    @Test
+    func perfectMatch() async throws {
+        let feedback = Feedback(totalCount: 2, inCorrectPosition: 2, inWrongPosition: 0)
+
+        let feedbackPegs = FeedbackPegs(feedback)
+
+        #expect(feedbackPegs.pegs == [.correct, .correct])
+    }
 }
