@@ -9,9 +9,8 @@ struct FeedbackPegs {
         var result: [FeedbackPeg] = []
 
         // Fill in correct pegs
-        for _ in 0 ..< feedback.inCorrectPosition {
-            result.append(.correct)
-        }
+        result.append(contentsOf: Array.init(repeating: .correct, count: feedback.inCorrectPosition))
+
         // Fill in misplaced pegs
 
         // Fill in empty
