@@ -31,4 +31,13 @@ final class FeedbackPegsTests: @unchecked Sendable {
 
         #expect(feedbackPegs.pegs == [.misplaced, .misplaced])
     }
+
+    @Test
+    func mixtureOfAll() async throws {
+        let feedback = Feedback(totalCount: 4, inCorrectPosition: 1, inWrongPosition: 2)
+
+        let feedbackPegs = FeedbackPegs(feedback)
+
+        #expect(feedbackPegs.pegs == [.correct, .misplaced, .misplaced, .empty])
+    }
 }
