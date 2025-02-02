@@ -6,23 +6,9 @@ struct FeedbackPegs {
     }
 
     var pegs: [FeedbackPeg] {
-        applesauce(feedback: feedback)
+        feedback.pegs
     }
 }
-
- func applesauce(feedback: Feedback) ->  [FeedbackPeg] {
-    var result: [FeedbackPeg] = []
-    result.append(contentsOf: Array.init(repeating: .correct, count: feedback.inCorrectPosition))
-    result.append(contentsOf: Array.init(repeating: .misplaced, count: feedback.inWrongPosition))
-    result.append(
-        contentsOf: Array.init(
-            repeating: .empty,
-            count: feedback.totalCount - feedback.inCorrectPosition - feedback.inWrongPosition
-        )
-    )
-    return result
-}
-
 
 enum FeedbackPeg {
     case empty
