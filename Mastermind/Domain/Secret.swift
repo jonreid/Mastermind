@@ -32,7 +32,7 @@ struct Secret: CustomStringConvertible {
             }
         }
         return Feedback(
-            totalCount: -1,
+            totalCount: size,
             inCorrectPosition: inCorrectPosition,
             inWrongPosition: inWrongPosition
         )

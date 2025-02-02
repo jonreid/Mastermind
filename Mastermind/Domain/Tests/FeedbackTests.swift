@@ -21,6 +21,7 @@ struct FeedbackTests {
 
         let correctColorsFeedback = sut.evaluate(makeGuess(code: [red, red]))
 
+        #expect(correctColorsFeedback.totalCount == 2)
         #expect(correctColorsFeedback.inCorrectPosition == 1)
         #expect(correctColorsFeedback.inWrongPosition == 0)
     }
