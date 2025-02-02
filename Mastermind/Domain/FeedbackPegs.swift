@@ -2,8 +2,8 @@ struct FeedbackPegs {
     init(_ feedback: Feedback) {
     }
 
-    var count: Int {
-        0
+    var pegs: [FeedbackPeg] {
+        [.empty, .empty]
     }
 }
 
