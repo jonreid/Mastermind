@@ -22,4 +22,13 @@ final class FeedbackPegsTests: @unchecked Sendable {
 
         #expect(feedbackPegs.pegs == [.correct, .correct])
     }
+
+    @Test
+    func rightColorsInWrongPositions() async throws {
+        let feedback = Feedback(totalCount: 2, inCorrectPosition: 0, inWrongPosition: 2)
+
+        let feedbackPegs = FeedbackPegs(feedback)
+
+        #expect(feedbackPegs.pegs == [.misplaced, .misplaced])
+    }
 }
