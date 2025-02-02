@@ -1,9 +1,12 @@
 struct FeedbackPegs {
+    private let feedback: Feedback
+
     init(_ feedback: Feedback) {
+        self.feedback = feedback
     }
 
     var pegs: [FeedbackPeg] {
-        [.empty, .empty]
+        Array.init(repeating: .empty, count: feedback.totalCount)
     }
 }
 
