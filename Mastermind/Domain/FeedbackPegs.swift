@@ -14,9 +14,7 @@ struct FeedbackPegs {
         // Fill in misplaced pegs
 
         // Fill in empty
-        for _ in 0 ..< feedback.totalCount - feedback.inCorrectPosition {
-            result.append(.empty)
-        }
+        result.append(contentsOf: Array.init(repeating: .empty, count: feedback.totalCount - feedback.inCorrectPosition))
 
         return result
     }
