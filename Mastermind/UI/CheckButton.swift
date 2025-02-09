@@ -1,6 +1,5 @@
 import SwiftUI
 
-
 struct CheckButton: View {
     @Environment(\.isEnabled)
     private var isEnabled: Bool
@@ -10,7 +9,7 @@ struct CheckButton: View {
         }, label: {
             RoundedRectangle(cornerRadius: 10)
                 .fill(isEnabled ? .blue : .unselected)
-                .frame(width: 100, height: 200)
+                .frame(width: .infinity, height: 200)
                 .overlay(
                     Text("Check")
                         .foregroundColor(.white)
