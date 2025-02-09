@@ -7,7 +7,7 @@ import Testing
 final class CheckButtonSnapshotTests: @unchecked Sendable {
     @Test
     func disabledColor() async throws {
-        let view = CheckButton().disabled(true)
+        let view = makeSUT(true)
         assertSnapshot(of: view.toVC(), as: prettyDarnClose())
     }
 
