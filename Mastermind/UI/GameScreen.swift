@@ -78,7 +78,8 @@ private struct CodeChoiceView: View {
         }, label: {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.white)
-                .frame(width: .infinity, height: 50)
+                .frame(width: .infinity)
+                .aspectRatio(contentMode: .fit)
                 .overlay(
                     Circle()
                         .foregroundColor(codePeg.color)
