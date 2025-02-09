@@ -9,11 +9,11 @@ struct CheckButton: View {
         }, label: {
             RoundedRectangle(cornerRadius: 10)
                 .fill(isEnabled ? .blue : .unselected)
-                .frame(width: .infinity, height: 200)
+                .frame(width: .infinity, height: 100)
                 .overlay(
                     Text("Check")
                         .foregroundColor(.white)
-                        .font(.title)
+                        .font(.subheadline)
                 )
         })
         .accessibilityIdentifier("checkButton")

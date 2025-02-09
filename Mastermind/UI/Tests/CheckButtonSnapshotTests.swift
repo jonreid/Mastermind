@@ -20,7 +20,7 @@ final class CheckButtonSnapshotTests: @unchecked Sendable {
     private func makeSUT(_ disabled: Bool) -> some View {
         VStack {
             CheckButton().disabled(disabled)
-        }.frame(width: 100)
+        }.frame(width: 50)
     }
 
     private func prettyDarnClose() -> Snapshotting<UIViewController, UIImage> {
