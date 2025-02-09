@@ -19,3 +19,10 @@ struct CheckButton: View {
         .accessibilityIdentifier("checkButton")
     }
 }
+
+#Preview {
+    VStack {
+        CheckButton().disabled(false)
+    }.frame(width: 50)
+}
+
