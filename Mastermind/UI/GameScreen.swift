@@ -39,13 +39,13 @@ private struct CodeGuessView: View {
             ForEach(0 ..< guess.size, id: \.self) { index in
                 Button(action: {}, label: {
                     Circle()
-                        .padding(10)
+                        .padding(5)
                         .overlay(
                             Circle()
                                 .strokeBorder(Color.unselected, lineWidth: 2)
                         )
                         .foregroundColor(guess[index]?.color ?? Color.unselected)
-                        .frame(width: 100, height: 100)
+                        .frame(width: 50, height: 50)
                 })
                 .id("guess\(index + 1)")
             }
