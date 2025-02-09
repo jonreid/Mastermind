@@ -18,6 +18,7 @@ struct GameScreen: TestableView {
                     CheckButton()
                         .disabled(!game.guess.isComplete)
                 }
+                .frame(width: 50)
             }
         }
         .inspectableSheet(isPresented: .constant(false), content: {
@@ -77,7 +78,7 @@ private struct CodeChoiceView: View {
         }, label: {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.white)
-                .frame(width: 100, height: 100)
+                .frame(width: .infinity, height: 50)
                 .overlay(
                     Circle()
                         .foregroundColor(codePeg.color)
