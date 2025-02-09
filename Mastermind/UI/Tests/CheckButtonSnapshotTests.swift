@@ -14,8 +14,12 @@ final class CheckButtonSnapshotTests: @unchecked Sendable {
     @Test
     func enabledColor() async throws {
         let disabled = false
-        let view = CheckButton().disabled(disabled)
+        let view = makeSUT(disabled)
         assertSnapshot(of: view.toVC(), as: prettyDarnClose())
+    }
+
+    private func makeSUT(_ disabled: Bool) -> some View {
+        return CheckButton().disabled(disabled)
     }
 
     private func prettyDarnClose() -> Snapshotting<UIViewController, UIImage> {
