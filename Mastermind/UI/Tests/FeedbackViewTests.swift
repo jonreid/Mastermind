@@ -15,6 +15,8 @@ final class FeedbackViewTests: XCTestCase, Sendable {
 
         XCTAssertEqual(peg1Color, Color.unselected)
         XCTAssertEqual(peg2Color, Color.unselected)
+        XCTAssertEqual(peg3Color, Color.unselected)
+        XCTAssertEqual(peg4Color, Color.unselected)
     }
 }
 
