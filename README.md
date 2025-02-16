@@ -13,6 +13,7 @@ My plan is to live-code this project on Twitch, post the recordings on YouTube, 
 You can see [the Discovery Tree I'm using on Miro](https://miro.com/app/board/uXjVNNVlS6k=/?share_link_id=500104344113).
 
 **Running Tests:** The project now includes a few snapshot tests. For these tests to pass, you must use:
+
 - Simulator: iPhone 16 
 
 The snapshots use slightly-less-than exact precision, so that may be enough. If they fail for you, let me know.
