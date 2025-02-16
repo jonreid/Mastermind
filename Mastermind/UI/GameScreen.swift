@@ -16,16 +16,7 @@ struct GameScreen: TestableView {
         Color.background.ignoresSafeArea().overlay {
             HStack {
                 CodeGuessView(guess: $game.guess)
-                Grid {
-                    GridRow {
-                        Circle().fill(Color.unselected).frame(width: 10, height: 10)
-                        Circle().fill(Color.unselected).frame(width: 10, height: 10)
-                    }
-                    GridRow {
-                        Circle().fill(Color.unselected).frame(width: 10, height: 10)
-                        Circle().fill(Color.unselected).frame(width: 10, height: 10)
-                    }
-                }
+                FeedbackView()
                 VStack {
                     CodeChoicesView(game: $game)
                     CheckButton()
@@ -113,4 +104,19 @@ private extension CodeChoices {
 #Preview {
     let game = try! Game(numberOfCodeChoices: 4, secretSize: 4, SecretMaker.createNull())
     return GameScreen(game: game)
+}
+
+struct FeedbackView: View {
+    var body: some View {
+        Grid {
+            GridRow {
+                Circle().fill(Color.unselected).frame(width: 10, height: 10)
+                Circle().fill(Color.unselected).frame(width: 10, height: 10)
+            }
+            GridRow {
+                Circle().fill(Color.unselected).frame(width: 10, height: 10)
+                Circle().fill(Color.unselected).frame(width: 10, height: 10)
+            }
+        }
+    }
 }
