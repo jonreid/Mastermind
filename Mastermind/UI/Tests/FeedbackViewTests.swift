@@ -10,6 +10,8 @@ final class FeedbackViewTests: XCTestCase, Sendable {
 
         let peg1Color = try sut.inspect().pegColor(1)
         let peg2Color = try sut.inspect().pegColor(2)
+        let peg3Color = try sut.inspect().pegColor(3)
+        let peg4Color = try sut.inspect().pegColor(4)
 
         XCTAssertEqual(peg1Color, Color.unselected)
         XCTAssertEqual(peg2Color, Color.unselected)
