@@ -2,10 +2,13 @@ import SwiftUI
 
 struct GameScreen: TestableView {
     @State private var game: Game
+    @State private var feedbackPegs: [FeedbackPeg]
+
     var viewInspectorHook: ((Self) -> Void)?
 
     init(game: Game) {
         self.game = game
+        self.feedbackPegs = game.secret.initialFeedback().pegs
         game.makeNewSecret()
     }
 
