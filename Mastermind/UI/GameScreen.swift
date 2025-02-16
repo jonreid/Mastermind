@@ -18,10 +18,12 @@ struct GameScreen: TestableView {
                 CodeGuessView(guess: $game.guess)
                 Grid {
                     GridRow {
-                        // 2 feedback pegs
+                        Circle().fill(Color.unselected).frame(width: 10, height: 10)
+                        Circle().fill(Color.unselected).frame(width: 10, height: 10)
                     }
                     GridRow {
-                        // 2 feedback pegs
+                        Circle().fill(Color.unselected).frame(width: 10, height: 10)
+                        Circle().fill(Color.unselected).frame(width: 10, height: 10)
                     }
                 }
                 VStack {
