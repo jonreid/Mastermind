@@ -7,7 +7,7 @@ struct FeedbackView: View {
         Grid {
             GridRow {
                 Circle()
-                    .fill(Color.unselected)
+                    .foregroundColor(Color.unselected)
                     .frame(width: 10, height: 10)
                     .accessibilityIdentifier("feedback1")
                 Circle().fill(Color.unselected).frame(width: 10, height: 10)

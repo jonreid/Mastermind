@@ -8,9 +8,9 @@ final class FeedbackViewTests: XCTestCase, Sendable {
     func test_zero() throws {
         let sut = FeedbackView(feedbackPegs: [.empty, .empty, .empty, .empty])
 
-        let peg1 = try sut.inspect().peg1()
+        let peg1Color = try sut.inspect().peg1Color()
 
-//        XCTAssertEqual(peg1.fillColor, Color.unselected)
+        XCTAssertEqual(peg1Color, Color.unselected)
     }
 }
 
