@@ -3,6 +3,17 @@ import SwiftUI
 struct FeedbackView: View {
     let feedbackPegs: [FeedbackPeg]
 
+    func feedbackColor(for peg: FeedbackPeg) -> Color {
+        switch peg {
+        case .empty:
+            return .unselected
+        case .correct:
+            return .purple
+        case .misplaced:
+            return .orange
+        }
+    }
+
     var body: some View {
         Grid {
             GridRow {
