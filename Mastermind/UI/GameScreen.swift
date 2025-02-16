@@ -13,6 +13,14 @@ struct GameScreen: TestableView {
         Color.background.ignoresSafeArea().overlay {
             HStack {
                 CodeGuessView(guess: $game.guess)
+                Grid {
+                    GridRow {
+                        // 2 feedback pegs
+                    }
+                    GridRow {
+                        // 2 feedback pegs
+                    }
+                }
                 VStack {
                     CodeChoicesView(game: $game)
                     CheckButton()
