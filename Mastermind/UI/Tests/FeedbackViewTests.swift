@@ -5,7 +5,7 @@ import XCTest
 
 @MainActor
 final class FeedbackViewTests: XCTestCase, Sendable {
-    func test_pegs() throws {
+    func test_pegs_allEmpty() throws {
         let sut = FeedbackView(feedbackPegs: [.empty, .empty, .empty, .empty])
 
         let peg1Color = try sut.inspect().pegColor(1)
