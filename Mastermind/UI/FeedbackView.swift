@@ -6,7 +6,7 @@ struct FeedbackView: View {
     func feedbackColor(for peg: FeedbackPeg) -> Color {
         switch peg {
         case .empty:
-            return .unselected
+            return .Pegs.unselected
         case .correct:
             return .purple
         case .misplaced:
