@@ -8,7 +8,7 @@ struct FeedbackView: View {
         case .empty:
             return .Pegs.unselected
         case .correct:
-            return .purple
+            return .Pegs.correct
         case .misplaced:
             return .orange
         }
