@@ -18,7 +18,7 @@ struct FeedbackView: View {
         Grid {
             GridRow {
                 Circle()
-                    .foregroundColor(Color.unselected)
+                    .foregroundColor(feedbackColor(for: feedbackPegs[0]))
                     .frame(width: 10, height: 10)
                     .accessibilityIdentifier("feedback1")
                 Circle()
