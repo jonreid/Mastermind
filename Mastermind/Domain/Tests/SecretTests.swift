@@ -26,7 +26,7 @@ final class SecretTests: XCTestCase {
 
     func test_secretDoesNotMatchGuessOfDifferentSize() throws {
         let secret = Secret(code: [red, green])
-        let guess = Guess(secretSize: 1)
+        let guess = Guess(secretSize: 4)
         guess.placeChoiceInNextSlot(red)
 
         XCTAssertFalse(secret.matches(guess))
