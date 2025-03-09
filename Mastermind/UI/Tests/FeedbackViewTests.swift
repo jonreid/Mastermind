@@ -30,7 +30,7 @@ final class FeedbackViewTests: XCTestCase, Sendable {
         XCTAssertEqual(peg1Color, Color.Pegs.correct)
         XCTAssertEqual(peg2Color, Color.Pegs.misplaced)
         XCTAssertEqual(peg3Color, Color.Pegs.misplaced)
-//        XCTAssertEqual(peg4Color, Color.unselected)
+        XCTAssertEqual(peg4Color, Color.Pegs.unselected)
     }
 }
 

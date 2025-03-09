@@ -32,7 +32,7 @@ struct FeedbackView: View {
                     .frame(width: 10, height: 10)
                     .accessibilityIdentifier("feedback3")
                 Circle()
-                    .foregroundColor(feedbackColor(for: feedbackPegs[0]))
+                    .foregroundColor(feedbackColor(for: feedbackPegs[3]))
                     .frame(width: 10, height: 10)
                     .accessibilityIdentifier("feedback4")
             }
