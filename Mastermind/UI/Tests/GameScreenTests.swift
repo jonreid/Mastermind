@@ -46,22 +46,32 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_tappingCodeChoicesSetsGuessColors() throws {
-        let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
+        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
         var sut = GameScreen(game: game)
         let codeChoice1 = game.codeChoice(0)
         let codeChoice2 = game.codeChoice(1)
+        let codeChoice3 = game.codeChoice(2)
+        let codeChoice4 = game.codeChoice(3)
         var color1: Color?
         var color2: Color?
+        var color3: Color?
+        var color4: Color?
 
         inspectChangingView(&sut) { view in
             try view.find(viewWithId: codeChoice1.codeValue).button().tap()
             try view.find(viewWithId: codeChoice2.codeValue).button().tap()
+            try view.find(viewWithId: codeChoice3.codeValue).button().tap()
+            try view.find(viewWithId: codeChoice4.codeValue).button().tap()
             color1 = try view.colorOfGuess(id: "guess1")
             color2 = try view.colorOfGuess(id: "guess2")
+            color3 = try view.colorOfGuess(id: "guess3")
+            color4 = try view.colorOfGuess(id: "guess4")
         }
 
         XCTAssertEqual(color1, codeChoice1.color)
         XCTAssertEqual(color2, codeChoice2.color)
+        XCTAssertEqual(color3, codeChoice3.color)
+        XCTAssertEqual(color4, codeChoice4.color)
     }
 
     func test_checkButtonIsInitiallyDisabled() throws {
