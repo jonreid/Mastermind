@@ -23,6 +23,6 @@ final class GameTests: XCTestCase {
     }
 
     private func makeSUT() throws -> Game {
-        try Game(numberOfCodeChoices: 2, secretSize: 2, SecretMaker.createNull())
+        try Game(numberOfCodeChoices: 4, secretSize: 4, SecretMaker.createNull())
     }
 }
