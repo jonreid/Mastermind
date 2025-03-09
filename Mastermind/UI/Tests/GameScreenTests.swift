@@ -75,7 +75,7 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_checkButtonIsInitiallyDisabled() throws {
-        let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
+        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
         let sut = GameScreen(game: game)
 
         let isEnabled = try sut.inspect().find(viewWithAccessibilityIdentifier: "checkButton").button().isResponsive()
