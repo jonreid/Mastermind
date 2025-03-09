@@ -16,8 +16,7 @@ struct FeedbackView: View {
 
     var body: some View {
         Grid {
-            GridRow
-            {
+            GridRow {
                 FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 0)
                 FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 1)
             }
