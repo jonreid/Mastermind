@@ -23,7 +23,7 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_showingGameScreen_setsGameSecret() throws {
-        let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
+        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
 
         _ = GameScreen(game: game)
 
