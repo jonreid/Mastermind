@@ -19,10 +19,7 @@ struct FeedbackView: View {
             GridRow
             {
                 FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 0)
-                Circle()
-                    .foregroundColor(feedbackColor(for: feedbackPegs[1]))
-                    .frame(width: 10, height: 10)
-                    .accessibilityIdentifier("feedback2")
+                FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 1)
             }
             GridRow {
                 Circle()
