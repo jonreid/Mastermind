@@ -6,10 +6,12 @@ final class GuessTests: XCTestCase {
     private let choice1 = CodeChoice(color: .green, codeValue: 2)
 
     func test_createGuess_setsGuessSize() throws {
-        let sut = makeSUT(secretSize: 2)
+        let sut = makeSUT(secretSize: 4)
 
         XCTAssertNil(sut[0])
         XCTAssertNil(sut[1])
+        XCTAssertNil(sut[2])
+        XCTAssertNil(sut[3])
     }
 
     func test_size() throws {
