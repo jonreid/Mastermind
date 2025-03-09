@@ -10,7 +10,7 @@ struct FeedbackView: View {
         case .correct:
             return .Pegs.correct
         case .misplaced:
-            return .orange
+            return .Pegs.misplaced
         }
     }
 
@@ -22,7 +22,7 @@ struct FeedbackView: View {
                     .frame(width: 10, height: 10)
                     .accessibilityIdentifier("feedback1")
                 Circle()
-                    .foregroundColor(feedbackColor(for: feedbackPegs[0]))
+                    .foregroundColor(feedbackColor(for: feedbackPegs[1]))
                     .frame(width: 10, height: 10)
                     .accessibilityIdentifier("feedback2")
             }
