@@ -84,15 +84,19 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_enablesCheckButtonWhenGuessIsFilled() throws {
-        let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
+        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
         var sut = GameScreen(game: game)
         let codeChoice1 = game.codeChoice(0)
         let codeChoice2 = game.codeChoice(1)
+        let codeChoice3 = game.codeChoice(2)
+        let codeChoice4 = game.codeChoice(3)
 
         var isEnabled = false
         inspectChangingView(&sut) { view in
             try view.find(viewWithId: codeChoice1.codeValue).button().tap()
             try view.find(viewWithId: codeChoice2.codeValue).button().tap()
+            try view.find(viewWithId: codeChoice3.codeValue).button().tap()
+            try view.find(viewWithId: codeChoice4.codeValue).button().tap()
 
             isEnabled = try view.checkButton().isResponsive()
         }
