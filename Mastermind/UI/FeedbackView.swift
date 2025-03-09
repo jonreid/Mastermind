@@ -18,8 +18,7 @@ struct FeedbackView: View {
         Grid {
             GridRow
             {
-                let pegIndex = 0
-                FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: pegIndex)
+                FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 0)
                 Circle()
                     .foregroundColor(feedbackColor(for: feedbackPegs[1]))
                     .frame(width: 10, height: 10)
