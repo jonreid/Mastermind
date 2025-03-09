@@ -8,7 +8,7 @@ extension InspectableSheet: @retroactive PopupPresenter {}
 @MainActor
 final class GameScreenTests: XCTestCase {
     func test_displaysCodeChoicesBottomUp() throws {
-        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
+        let game = try makeGame()
         let sut = GameScreen(game: game)
 
         let choice1 = try sut.inspect().codeChoiceColor(0)
@@ -23,7 +23,7 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_showingGameScreen_setsGameSecret() throws {
-        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
+        let game = try makeGame()
 
         _ = GameScreen(game: game)
 
@@ -31,7 +31,7 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_initialColorGuessIsUnselected() throws {
-        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
+        let game = try makeGame()
         let sut = GameScreen(game: game)
 
         let color1 = try sut.inspect().colorOfGuess(id: "guess1")
@@ -46,7 +46,7 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_tappingCodeChoicesSetsGuessColors() throws {
-        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
+        let game = try makeGame()
         var sut = GameScreen(game: game)
         let codeChoice1 = game.codeChoice(0)
         let codeChoice2 = game.codeChoice(1)
@@ -75,7 +75,7 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_checkButtonIsInitiallyDisabled() throws {
-        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
+        let game = try makeGame()
         let sut = GameScreen(game: game)
 
         let isEnabled = try sut.inspect().find(viewWithAccessibilityIdentifier: "checkButton").button().isResponsive()
@@ -84,7 +84,7 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_enablesCheckButtonWhenGuessIsFilled() throws {
-        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
+        let game = try makeGame()
         var sut = GameScreen(game: game)
         let codeChoice1 = game.codeChoice(0)
         let codeChoice2 = game.codeChoice(1)
@@ -117,7 +117,7 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_doesNotShowGameOverWhenGuessIsNotFilled() throws {
-        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
+        let game = try makeGame()
         var sut = GameScreen(game: game)
         let firstCodeChoice = game.codeChoice(0)
         let secondCodeChoice = game.codeChoice(1)
