@@ -165,7 +165,7 @@ final class GameScreenTests: XCTestCase {
         XCTAssertEqual(gameOverText, "You lose! The secret was brown, black")
     }
 
-    private func makeGame(numberOfCodeChoices: Int, secretSize: Int) throws -> Game {
+    private func makeGame(numberOfCodeChoices: Int = 4, secretSize: Int = 4) throws -> Game {
         try Game(numberOfCodeChoices: numberOfCodeChoices, secretSize: secretSize, SecretMaker.createNull())
     }
 }
