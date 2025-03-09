@@ -8,14 +8,18 @@ extension InspectableSheet: @retroactive PopupPresenter {}
 @MainActor
 final class GameScreenTests: XCTestCase {
     func test_displaysCodeChoicesBottomUp() throws {
-        let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
+        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
         let sut = GameScreen(game: game)
 
         let choice1 = try sut.inspect().codeChoiceColor(0)
         let choice2 = try sut.inspect().codeChoiceColor(1)
+        let choice3 = try sut.inspect().codeChoiceColor(2)
+        let choice4 = try sut.inspect().codeChoiceColor(3)
 
-        XCTAssertEqual(choice1, game.codeChoice(1).color)
-        XCTAssertEqual(choice2, game.codeChoice(0).color)
+        XCTAssertEqual(choice1, game.codeChoice(3).color)
+        XCTAssertEqual(choice2, game.codeChoice(2).color)
+        XCTAssertEqual(choice3, game.codeChoice(1).color)
+        XCTAssertEqual(choice4, game.codeChoice(0).color)
     }
 
     func test_showingGameScreen_setsGameSecret() throws {
