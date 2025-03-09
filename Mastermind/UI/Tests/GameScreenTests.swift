@@ -31,12 +31,18 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_initialColorGuessIsUnselected() throws {
-        let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
+        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
         let sut = GameScreen(game: game)
 
-        let color = try sut.inspect().colorOfGuess(id: "guess1")
+        let color1 = try sut.inspect().colorOfGuess(id: "guess1")
+        let color2 = try sut.inspect().colorOfGuess(id: "guess2")
+        let color3 = try sut.inspect().colorOfGuess(id: "guess3")
+        let color4 = try sut.inspect().colorOfGuess(id: "guess4")
 
-        XCTAssertEqual(color, Color.unselected)
+        XCTAssertEqual(color1, Color.unselected)
+        XCTAssertEqual(color2, Color.unselected)
+        XCTAssertEqual(color3, Color.unselected)
+        XCTAssertEqual(color4, Color.unselected)
     }
 
     func test_tappingCodeChoicesSetsGuessColors() throws {
