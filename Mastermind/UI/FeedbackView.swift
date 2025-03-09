@@ -19,7 +19,7 @@ struct FeedbackView: View {
             GridRow
             {
                 let pegIndex = 0
-                ExtractedView(feedbackPegs: feedbackPegs, pegIndex: pegIndex)
+                FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: pegIndex)
                 Circle()
                     .foregroundColor(feedbackColor(for: feedbackPegs[1]))
                     .frame(width: 10, height: 10)
@@ -39,7 +39,7 @@ struct FeedbackView: View {
     }
 }
 
-private struct ExtractedView: View {
+private struct FeedbackPegView: View {
     let feedbackPegs: [FeedbackPeg]
     let pegIndex: Int
 
