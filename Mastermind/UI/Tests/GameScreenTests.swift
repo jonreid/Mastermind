@@ -117,12 +117,16 @@ final class GameScreenTests: XCTestCase {
     }
 
     func test_doesNotShowGameOverWhenGuessIsNotFilled() throws {
-        let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
+        let game = try makeGame(numberOfCodeChoices: 4, secretSize: 4)
         var sut = GameScreen(game: game)
         let firstCodeChoice = game.codeChoice(0)
+        let secondCodeChoice = game.codeChoice(1)
+        let thirdCodeChoice = game.codeChoice(2)
 
         inspectChangingView(&sut) { view in
             try view.find(viewWithId: firstCodeChoice.codeValue).button().tap()
+            try view.find(viewWithId: secondCodeChoice.codeValue).button().tap()
+            try view.find(viewWithId: thirdCodeChoice.codeValue).button().tap()
             XCTAssertThrowsError(try view.find(ViewType.Sheet.self))
         }
     }
