@@ -22,14 +22,8 @@ struct FeedbackView: View {
                 FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 1)
             }
             GridRow {
-                Circle()
-                    .foregroundColor(feedbackColor(for: feedbackPegs[2]))
-                    .frame(width: 10, height: 10)
-                    .accessibilityIdentifier("feedback3")
-                Circle()
-                    .foregroundColor(feedbackColor(for: feedbackPegs[3]))
-                    .frame(width: 10, height: 10)
-                    .accessibilityIdentifier("feedback4")
+                FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 2)
+                FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 3)
             }
         }
     }
