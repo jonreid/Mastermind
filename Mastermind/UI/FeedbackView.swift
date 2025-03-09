@@ -17,10 +17,11 @@ struct FeedbackView: View {
     var body: some View {
         Grid {
             GridRow {
+                let foo = 0
                 Circle()
-                    .foregroundColor(feedbackColor(for: feedbackPegs[0]))
+                    .foregroundColor(feedbackColor(for: feedbackPegs[foo]))
                     .frame(width: 10, height: 10)
-                    .accessibilityIdentifier("feedback1")
+                    .accessibilityIdentifier("feedback\(foo + 1)")
                 Circle()
                     .foregroundColor(feedbackColor(for: feedbackPegs[1]))
                     .frame(width: 10, height: 10)
