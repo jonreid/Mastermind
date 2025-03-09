@@ -19,11 +19,7 @@ struct FeedbackView: View {
             GridRow
             {
                 let pegIndex = 0
-                let peg = feedbackPegs[pegIndex]
-                Circle()
-                    .foregroundColor(feedbackColor(for: peg))
-                    .frame(width: 10, height: 10)
-                    .accessibilityIdentifier("feedback\(pegIndex + 1)")
+                ExtractedView(feedbackPegs: feedbackPegs, pegIndex: pegIndex)
                 Circle()
                     .foregroundColor(feedbackColor(for: feedbackPegs[1]))
                     .frame(width: 10, height: 10)
@@ -39,6 +35,29 @@ struct FeedbackView: View {
                     .frame(width: 10, height: 10)
                     .accessibilityIdentifier("feedback4")
             }
+        }
+    }
+}
+
+private struct ExtractedView: View {
+    let feedbackPegs: [FeedbackPeg]
+    let pegIndex: Int
+
+    var body: some View {
+        Circle()
+            .foregroundColor(feedbackColor(for: feedbackPegs[pegIndex]))
+            .frame(width: 10, height: 10)
+            .accessibilityIdentifier("feedback\(pegIndex + 1)")
+    }
+
+    private func feedbackColor(for peg: FeedbackPeg) -> Color {
+        switch peg {
+        case .empty:
+            return .Pegs.unselected
+        case .correct:
+            return .Pegs.correct
+        case .misplaced:
+            return .Pegs.misplaced
         }
     }
 }
