@@ -40,3 +40,8 @@ struct FeedbackView: View {
         }
     }
 }
+
+#Preview {
+    FeedbackView(feedbackPegs: [.correct, .misplaced, .misplaced, .empty])
+        .background(Color.blue)
+}
