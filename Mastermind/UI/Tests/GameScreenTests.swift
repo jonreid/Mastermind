@@ -130,6 +130,7 @@ final class GameScreenTests: XCTestCase, Sendable {
             try view.find(viewWithId: codeChoice2.codeValue).button().tap()
             try view.find(viewWithId: codeChoice3.codeValue).button().tap()
             try view.find(viewWithId: codeChoice4.codeValue).button().tap()
+            try view.checkButton().tap()
             feedbackPegColor = try view.feedbackPegColor(1)
         }
 
