@@ -6,7 +6,19 @@ import XCTest
 extension InspectableSheet: @retroactive PopupPresenter {}
 
 @MainActor
-final class GameScreenTests: XCTestCase {
+final class GameScreenTests: XCTestCase, Sendable {
+    private var game: Game!
+
+    override func setUp() async throws {
+        try await super.setUp()
+        game = try makeGame()
+    }
+
+    override func tearDown() async throws {
+        game = nil
+        try await super.tearDown()
+    }
+
     func test_displaysCodeChoicesBottomUp() throws {
         let game = try makeGame()
         let sut = GameScreen(game: game)
