@@ -112,7 +112,7 @@ final class GameScreenTests: XCTestCase, Sendable {
     func test_initialFeedbackPegsAreEmpty() throws {
         let sut = makeSUT(game)
 
-        try sut.inspect()
+        try sut.inspect().feedbackPegColor(1)
     }
 
 //    func test_tappingCheckButtonUpdatesFeedback() throws {
