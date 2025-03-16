@@ -117,12 +117,12 @@ final class GameScreenTests: XCTestCase, Sendable {
         XCTAssertEqual(feedbackPegColor, Color.Pegs.unselected)
     }
 
-//    func test_tappingCheckButtonUpdatesFeedback() throws {
-        // Set up game with 4 choices
+    func test_tappingCheckButtonUpdatesFeedback() throws {
+        // Set up changing game with 4 choices
         // Tap to fill 4 guesses
         // Act: Tap check button
-        // Assert
-//    }
+        // Assert feedback peg colors change
+    }
 
     func test_showsGameOverWhenCodeChoiceIsFilled() throws {
         try XCTSkipIf(true, "Disabled")
