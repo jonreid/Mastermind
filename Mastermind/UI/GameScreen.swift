@@ -19,7 +19,7 @@ struct GameScreen: TestableView {
                 FeedbackView(feedbackPegs: feedbackPegs)
                 VStack {
                     CodeChoicesView(game: $game)
-                    CheckButton(action: {})
+                    CheckButton(action: { feedbackPegs = game.secret.evaluate(game.guess).pegs })
                         .disabled(!game.guess.isComplete)
                 }
                 .frame(width: 50)
