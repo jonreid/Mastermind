@@ -104,6 +104,16 @@ final class GameScreenTests: XCTestCase {
         XCTAssertTrue(isEnabled)
     }
 
+//    func test_initialFeedbackPegsAreEmpty() throws {
+//    }
+
+//    func test_tappingCheckButtonUpdatesFeedback() throws {
+        // Set up game with 4 choices
+        // Tap to fill 4 guesses
+        // Act: Tap check button
+        // Assert
+//    }
+
     func test_showsGameOverWhenCodeChoiceIsFilled() throws {
         try XCTSkipIf(true, "Disabled")
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 1)
@@ -167,6 +177,11 @@ final class GameScreenTests: XCTestCase {
 
     private func makeGame(numberOfCodeChoices: Int = 4, secretSize: Int = 4) throws -> Game {
         try Game(numberOfCodeChoices: numberOfCodeChoices, secretSize: secretSize, SecretMaker.createNull())
+    }
+
+    private func makeSUT() throws -> GameScreen {
+        let game = try makeGame()
+        return GameScreen(game: game)
     }
 }
 
