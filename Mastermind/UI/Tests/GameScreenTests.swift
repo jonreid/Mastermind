@@ -109,8 +109,11 @@ final class GameScreenTests: XCTestCase, Sendable {
         XCTAssertTrue(isEnabled)
     }
 
-//    func test_initialFeedbackPegsAreEmpty() throws {
-//    }
+    func test_initialFeedbackPegsAreEmpty() throws {
+        let sut = makeSUT(game)
+
+        // Check that feedback pegs are all unselected color
+    }
 
 //    func test_tappingCheckButtonUpdatesFeedback() throws {
         // Set up game with 4 choices
@@ -198,5 +201,9 @@ private extension InspectableView {
     func codeChoiceColor(_ index: Int) throws -> Color? {
         let codeChoice = try find(viewWithAccessibilityIdentifier: "codeChoices").vStack(0).forEach(0)[index]
         return try codeChoice.find(ViewType.Button.self).labelView().shape().overlay().shape().foregroundColor()
+    }
+
+    func feedbackPegColor(_ peg: Int) throws -> Color? {
+        try find(viewWithAccessibilityIdentifier: "feedback\(peg)").shape().foregroundColor()
     }
 }
