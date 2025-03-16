@@ -134,8 +134,7 @@ final class GameScreenTests: XCTestCase, Sendable {
             feedbackPegColor = try view.feedbackPegColor(1)
         }
 
-//        XCTAssertEqual(feedbackPegColor, Color.Pegs.correct)
-
+        XCTAssertEqual(feedbackPegColor, Color.Pegs.correct)
     }
 
     func test_showsGameOverWhenCodeChoiceIsFilled() throws {
