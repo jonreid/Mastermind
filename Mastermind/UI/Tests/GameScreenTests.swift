@@ -133,13 +133,6 @@ final class GameScreenTests: XCTestCase, Sendable {
             feedbackPegColor = try view.feedbackPegColor(1)
         }
 
-        // Set up changing game with 4 choices
-        // Tap to fill 4 guesses
-
-        // Act: Tap check button
-
-        // Assert feedback peg colors change
-//        let feedbackPegColor = try sut.inspect().feedbackPegColor(1)
 //        XCTAssertEqual(feedbackPegColor, Color.Pegs.correct)
 
     }
