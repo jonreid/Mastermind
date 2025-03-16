@@ -20,7 +20,7 @@ final class GameScreenTests: XCTestCase, Sendable {
     }
 
     func test_displaysCodeChoicesBottomUp() throws {
-        let sut = GameScreen(game: game)
+        let sut = makeSUT(game)
 
         let choice1 = try sut.inspect().codeChoiceColor(0)
         let choice2 = try sut.inspect().codeChoiceColor(1)
@@ -34,13 +34,13 @@ final class GameScreenTests: XCTestCase, Sendable {
     }
 
     func test_showingGameScreen_setsGameSecret() throws {
-        _ = GameScreen(game: game)
+        _ = makeSUT(game)
 
         XCTAssertFalse(game.secret.testHooks.code.isEmpty)
     }
 
     func test_initialColorGuessIsUnselected() throws {
-        let sut = GameScreen(game: game)
+        let sut = makeSUT(game)
 
         let color1 = try sut.inspect().colorOfGuess(id: "guess1")
         let color2 = try sut.inspect().colorOfGuess(id: "guess2")
@@ -54,7 +54,7 @@ final class GameScreenTests: XCTestCase, Sendable {
     }
 
     func test_tappingCodeChoicesSetsGuessColors() throws {
-        var sut = GameScreen(game: game)
+        var sut = makeSUT(game)
         let codeChoice1 = game.codeChoice(0)
         let codeChoice2 = game.codeChoice(1)
         let codeChoice3 = game.codeChoice(2)
@@ -82,7 +82,7 @@ final class GameScreenTests: XCTestCase, Sendable {
     }
 
     func test_checkButtonIsInitiallyDisabled() throws {
-        let sut = GameScreen(game: game)
+        let sut = makeSUT(game)
 
         let isEnabled = try sut.inspect().find(viewWithAccessibilityIdentifier: "checkButton").button().isResponsive()
 
@@ -90,7 +90,7 @@ final class GameScreenTests: XCTestCase, Sendable {
     }
 
     func test_enablesCheckButtonWhenGuessIsFilled() throws {
-        var sut = GameScreen(game: game)
+        var sut = makeSUT(game)
         let codeChoice1 = game.codeChoice(0)
         let codeChoice2 = game.codeChoice(1)
         let codeChoice3 = game.codeChoice(2)
@@ -121,7 +121,7 @@ final class GameScreenTests: XCTestCase, Sendable {
 
     func test_showsGameOverWhenCodeChoiceIsFilled() throws {
         try XCTSkipIf(true, "Disabled")
-        var sut = GameScreen(game: game)
+        var sut = makeSUT(game)
         let codeChoice = game.codeChoice(0)
 
         inspectChangingView(&sut) { view in
@@ -131,7 +131,7 @@ final class GameScreenTests: XCTestCase, Sendable {
     }
 
     func test_doesNotShowGameOverWhenGuessIsNotFilled() throws {
-        var sut = GameScreen(game: game)
+        var sut = makeSUT(game)
         let firstCodeChoice = game.codeChoice(0)
         let secondCodeChoice = game.codeChoice(1)
         let thirdCodeChoice = game.codeChoice(2)
@@ -146,7 +146,7 @@ final class GameScreenTests: XCTestCase, Sendable {
 
     func test_showsYouWinWhenGuessMatchesSecret() throws {
         try XCTSkipIf(true, "Disabled")
-        var sut = GameScreen(game: game)
+        var sut = makeSUT(game)
         let firstCodeChoice = game.codeChoice(0)
         let secondCodeChoice = game.codeChoice(1)
         var gameOverText: String?
@@ -163,7 +163,7 @@ final class GameScreenTests: XCTestCase, Sendable {
     func test_showsYouLoseWhenGuessDoesNotMatchSecret() throws {
         try XCTSkipIf(true, "Disabled")
         let game = try makeGame(numberOfCodeChoices: 2, secretSize: 2)
-        var sut = GameScreen(game: game)
+        var sut = makeSUT(game)
         let firstCodeChoice = game.codeChoice(0)
         let secondCodeChoice = game.codeChoice(1)
         var gameOverText: String?
@@ -181,9 +181,8 @@ final class GameScreenTests: XCTestCase, Sendable {
         try Game(numberOfCodeChoices: numberOfCodeChoices, secretSize: secretSize, SecretMaker.createNull())
     }
 
-    private func makeSUT() throws -> GameScreen {
-        let game = try makeGame()
-        return GameScreen(game: game)
+    private func makeSUT(_ game: Game) -> GameScreen {
+        GameScreen(game: game)
     }
 }
 
