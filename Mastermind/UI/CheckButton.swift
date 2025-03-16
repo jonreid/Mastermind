@@ -8,6 +8,7 @@ struct CheckButton: View {
 
     var body: some View {
         Button(action: {
+            action()
         }, label: {
             RoundedRectangle(cornerRadius: 10)
                 .fill(isEnabled ? .blue : .unselected)
