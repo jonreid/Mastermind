@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct CheckButton: View {
+    let action: () -> Void
+
     @Environment(\.isEnabled)
     private var isEnabled: Bool
 
@@ -22,7 +24,7 @@ struct CheckButton: View {
 
 #Preview {
     VStack {
-        CheckButton().disabled(false)
+        CheckButton(action: {}).disabled(false)
     }.frame(width: 50)
 }
 
