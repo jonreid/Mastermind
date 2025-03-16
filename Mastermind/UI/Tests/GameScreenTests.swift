@@ -118,21 +118,27 @@ final class GameScreenTests: XCTestCase, Sendable {
     }
 
     func test_tappingCheckButtonUpdatesFeedback() throws {
-        // Set up changing game with 6 choices
+        var sut = makeSUT(game)
+        let codeChoice1 = game.codeChoice(0)
+        let codeChoice2 = game.codeChoice(1)
+        let codeChoice3 = game.codeChoice(2)
+        let codeChoice4 = game.codeChoice(3)
+
+        inspectChangingView(&sut) { view in
+            try view.find(viewWithId: codeChoice1.codeValue).button().tap()
+            try view.find(viewWithId: codeChoice2.codeValue).button().tap()
+            try view.find(viewWithId: codeChoice3.codeValue).button().tap()
+            try view.find(viewWithId: codeChoice4.codeValue).button().tap()
+        }
+
+        // Set up changing game with 4 choices
         // Tap to fill 4 guesses
 
         // Act: Tap check button
 
         // Assert feedback peg colors change
-//        let peg1Color = try sut.inspect().pegColor(1)
-//        let peg2Color = try sut.inspect().pegColor(2)
-//        let peg3Color = try sut.inspect().pegColor(3)
-//        let peg4Color = try sut.inspect().pegColor(4)
-//
-//        XCTAssertEqual(peg1Color, Color.Pegs.correct)
-//        XCTAssertEqual(peg2Color, Color.Pegs.misplaced)
-//        XCTAssertEqual(peg3Color, Color.Pegs.misplaced)
-//        XCTAssertEqual(peg4Color, Color.Pegs.unselected)
+//        let feedbackPegColor = try sut.inspect().feedbackPegColor(1)
+//        XCTAssertEqual(feedbackPegColor, Color.Pegs.correct)
 
     }
 
