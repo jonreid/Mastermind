@@ -123,6 +123,7 @@ final class GameScreenTests: XCTestCase, Sendable {
         let codeChoice2 = game.codeChoice(1)
         let codeChoice3 = game.codeChoice(2)
         let codeChoice4 = game.codeChoice(3)
+        var feedbackPegColor: Color?
 
         inspectChangingView(&sut) { view in
             try view.find(viewWithId: codeChoice1.codeValue).button().tap()
