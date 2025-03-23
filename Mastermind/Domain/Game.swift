@@ -35,4 +35,8 @@ final class Game {
     func isGuessCorrect(_ guess: [CodeChoice]) -> Bool {
         secret.isGuessCorrect(guess)
     }
+
+    func initialFeedbackPegs() -> [FeedbackPeg] {
+        secret.initialFeedback().pegs
+    }
 }
