@@ -15,7 +15,7 @@ struct GameScreen: TestableView {
     var body: some View {
         Color.background.ignoresSafeArea().overlay {
             HStack {
-                CodeGuessView(guess: $game.guess)
+                CodeGuessView(guess: game.guess)
                 FeedbackView(feedbackPegs: feedbackPegs)
                 VStack {
                     CodeChoicesView(game: $game)
@@ -37,7 +37,7 @@ struct GameScreen: TestableView {
 }
 
 private struct CodeGuessView: View {
-    @Binding var guess: Guess
+    var guess: Guess
 
     var body: some View {
         HStack {
@@ -64,7 +64,7 @@ private struct CodeChoicesView: View {
     var body: some View {
         VStack {
             ForEach(game.codeChoices.lastToFirst, id: \.codeValue) { codeChoice in
-                CodeChoiceView(codePeg: codeChoice, codeChoiceId: codeChoice.codeValue, guess: $game.guess)
+                CodeChoiceView(codePeg: codeChoice, codeChoiceId: codeChoice.codeValue, guess: game.guess)
             }
         }
         .accessibilityIdentifier("codeChoices")
@@ -74,7 +74,7 @@ private struct CodeChoicesView: View {
 private struct CodeChoiceView: View {
     var codePeg: CodeChoice
     var codeChoiceId: Int
-    @Binding var guess: Guess
+    var guess: Guess
 
     var body: some View {
         Button(action: {
