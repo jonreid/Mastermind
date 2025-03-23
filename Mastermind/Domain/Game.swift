@@ -39,4 +39,8 @@ final class Game {
     func initialFeedbackPegs() -> [FeedbackPeg] {
         secret.initialFeedback().pegs
     }
+
+    func feedbackPegsForGuess() -> [FeedbackPeg] {
+        secret.evaluate(guess).pegs
+    }
 }
