@@ -25,6 +25,10 @@ private struct FeedbackPegView: View {
         Circle()
             .foregroundColor(feedbackColor(for: feedbackPegs[pegIndex]))
             .frame(width: 10, height: 10)
+            .overlay(
+                Circle()
+                    .stroke(feedbackPegs[pegIndex] == .empty ? Color.clear : feedbackColor(for: feedbackPegs[pegIndex]), lineWidth: 3)
+            )
             .accessibilityIdentifier("feedback\(pegIndex + 1)")
     }
 
