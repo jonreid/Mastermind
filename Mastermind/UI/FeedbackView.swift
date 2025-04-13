@@ -35,10 +35,6 @@ private struct FeedbackPegView: View {
     private func overlayColorDependingOnWhetherThePegIsFilledOrNot(_ peg: FeedbackPeg) -> Color {
         peg == .empty ? Color.clear : peg.feedbackColor()
     }
-
-    private func feedbackColor(for peg: FeedbackPeg) -> Color {
-        peg.feedbackColor()
-    }
 }
 
 #Preview {
