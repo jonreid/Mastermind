@@ -23,7 +23,7 @@ private struct FeedbackPegView: View {
 
     var body: some View {
         Circle()
-            .foregroundColor(feedbackColor(for: feedbackPegs[pegIndex]))
+            .foregroundColor(feedbackPegs[pegIndex].feedbackColor())
             .frame(width: 10, height: 10)
             .overlay(
                 Circle()
@@ -33,7 +33,7 @@ private struct FeedbackPegView: View {
     }
 
     private func overlayColorDependingOnWhetherThePegIsFilledOrNot(_ peg: FeedbackPeg) -> Color {
-        peg == .empty ? Color.clear : feedbackColor(for: peg)
+        peg == .empty ? Color.clear : peg.feedbackColor()
     }
 
     private func feedbackColor(for peg: FeedbackPeg) -> Color {
