@@ -27,12 +27,12 @@ private struct FeedbackPegView: View {
             .frame(width: 10, height: 10)
             .overlay(
                 Circle()
-                    .stroke(overlayColorDependingOnWhetherThePegIsFilledOrNot(), lineWidth: 3)
+                    .stroke(overlayColorDependingOnWhetherThePegIsFilledOrNot(feedbackPegs[pegIndex]), lineWidth: 3)
             )
             .accessibilityIdentifier("feedback\(pegIndex + 1)")
     }
 
-    private func overlayColorDependingOnWhetherThePegIsFilledOrNot() -> Color {
+    private func overlayColorDependingOnWhetherThePegIsFilledOrNot(_ peg: FeedbackPeg) -> Color {
         feedbackPegs[pegIndex] == .empty ? Color.clear : feedbackColor(for: feedbackPegs[pegIndex])
     }
 
