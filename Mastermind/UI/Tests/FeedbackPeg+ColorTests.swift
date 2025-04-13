@@ -9,4 +9,11 @@ final class FeedbackPeg_ColorTests: @unchecked Sendable {
         let color = sut.overlayColorDependingOnWhetherThePegIsFilledOrNot()
         #expect(color == Color.clear)
     }
+
+    @Test
+    func overlayColorDependingOnWhetherThePegIsFilledOrNot_correct() async throws {
+        let sut = FeedbackPeg.correct
+        let color = sut.overlayColorDependingOnWhetherThePegIsFilledOrNot()
+        #expect(color == Color.Pegs.correct)
+    }
 }
