@@ -13,6 +13,7 @@ extension FeedbackPeg {
     }
 
     func colorAroundPegToShowThatPegIsFilled() -> Color {
-        self == .empty ? Color.clear : feedbackColor()
+        if self == .empty { return Color.clear }
+        return feedbackColor()
     }
 }
