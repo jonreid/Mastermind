@@ -37,14 +37,7 @@ private struct FeedbackPegView: View {
     }
 
     private func feedbackColor(for peg: FeedbackPeg) -> Color {
-        switch peg {
-        case .empty:
-            return .Pegs.unselected
-        case .correct:
-            return .Pegs.correct
-        case .misplaced:
-            return .Pegs.misplaced
-        }
+        peg.feedbackColor()
     }
 }
 
