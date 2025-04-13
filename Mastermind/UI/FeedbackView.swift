@@ -27,9 +27,13 @@ private struct FeedbackPegView: View {
             .frame(width: 10, height: 10)
             .overlay(
                 Circle()
-                    .stroke(feedbackPegs[pegIndex] == .empty ? Color.clear : feedbackColor(for: feedbackPegs[pegIndex]), lineWidth: 3)
+                    .stroke(applesauce(), lineWidth: 3)
             )
             .accessibilityIdentifier("feedback\(pegIndex + 1)")
+    }
+
+    private func applesauce() -> Color {
+        feedbackPegs[pegIndex] == .empty ? Color.clear : feedbackColor(for: feedbackPegs[pegIndex])
     }
 
     private func feedbackColor(for peg: FeedbackPeg) -> Color {
