@@ -10,10 +10,9 @@ final class FeedbackPeg_ColorTests: @unchecked Sendable {
         #expect(color == Color.clear)
     }
 
-    @Test
-    func colorAroundPegToShowThatPegIsFilled_forFilledPeg() async throws {
-        let sut = FeedbackPeg.correct
+    @Test(arguments: [FeedbackPeg.correct, FeedbackPeg.misplaced])
+    func colorAroundPegToShowThatPegIsFilled_forFilledPeg(sut: FeedbackPeg) async throws {
         let color = sut.colorAroundPegToShowThatPegIsFilled()
-        #expect(color == Color.Pegs.correct)
+        #expect(color == sut.feedbackColor())
     }
 }
