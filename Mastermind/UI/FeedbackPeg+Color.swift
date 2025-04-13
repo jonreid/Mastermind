@@ -12,7 +12,7 @@ extension FeedbackPeg {
         }
     }
 
-    func overlayColorDependingOnWhetherThePegIsFilledOrNot() -> Color {
+    func colorAroundPegToShowThatPegIsFilled() -> Color {
         self == .empty ? Color.clear : feedbackColor()
     }
 }

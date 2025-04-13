@@ -27,7 +27,7 @@ private struct FeedbackPegView: View {
             .frame(width: 10, height: 10)
             .overlay(
                 Circle()
-                    .stroke(feedbackPegs[pegIndex].overlayColorDependingOnWhetherThePegIsFilledOrNot(), lineWidth: 3)
+                    .stroke(feedbackPegs[pegIndex].colorAroundPegToShowThatPegIsFilled(), lineWidth: 3)
             )
             .accessibilityIdentifier("feedback\(pegIndex + 1)")
     }
