@@ -11,4 +11,8 @@ extension FeedbackPeg {
             return .Pegs.misplaced
         }
     }
+
+    func overlayColorDependingOnWhetherThePegIsFilledOrNot() -> Color {
+        self == .empty ? Color.clear : feedbackColor()
+    }
 }
