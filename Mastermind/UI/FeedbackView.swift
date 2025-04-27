@@ -17,12 +17,12 @@ struct FeedbackView: View {
     }
 
     private func pegView(_ index: Int) -> some View {
-        FeedbackPegView2(feedbackPeg: feedbackPegs[index])
+        FeedbackPegView(feedbackPeg: feedbackPegs[index])
             .accessibilityIdentifier("feedback\(index + 1)")
     }
 }
 
-private struct FeedbackPegView2: View {
+private struct FeedbackPegView: View {
     let feedbackPeg: FeedbackPeg
 
     var body: some View {
