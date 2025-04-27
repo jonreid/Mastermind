@@ -16,8 +16,9 @@ struct FeedbackView: View {
         }
     }
 
-    private func pegView(_ index: Int) -> FeedbackPegView2 {
-        FeedbackPegView2(feedbackPeg: feedbackPegs[index], accessibilityID: "feedback\(index + 1)")
+    private func pegView(_ index: Int) -> some View {
+        FeedbackPegView2(feedbackPeg: feedbackPegs[index])
+            .accessibilityIdentifier("feedback\(index + 1)")
     }
 }
 
@@ -39,7 +40,6 @@ private struct FeedbackPegView: View {
 
 private struct FeedbackPegView2: View {
     let feedbackPeg: FeedbackPeg
-    let accessibilityID: String
 
     var body: some View {
         Circle()
@@ -49,7 +49,6 @@ private struct FeedbackPegView2: View {
                 Circle()
                     .stroke(feedbackPeg.colorAroundPegToShowThatPegIsFilled(), lineWidth: 3)
             )
-            .accessibilityIdentifier(accessibilityID)
     }
 }
 
