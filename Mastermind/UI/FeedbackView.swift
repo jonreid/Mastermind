@@ -7,11 +7,11 @@ struct FeedbackView: View {
         Grid {
             GridRow {
                 pegView(0)
-                FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 1)
+                pegView(1)
             }
             GridRow {
-                FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 2)
-                FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 3)
+                pegView(2)
+                pegView(3)
             }
         }
     }
