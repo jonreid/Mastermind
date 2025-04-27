@@ -22,7 +22,11 @@ final class FeedbackViewTests: XCTestCase, Sendable {
 
 private extension InspectableView {
     func pegColor(_ peg: Int) throws -> Color? {
-        try find(viewWithAccessibilityIdentifier: "feedback\(peg)").shape().foregroundColor()
+        try pegShape(peg).foregroundColor()
+    }
+
+    private func pegShape(_ peg: Int) throws -> InspectableView<ViewType.Shape> {
+        try find(viewWithAccessibilityIdentifier: "feedback\(peg)").shape()
     }
 }
 
