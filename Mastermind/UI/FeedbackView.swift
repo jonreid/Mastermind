@@ -22,22 +22,6 @@ struct FeedbackView: View {
     }
 }
 
-private struct FeedbackPegView: View {
-    let feedbackPegs: [FeedbackPeg]
-    let pegIndex: Int
-
-    var body: some View {
-        Circle()
-            .foregroundColor(feedbackPegs[pegIndex].feedbackColor())
-            .frame(width: 10, height: 10)
-            .overlay(
-                Circle()
-                    .stroke(feedbackPegs[pegIndex].colorAroundPegToShowThatPegIsFilled(), lineWidth: 3)
-            )
-            .accessibilityIdentifier("feedback\(pegIndex + 1)")
-    }
-}
-
 private struct FeedbackPegView2: View {
     let feedbackPeg: FeedbackPeg
 
