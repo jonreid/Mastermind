@@ -6,7 +6,7 @@ struct FeedbackView: View {
     var body: some View {
         Grid {
             GridRow {
-                FeedbackPegView2(feedbackPeg: feedbackPegs[0], accessibilityID: "feedback\(0 + 1)")
+                pegView(0)
                 FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 1)
             }
             GridRow {
@@ -14,6 +14,10 @@ struct FeedbackView: View {
                 FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 3)
             }
         }
+    }
+
+    private func pegView(_ index: Int) -> FeedbackPegView2 {
+        FeedbackPegView2(feedbackPeg: feedbackPegs[index], accessibilityID: "feedback\(index + 1)")
     }
 }
 
