@@ -6,7 +6,7 @@ struct FeedbackView: View {
     var body: some View {
         Grid {
             GridRow {
-                FeedbackPegView2(feedbackPeg: feedbackPegs[0], pegIndex: 0)
+                FeedbackPegView2(feedbackPeg: feedbackPegs[0], accessibilityID: "feedback\(0 + 1)")
                 FeedbackPegView(feedbackPegs: feedbackPegs, pegIndex: 1)
             }
             GridRow {
@@ -35,7 +35,7 @@ private struct FeedbackPegView: View {
 
 private struct FeedbackPegView2: View {
     let feedbackPeg: FeedbackPeg
-    let pegIndex: Int
+    let accessibilityID: String
 
     var body: some View {
         Circle()
@@ -45,7 +45,7 @@ private struct FeedbackPegView2: View {
                 Circle()
                     .stroke(feedbackPeg.colorAroundPegToShowThatPegIsFilled(), lineWidth: 3)
             )
-            .accessibilityIdentifier("feedback\(pegIndex + 1)")
+            .accessibilityIdentifier(accessibilityID)
     }
 }
 
