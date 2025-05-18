@@ -5,23 +5,23 @@ final class Game {
     private let secretMaker: SecretMaker
     private let secretSize: Int
     let codeChoices: CodeChoices
-    var guess: Guess
+    var guess: [Guess]
 
     var secret = Secret(code: [])
 
     var isComplete: Bool {
-        guess.isComplete
+        guess[0].isComplete
     }
 
     var isWin: Bool {
-        secret.matches(guess)
+        secret.matches(guess[0])
     }
 
     init(numberOfCodeChoices: Int, secretSize: Int, _ secretMaker: SecretMaker) throws {
         self.secretMaker = secretMaker
         self.secretSize = secretSize
         try codeChoices = CodeChoiceGenerator.generate(from: codeColors, take: numberOfCodeChoices)
-        guess = Guess(secretSize: secretSize)
+        guess = [Guess(secretSize: secretSize)]
     }
 
     func codeChoice(_ index: Int) -> CodeChoice {
@@ -41,6 +41,6 @@ final class Game {
     }
 
     func feedbackPegsForGuess() -> [FeedbackPeg] {
-        secret.evaluate(guess).pegs
+        secret.evaluate(guess[0]).pegs
     }
 }
