@@ -1,5 +1,10 @@
 import SwiftUI
 
+struct Rounds {
+    var guesses: [Guess]
+    var currentRound: Int = 0
+}
+
 @Observable
 final class Game {
     private let secretMaker: SecretMaker
