@@ -14,8 +14,12 @@ final class Game {
     private let secretMaker: SecretMaker
     private let secretSize: Int
     let codeChoices: CodeChoices
-    var guess: [Guess]
     var rounds: Rounds
+
+    var guess: [Guess] {
+        get { rounds.guesses }
+        set { rounds.guesses = newValue }
+    }
 
     var secret = Secret(code: [])
 
@@ -31,7 +35,6 @@ final class Game {
         self.secretMaker = secretMaker
         self.secretSize = secretSize
         try codeChoices = CodeChoiceGenerator.generate(from: codeColors, take: numberOfCodeChoices)
-        guess = [Guess(secretSize: secretSize)]
         rounds = Rounds(guesses: [Guess(secretSize: secretSize)])
     }
 
