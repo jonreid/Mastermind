@@ -7,6 +7,10 @@ final class Rounds {
     init(guesses: [Guess]) {
         self.guesses = guesses
     }
+
+    var currentGuess: Guess {
+        guesses[currentRound]
+    }
 }
 
 @Observable
@@ -18,11 +22,11 @@ final class Game {
     var secret = Secret(code: [])
 
     var isComplete: Bool {
-        rounds.guesses[0].isComplete
+        rounds.currentGuess.isComplete
     }
 
     var isWin: Bool {
-        secret.matches(rounds.guesses[0])
+        secret.matches(rounds.currentGuess)
     }
 
     init(numberOfCodeChoices: Int, secretSize: Int, _ secretMaker: SecretMaker) throws {
@@ -49,6 +53,6 @@ final class Game {
     }
 
     func feedbackPegsForGuess() -> [FeedbackPeg] {
-        secret.evaluate(rounds.guesses[0]).pegs
+        secret.evaluate(rounds.currentGuess).pegs
     }
 }
