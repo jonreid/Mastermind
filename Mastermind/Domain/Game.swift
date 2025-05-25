@@ -17,10 +17,6 @@ final class Game {
     var rounds: Rounds
     var secret = Secret(code: [])
 
-    var guesses: [Guess] {
-        rounds.guesses
-    }
-
     var isComplete: Bool {
         rounds.guesses[0].isComplete
     }
