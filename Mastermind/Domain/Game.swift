@@ -22,11 +22,11 @@ final class Game {
     }
 
     var isComplete: Bool {
-        guesses[0].isComplete
+        rounds.guesses[0].isComplete
     }
 
     var isWin: Bool {
-        secret.matches(guesses[0])
+        secret.matches(rounds.guesses[0])
     }
 
     init(numberOfCodeChoices: Int, secretSize: Int, _ secretMaker: SecretMaker) throws {
@@ -53,6 +53,6 @@ final class Game {
     }
 
     func feedbackPegsForGuess() -> [FeedbackPeg] {
-        secret.evaluate(guesses[0]).pegs
+        secret.evaluate(rounds.guesses[0]).pegs
     }
 }
