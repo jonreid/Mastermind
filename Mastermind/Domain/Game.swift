@@ -21,10 +21,6 @@ final class Game {
     var rounds: Rounds
     var secret = Secret(code: [])
 
-    var isComplete: Bool {
-        rounds.currentGuess.isComplete
-    }
-
     var isWin: Bool {
         secret.matches(rounds.currentGuess)
     }
