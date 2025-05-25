@@ -15,7 +15,7 @@ final class Game {
     var secret = Secret(code: [])
 
     var isComplete: Bool {
-        guess.isComplete
+        guesses[0].isComplete
     }
 
     var isWin: Bool {
