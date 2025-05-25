@@ -19,7 +19,7 @@ final class Game {
     }
 
     var isWin: Bool {
-        secret.matches(guess)
+        secret.matches(guesses[0])
     }
 
     init(numberOfCodeChoices: Int, secretSize: Int, _ secretMaker: SecretMaker) throws {
