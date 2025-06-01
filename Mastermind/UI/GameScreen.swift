@@ -50,7 +50,7 @@ private struct CodeGuessView: View {
                                 .strokeBorder(Color.unselected, lineWidth: 2)
                         )
                         .foregroundColor(guess[index]?.color ?? Color.unselected)
-                        .frame(width: 50, height: 50)
+                        .frame(width: 40, height: 40)
                 })
                 .id("guess\(index + 1)")
             }
