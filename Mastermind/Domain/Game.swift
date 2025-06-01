@@ -11,10 +11,6 @@ final class Rounds {
     var currentGuess: Guess {
         guesses[currentRound]
     }
-
-    var currentGuessIsComplete: Bool {
-        currentGuess.isComplete
-    }
 }
 
 @Observable
