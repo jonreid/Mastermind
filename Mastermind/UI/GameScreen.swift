@@ -20,7 +20,7 @@ struct GameScreen: TestableView {
                 VStack {
                     CodeChoicesView(game: $game)
                     CheckButton(action: { feedbackPegs = game.feedbackPegsForGuess() })
-                        .disabled(!game.isEligibleForValidation)
+                        .disabled(!game.canBeValidated)
                 }
                 .frame(width: 50)
             }
