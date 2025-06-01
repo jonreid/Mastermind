@@ -29,8 +29,8 @@ final class Game {
         rounds.currentGuess
     }
 
-    var disableCheckButton: Bool {
-        !currentGuess.isComplete
+    var enableCheckButton: Bool {
+        currentGuess.isComplete
     }
 
     var isWin: Bool {
