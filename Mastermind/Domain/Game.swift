@@ -29,6 +29,10 @@ final class Game {
         rounds.currentGuess
     }
 
+    var enableCheckButton: Bool {
+        currentGuess.isComplete
+    }
+
     var isWin: Bool {
         secret.matches(rounds.currentGuess)
     }
