@@ -29,7 +29,7 @@ final class Game {
         rounds.currentGuess
     }
 
-    var enableCheckButton: Bool {
+    var isEligibleForValidation: Bool {
         currentGuess.isComplete
     }
 
