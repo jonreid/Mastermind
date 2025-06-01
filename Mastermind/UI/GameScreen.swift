@@ -41,6 +41,7 @@ private struct CodeGuessView: View {
 
     var body: some View {
         HStack {
+            Text("1")
             ForEach(0 ..< guess.size, id: \.self) { index in
                 Button(action: {}, label: {
                     Circle()
