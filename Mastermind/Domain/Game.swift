@@ -25,6 +25,10 @@ final class Game {
     var rounds: Rounds
     var secret = Secret(code: [])
 
+    var currentGuess: Guess {
+        rounds.currentGuess
+    }
+
     var isWin: Bool {
         secret.matches(rounds.currentGuess)
     }
