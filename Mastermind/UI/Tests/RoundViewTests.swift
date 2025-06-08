@@ -5,15 +5,17 @@ import XCTest
 @MainActor
 final class RoundViewTests: XCTestCase, Sendable {
     func test_showsRoundNumber() throws {
-        let round = 1
-        let game = try Game(numberOfCodeChoices: 4, secretSize: 4, SecretMaker.createNull())
-        game.makeNewSecret()
-        let feedbackPegs = game.initialFeedbackPegs()
-
-        let sut = RoundView(round: round, game: game, feedbackPegs: feedbackPegs)
+        let sut = try makeSUT(round: 1)
 
         let roundNumberView = try sut.inspect().round()
         XCTAssertEqual(try roundNumberView.string(), "1")
+    }
+
+    private func makeSUT(round: Int = 1) throws -> RoundView {
+        let game = try Game(numberOfCodeChoices: 4, secretSize: 4, SecretMaker.createNull())
+        game.makeNewSecret()
+        let feedbackPegs = game.initialFeedbackPegs()
+        return RoundView(round: round, game: game, feedbackPegs: feedbackPegs)
     }
 }
 
