@@ -8,7 +8,6 @@ extension View {
 }
 
 struct InspectableSheet<Sheet>: ViewModifier where Sheet: View {
-
     let isPresented: Binding<Bool>
     let onDismiss: (() -> Void)?
     let popupBuilder: () -> Sheet
