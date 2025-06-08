@@ -4,7 +4,7 @@ struct RoundView: View {
     @State private var game: Game
     @State private var feedbackPegs: [FeedbackPeg]
 
-    init(game: Game, feedbackPegs: [FeedbackPeg]) {
+    init(round: Int, game: Game, feedbackPegs: [FeedbackPeg]) {
         self.game = game
         self.feedbackPegs = feedbackPegs
     }
@@ -20,6 +20,7 @@ private struct CodeGuessView: View {
 
     var body: some View {
         HStack {
+            Text("1").accessibilityIdentifier("roundNumber")
             ForEach(0 ..< guess.size, id: \.self) { index in
                 Button(action: {}, label: {
                     Circle()

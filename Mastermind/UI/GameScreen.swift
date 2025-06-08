@@ -15,7 +15,7 @@ struct GameScreen: TestableView {
     var body: some View {
         Color.background.ignoresSafeArea().overlay {
             HStack {
-                RoundView(game: game, feedbackPegs: feedbackPegs)
+                RoundView(round: 1, game: game, feedbackPegs: feedbackPegs)
                 VStack {
                     CodeChoicesView(game: $game)
                     CheckButton(action: { feedbackPegs = game.feedbackPegsForGuess() })
