@@ -40,7 +40,8 @@ final class Game {
     }
 
     func initialFeedbackPegs() -> [FeedbackPeg] {
-        secret.initialFeedback().pegs
+        assert(secret.size == secretSize, "Call makeNewSecret() first")
+        return secret.initialFeedback().pegs
     }
 
     func feedbackPegsForGuess() -> [FeedbackPeg] {
