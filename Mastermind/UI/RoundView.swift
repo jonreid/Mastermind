@@ -35,7 +35,7 @@ private struct CodeGuessView: View {
                         .foregroundColor(guess[index]?.color ?? Color.unselected)
                         .frame(width: 40, height: 40)
                 })
-                .id("guess\(index + 1)")
+                .id("guess\(round)-\(index + 1)")
             }
         }
     }

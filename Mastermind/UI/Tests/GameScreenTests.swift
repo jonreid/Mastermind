@@ -42,10 +42,10 @@ final class GameScreenTests: XCTestCase, Sendable {
     func test_initialColorGuessIsUnselected() throws {
         let sut = makeSUT(game)
 
-        let color1 = try sut.inspect().colorOfGuess(id: "guess1")
-        let color2 = try sut.inspect().colorOfGuess(id: "guess2")
-        let color3 = try sut.inspect().colorOfGuess(id: "guess3")
-        let color4 = try sut.inspect().colorOfGuess(id: "guess4")
+        let color1 = try sut.inspect().colorOfGuess(id: "guess1-1")
+        let color2 = try sut.inspect().colorOfGuess(id: "guess1-2")
+        let color3 = try sut.inspect().colorOfGuess(id: "guess1-3")
+        let color4 = try sut.inspect().colorOfGuess(id: "guess1-4")
 
         XCTAssertEqual(color1, Color.unselected)
         XCTAssertEqual(color2, Color.unselected)
@@ -69,10 +69,10 @@ final class GameScreenTests: XCTestCase, Sendable {
             try view.find(viewWithId: codeChoice2.codeValue).button().tap()
             try view.find(viewWithId: codeChoice3.codeValue).button().tap()
             try view.find(viewWithId: codeChoice4.codeValue).button().tap()
-            color1 = try view.colorOfGuess(id: "guess1")
-            color2 = try view.colorOfGuess(id: "guess2")
-            color3 = try view.colorOfGuess(id: "guess3")
-            color4 = try view.colorOfGuess(id: "guess4")
+            color1 = try view.colorOfGuess(id: "guess1-1")
+            color2 = try view.colorOfGuess(id: "guess1-2")
+            color3 = try view.colorOfGuess(id: "guess1-3")
+            color4 = try view.colorOfGuess(id: "guess1-4")
         }
 
         XCTAssertEqual(color1, codeChoice1.color)
