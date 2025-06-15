@@ -11,7 +11,7 @@ final class RoundViewTests: XCTestCase, Sendable {
         XCTAssertEqual(try roundNumberView.string(), "1")
     }
 
-    private func makeSUT(round: Int = 1) throws -> RoundView {
+    private func makeSUT(round: Int) throws -> RoundView {
         let game = try Game(numberOfCodeChoices: 4, secretSize: 4, SecretMaker.createNull())
         game.makeNewSecret()
         let feedbackPegs = game.initialFeedbackPegs()
