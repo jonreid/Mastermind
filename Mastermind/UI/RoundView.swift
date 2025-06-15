@@ -18,8 +18,8 @@ struct RoundView: View {
 }
 
 private struct CodeGuessView: View {
-    var guess: Guess
-    var round: Int
+    let guess: Guess
+    let round: Int
 
     var body: some View {
         HStack {
