@@ -1,0 +1,1313 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Swift Coding Style Guide
+
+## Kent Beck's TDD & Tidy First Methodology
+
+### Core Development Principles
+- **Always follow the TDD cycle**: Red → Green → Refactor
+- **Write the simplest failing test first**
+- **Implement the minimum code needed to make tests pass**
+- **Refactor only after tests are passing**
+- **Follow "Tidy First" approach**: Separate structural changes from behavioral changes
+- **Maintain high code quality throughout development**
+
+### TDD Methodology Guidance
+- **Start with failing tests**: Write a failing test that defines a small increment of functionality
+- **Meaningful test names**: Use descriptive names that express domain concepts, avoid programming terms
+- **Clear test failures**: Make failures informative and actionable
+- **Minimal implementation**: Write just enough code to make the test pass - no more
+- **Refactor after green**: Consider refactoring only when tests are passing
+- **Incremental development**: Repeat the cycle for new functionality
+- **Focus on behavior**: Express tests about desired behavior, not implementation details
+
+### Tidy First Approach
+**Separate all changes into two distinct types:**
+
+1. **STRUCTURAL CHANGES**: Rearranging code without changing behavior
+   - Renaming variables, functions, or types
+   - Extracting methods or classes
+   - Moving code between files or modules
+   - Reorganizing imports or file structure
+   - Adding or removing comments/documentation
+
+2. **BEHAVIORAL CHANGES**: Adding or modifying actual functionality
+   - New features or capabilities
+   - Bug fixes
+   - Performance improvements
+   - API changes
+
+**Rules:**
+- **Never mix** structural and behavioral changes in the same commit
+- **Always make structural changes first** when both are needed
+- **Validate structural changes** by running tests before and after
+- **Commit structural changes separately** from behavioral changes
+
+### Commit Discipline
+**Only commit when:**
+1. **ALL tests are passing**
+2. **ALL compiler/linter warnings have been resolved**
+3. **The change represents a single logical unit of work**
+4. **Commit messages clearly state** whether the commit contains structural or behavioral changes
+
+**Commit Strategy:**
+- Use small, frequent commits rather than large, infrequent ones
+- Separate structural commits from behavioral commits
+- Clear commit messages indicating change type
+
+### Code Quality Standards
+- **Eliminate duplication ruthlessly**
+- **Express intent clearly** through naming and structure
+- **Make dependencies explicit**
+- **Keep methods small** and focused on a single responsibility
+- **Minimize state and side effects**
+- **Use the simplest solution** that could possibly work
+
+### Refactoring Guidelines
+- **Refactor only when tests are passing** (in the "Green" phase)
+- **Use established refactoring patterns** with their proper names
+- **Make one refactoring change at a time**
+- **Run tests after each refactoring step**
+- **Prioritize refactorings** that remove duplication or improve clarity
+
+### Example TDD Workflow
+When approaching a new feature:
+
+1. **Write a simple failing test** for a small part of the feature
+2. **Implement the bare minimum** to make it pass
+3. **Run tests to confirm they pass** (Green)
+4. **Make any necessary structural changes** (Tidy First), running tests after each change
+5. **Commit structural changes separately**
+6. **Add another test** for the next small increment of functionality
+7. **Repeat until the feature is complete**, committing behavioral changes separately from structural ones
+
+### Swift-Specific TDD Practices
+```swift
+// Example: Building a Calculator incrementally
+
+// Step 1: Write the simplest failing test with domain-focused naming
+func test_calculator_returnsZero_whenNoNumbersProvided() throws {
+    let sut = Calculator()
+    let result = sut.sum()
+    XCTAssertEqual(result, 0)
+}
+
+// Step 2: Implement minimum code to pass
+struct Calculator {
+    // Noun: returns the sum
+    func sum() -> Int {
+        0  // Avoid return for single expressions
+    }
+}
+
+// Step 3: Add next test with domain language
+func test_calculator_returnsNumber_whenSingleNumberProvided() throws {
+    let sut = Calculator()
+    let result = sut.sum(5)
+    XCTAssertEqual(result, 5)
+}
+
+// Step 4: Refactor and extend implementation
+struct Calculator {
+    // Noun: returns the sum of the provided numbers
+    func sum(_ numbers: Int...) -> Int {
+        numbers.reduce(0, +)  // Avoid return for single expressions
+    }
+}
+```
+
+### Swift Preferences in Practice
+```swift
+// ✅ Good: Using if let shorthand
+func processUser(_ user: User?) {
+    if let user {  // Shorthand instead of if let user = user
+        user.handleNotification(service: notificationService)
+    }
+}
+
+// ✅ Good: Avoiding getters/setters in structs
+struct UserProfile {
+    let name: String  // Non-private property instead of getter method
+    let email: String
+    let age: Int
+    
+    // Only add methods for behavior, not for accessing properties
+    func isAdult() -> Bool {
+        age >= 18
+    }
+}
+
+// ❌ Bad: Unnecessary getter method
+struct UserProfile {
+    private let name: String
+    
+    func getName() -> String {  // Unnecessary getter
+        return name
+    }
+}
+
+// ✅ Good: Avoiding -er in type names
+struct Cash {  // Good: simple, descriptive
+    let amount: Decimal
+    let currency: Currency
+}
+
+struct USDCash {  // Good: specific currency
+    let amount: Decimal
+}
+
+// ❌ Bad: Using -er suffix
+struct CashFormatter {  // Bad: -er suffix
+    func format(_ amount: Decimal) -> String {
+        // formatting logic
+    }
+}
+```
+
+### Modern Swift Features and Patterns
+
+#### Async/Await and Concurrency
+```swift
+// ✅ Good: Using async/await with actors
+actor UserRepository {
+    private var users: [User] = []
+    
+    func addUser(_ user: User) {
+        users.append(user)
+    }
+    
+    func findUser(id: UserId) async throws -> User? {
+        users.first { $0.id() == id }
+    }
+}
+
+// ✅ Good: Structured concurrency with task groups
+func fetchMultipleUsers(ids: [UserId]) async throws -> [User] {
+    try await withThrowingTaskGroup(of: User.self) { group in
+        for id in ids {
+            group.addTask {
+                try await userRepository.findUser(id: id)
+            }
+        }
+        
+        var users: [User] = []
+        for try await user in group {
+            users.append(user)
+        }
+        return users
+    }
+}
+
+// ✅ Good: Async error handling priority
+func processUserData(_ data: Data) async throws -> User {
+    // async throws first
+    let user = try await userRepository.createUser(from: data)
+    return user
+}
+
+func processUserDataWithResult(_ data: Data) async -> Result<User, UserError> {
+    // Result types second
+    do {
+        let user = try await userRepository.createUser(from: data)
+        return .success(user)
+    } catch {
+        return .failure(.creationFailed(error))
+    }
+}
+```
+
+#### Property Wrappers and Result Builders
+```swift
+// ✅ Good: Custom property wrapper
+@propertyWrapper
+struct UserDefaultsBacked<T> {
+    private let key: String
+    private let defaultValue: T
+    
+    init(key: String, defaultValue: T) {
+        self.key = key
+        self.defaultValue = defaultValue
+    }
+    
+    var wrappedValue: T {
+        get {
+            UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: key)
+        }
+    }
+}
+
+// ✅ Good: Result builder for DSL-like APIs
+@resultBuilder
+struct ViewBuilder {
+    static func buildBlock(_ components: View...) -> [View] {
+        components
+    }
+}
+
+func makeView(@ViewBuilder content: () -> [View]) -> View {
+    let views = content()
+    return ContainerView(views: views)
+}
+```
+
+#### Construction Builder Pattern for Test Data
+```swift
+// ✅ Good: Construction Builder for nested structs
+struct UserBuilder {
+    private var id: UserId = UserId("test-123")
+    private var name: String = "Test User"
+    private var email: EmailAddress = try! EmailAddress("test@example.com")
+    private var age: Age = try! Age(25)
+    private var preferences: UserPreferences = UserPreferencesBuilder().build()
+    
+    func id(_ id: UserId) -> Self {
+        self.id = id
+        return self
+    }
+    
+    func name(_ name: String) -> Self {
+        self.name = name
+        return self
+    }
+    
+    func email(_ email: EmailAddress) -> Self {
+        self.email = email
+        return self
+    }
+    
+    func age(_ age: Age) -> Self {
+        self.age = age
+        return self
+    }
+    
+    func preferences(_ preferences: UserPreferences) -> Self {
+        self.preferences = preferences
+        return self
+    }
+    
+    func build() -> User {
+        User(
+            id: id,
+            name: name,
+            email: email,
+            age: age,
+            preferences: preferences
+        )
+    }
+}
+
+struct UserPreferencesBuilder {
+    private var theme: Theme = .light
+    private var notifications: Bool = true
+    private var language: Language = .english
+    
+    func theme(_ theme: Theme) -> Self {
+        self.theme = theme
+        return self
+    }
+    
+    func notifications(_ enabled: Bool) -> Self {
+        self.notifications = enabled
+        return self
+    }
+    
+    func language(_ language: Language) -> Self {
+        self.language = language
+        return self
+    }
+    
+    func build() -> UserPreferences {
+        UserPreferences(
+            theme: theme,
+            notifications: notifications,
+            language: language
+        )
+    }
+}
+
+// Usage in tests
+func test_user_hasCorrectPreferences() throws {
+    let sut = UserBuilder()
+        .name("John Doe")
+        .age(try! Age(30))
+        .preferences(
+            UserPreferencesBuilder()
+                .theme(.dark)
+                .notifications(false)
+                .build()
+        )
+        .build()
+    
+    XCTAssertEqual(sut.name(), "John Doe")
+    XCTAssertEqual(sut.age().years(), 30)
+    XCTAssertEqual(sut.preferences.theme, .dark)
+    XCTAssertFalse(sut.preferences.notifications)
+}
+```
+
+#### Testing with Swift Testing and XCTest
+```swift
+// ✅ Good: Swift Testing for domain logic
+import Testing
+
+@Suite struct UserTests {
+    @Test("user indicates adult when age is 18")
+    func testAdultUser() throws {
+        let sut = UserBuilder()
+            .age(try! Age(18))
+            .build()
+        
+        #expect(sut.isAdult())
+    }
+    
+    @Test("user indicates minor when age is 17")
+    func testMinorUser() throws {
+        let sut = UserBuilder()
+            .age(try! Age(17))
+            .build()
+        
+        #expect(!sut.isAdult())
+    }
+}
+
+// ✅ Good: XCTest with ViewInspector for SwiftUI views
+import XCTest
+import ViewInspector
+
+final class UserViewTests: XCTestCase {
+    func test_userView_displaysUserName() throws {
+        let sut = UserBuilder()
+            .name("John Doe")
+            .build()
+        
+        let view = UserView(user: sut)
+        let nameText = try view.inspect().find(text: "John Doe")
+        
+        XCTAssertNotNil(nameText)
+    }
+}
+```
+
+#### File Organization
+```swift
+// ✅ Good: Domain and UI separation with feature-based organization
+// Domain/
+//   ├── User/
+//   │   ├── User.swift
+//   │   ├── UserRepository.swift
+//   │   ├── UserService.swift
+//   │   └── Tests/
+//   │       ├── UserTests.swift
+//   │       ├── UserRepositoryTests.swift
+//   │       └── UserServiceTests.swift
+//   └── Order/
+//       ├── Order.swift
+//       ├── OrderRepository.swift
+//       ├── OrderService.swift
+//       └── Tests/
+//           ├── OrderTests.swift
+//           ├── OrderRepositoryTests.swift
+//           └── OrderServiceTests.swift
+// UI/
+//   ├── User/
+//   │   ├── UserView.swift
+//   │   ├── UserListView.swift
+//   │   ├── UserDetailView.swift
+//   │   └── Tests/
+//   │       ├── UserViewTests.swift
+//   │       ├── UserListViewTests.swift
+//   │       └── UserDetailViewTests.swift
+//   └── Order/
+//       ├── OrderView.swift
+//       ├── OrderListView.swift
+//       ├── OrderDetailView.swift
+//       └── Tests/
+//           ├── OrderViewTests.swift
+//           ├── OrderListViewTests.swift
+//           └── OrderDetailViewTests.swift
+```
+
+### Tidy First in Swift
+```swift
+// Before: Mixed concerns in one method
+func processUserData(_ data: [String: Any]) -> User {
+    // Validation logic mixed with transformation
+    guard let name = data["name"] as? String, !name.isEmpty else {
+        throw ValidationError.invalidName
+    }
+    
+    // Business logic mixed with data access
+    let age = data["age"] as? Int ?? 0
+    let isAdult = age >= 18
+    
+    return User(name: name, age: age, isAdult: isAdult)
+}
+
+// After: Structural changes (Tidy First)
+// 1. Extract validation
+private func validateName(_ data: [String: Any]) throws -> String {
+    guard let name = data["name"] as? String, !name.isEmpty else {
+        throw ValidationError.invalidName
+    }
+    return name
+}
+
+// 2. Extract business logic
+private func determineAdultStatus(age: Int) -> Bool {
+    return age >= 18
+}
+
+// 3. Clean main method
+func processUserData(_ data: [String: Any]) -> User {
+    let name = try validateName(data)
+    let age = data["age"] as? Int ?? 0
+    let isAdult = determineAdultStatus(age: age)
+    
+    return User(name: name, age: age, isAdult: isAdult)
+}
+```
+
+**Remember**: Always write one test at a time, make it run, then improve structure. Always run all tests (except long-running tests) each time.
+
+---
+
+## Steve Kuo's Microobjects Philosophy
+
+### Core Philosophy
+
+#### Code Organization
+- **Composition over Inheritance**: Prefer protocols and dependency injection over class hierarchies
+- **Self-Documenting Code**: Write code that reads like prose - comments are either lies or apologies
+- **Readability First**: Optimize for human understanding, optimize performance only when needed
+- **Descriptive Naming**: Use long, descriptive names that clearly express intent and purpose
+- **SmallTalk Microobjects**: Prefer very small, focused objects with single responsibilities
+- **Extreme Encapsulation**: Objects protect their private data and answer questions rather than exposing internal state
+
+#### Error Handling
+- **Fail-Fast with Unchecked Exceptions**: Use `fatalError()` and custom errors for unrecoverable conditions
+- **Fail Early**: Validate inputs and fail immediately when preconditions aren't met
+- **No Silent Failures**: Always throw exceptions rather than returning nil or empty results
+
+#### Testing Approach
+- **Test-Driven Development**: Write tests first, then implement the minimal code to pass
+- **Behavior-Driven Development**: Use descriptive test names that explain the behavior
+- **Test Names as Documentation**: Test method names should read like specifications
+
+#### Encapsulation Principles
+- **Ask, Don't Tell**: Ask objects questions rather than extracting their data
+- **Keep Logic with Data**: Business logic about an object's data belongs with that object
+- **No Data Leakage**: Objects never expose their internal state through getters
+- **Composed Responses**: Objects provide answers by composing their internal knowledge
+- **Tell, Don't Ask**: Objects tell other objects what to do rather than being asked for data
+
+### Swift-Specific Microobjects Implementation
+
+#### Example: Before (Data Leakage)
+```swift
+// ❌ Bad: Exposing internal state
+struct User {
+    let name: String
+    let age: Int
+    let email: String
+    
+    // Data leakage - exposing internal state
+    var isAdult: Bool {
+        return age >= 18
+    }
+}
+
+// ❌ Bad: Asking for data to make decisions
+func processUser(user: User) {
+    if user.isAdult {
+        // Business logic scattered outside the object
+        sendAdultNotification(user.email)
+    } else {
+        sendMinorNotification(user.email)
+    }
+}
+```
+
+#### Example: After (Microobjects with Encapsulation)
+```swift
+// ✅ Good: Encapsulated behavior with proper naming
+struct User {
+    private let name: String
+    private let age: Int
+    private let email: String
+    
+    init(name: String, age: Int, email: String) {
+        self.name = name
+        self.age = age
+        self.email = email
+    }
+    
+    // Noun: returns whether the user should receive adult notifications
+    func shouldReceiveAdultNotifications() -> Bool {
+        return age >= 18
+    }
+    
+    // Verb: mutates the system state by sending appropriate notification
+    func sendAppropriateNotification(notifier: NotificationService) {
+        if shouldReceiveAdultNotifications() {
+            notifier.sendAdultNotification(to: email)
+        } else {
+            notifier.sendMinorNotification(to: email)
+        }
+    }
+}
+
+// ✅ Good: Tell, don't ask
+func processUser(user: User, notifier: NotificationService) {
+    user.sendAppropriateNotification(notifier: notifier)
+}
+```
+
+#### Microobjects in Swift
+```swift
+// Example: Very small, focused objects with proper naming
+struct EmailAddress {
+    private let value: String
+    
+    init(_ value: String) throws {
+        guard isValidEmail(value) else {
+            throw ValidationError.invalidEmail
+        }
+        self.value = value
+    }
+    
+    // Verb: mutates the system state by sending notification
+    func sendNotification(service: NotificationService) {
+        service.send(to: value)
+    }
+    
+    // Noun: returns the email as a string
+    func stringValue() -> String {
+        value  // Avoid return for single expressions
+    }
+}
+
+struct Age {
+    private let years: Int
+    
+    init(_ years: Int) throws {
+        guard years >= 0 && years <= 150 else {
+            throw ValidationError.invalidAge
+        }
+        self.years = years
+    }
+    
+    // Noun: returns whether the age represents an adult
+    func isAdult() -> Bool {
+        years >= 18  // Avoid return for single expressions
+    }
+    
+    // Noun: returns the number of years
+    func years() -> Int {
+        years  // Avoid return for single expressions
+    }
+}
+
+struct User {
+    private let name: String
+    private let age: Age
+    private let email: EmailAddress
+    
+    init(name: String, age: Age, email: EmailAddress) {
+        self.name = name
+        self.age = age
+        self.email = email
+    }
+    
+    // Verb: mutates the system state by handling notification
+    func handleNotification(service: NotificationService) {
+        if age.isAdult() {
+            email.sendNotification(service: service)
+        }
+    }
+    
+    // Noun: returns the user's name
+    func name() -> String {
+        name  // Avoid return for single expressions
+    }
+}
+```
+
+#### Fail-Fast Error Handling in Swift
+```swift
+// Example: Fail-fast with custom errors
+enum ValidationError: Error {
+    case invalidEmail
+    case invalidAge
+    case invalidName
+}
+
+struct UserValidator {
+    static func validateName(_ name: String) throws -> String {
+        guard !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            throw ValidationError.invalidName
+        }
+        return name.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    static func validateAge(_ age: Int) throws -> Int {
+        guard age >= 0 && age <= 150 else {
+            throw ValidationError.invalidAge
+        }
+        return age
+    }
+}
+
+// Usage: Fail early
+func createUser(name: String, age: Int, email: String) throws -> User {
+    let validatedName = try UserValidator.validateName(name)
+    let validatedAge = try UserValidator.validateAge(age)
+    let validatedEmail = try EmailAddress(email)
+    
+    return User(
+        name: validatedName,
+        age: Age(validatedAge),
+        email: validatedEmail
+    )
+}
+```
+
+#### Self-Documenting Code Examples
+```swift
+// ❌ Bad: Unclear intent
+func process(data: [String]) -> [String] {
+    data.filter { $0.count > 3 }.map { $0.uppercased() }  // Avoid return for single expressions
+}
+
+// ✅ Good: Self-documenting with descriptive names
+func extractLongWordsAndCapitalize(_ words: [String]) -> [String] {
+    let longWords = words.filter { word in
+        word.count > 3
+    }
+    
+    let capitalizedWords = longWords.map { word in
+        word.uppercased()
+    }
+    
+    capitalizedWords  // Avoid return for single expressions
+}
+
+// ✅ Better: Even more descriptive with extracted methods
+func extractLongWordsAndCapitalize(_ words: [String]) -> [String] {
+    let longWords = extractWordsLongerThanThreeCharacters(from: words)
+    capitalizeAllWords(longWords)  // Avoid return for single expressions
+}
+
+private func extractWordsLongerThanThreeCharacters(from words: [String]) -> [String] {
+    words.filter { $0.count > 3 }  // Avoid return for single expressions
+}
+
+private func capitalizeAllWords(_ words: [String]) -> [String] {
+    words.map { $0.uppercased() }  // Avoid return for single expressions
+}
+```
+
+### Integration with TDD and Swift Best Practices
+
+#### Microobjects in TDD Cycle
+```swift
+// Step 1: Test the microobject behavior with domain language
+func test_age_indicatesAdult_whenYearsIs18() throws {
+    let sut = try! Age(18)
+    XCTAssertTrue(sut.isAdult())
+}
+
+func test_age_indicatesMinor_whenYearsIs17() throws {
+    let sut = try! Age(17)
+    XCTAssertFalse(sut.isAdult())
+}
+
+// Step 2: Implement minimal microobject
+struct Age {
+    private let years: Int
+    
+    init(_ years: Int) throws {
+        self.years = years
+    }
+    
+    // Noun: returns whether the age represents an adult
+    func isAdult() -> Bool {
+        years >= 18  // Avoid return for single expressions
+    }
+}
+
+// Step 3: Add validation test with domain language
+func test_age_throwsError_whenYearsIsNegative() throws {
+    XCTAssertThrowsError(try Age(-1))
+}
+
+// Step 4: Implement validation
+struct Age {
+    private let years: Int
+    
+    init(_ years: Int) throws {
+        guard years >= 0 else {
+            throw ValidationError.invalidAge
+        }
+        self.years = years
+    }
+    
+    // Noun: returns whether the age represents an adult
+    func isAdult() -> Bool {
+        years >= 18  // Avoid return for single expressions
+    }
+}
+```
+
+#### Composition over Inheritance in Swift
+```swift
+// ✅ Good: Composition with protocols
+protocol NotificationService {
+    func send(to email: String)
+}
+
+protocol ValidationService {
+    func validateEmail(_ email: String) throws
+}
+
+struct UserService {
+    private let notificationService: NotificationService
+    private let validationService: ValidationService
+    
+    init(notificationService: NotificationService, validationService: ValidationService) {
+        self.notificationService = notificationService
+        self.validationService = validationService
+    }
+    
+    func processUser(_ user: User) {
+        user.handleNotification(service: notificationService)
+    }
+}
+```
+
+---
+
+## Domain-Driven Design (DDD) Principles
+
+### Core DDD Concepts
+- **Ubiquitous Language**: Use domain terminology consistently across code, tests, and documentation
+- **Bounded Contexts**: Clearly define boundaries between different parts of the system
+- **Domain Models**: Create rich models that capture business rules and logic
+- **Value Objects**: Immutable objects that represent concepts from the domain
+- **Entities**: Objects with identity that can change over time
+- **Aggregates**: Clusters of related objects treated as a single unit
+- **Domain Services**: Operations that don't belong to a single entity or value object
+
+### Swift-Specific DDD Implementation
+
+#### Value Objects
+```swift
+// ✅ Good: Value object representing domain concept
+struct EmailAddress: Equatable {
+    private let value: String
+    
+    init(_ value: String) throws {
+        guard isValidEmail(value) else {
+            throw DomainError.invalidEmail
+        }
+        self.value = value
+    }
+    
+    // Noun: returns the email as a string
+    func stringValue() -> String {
+        value  // Avoid return for single expressions
+    }
+}
+
+// ✅ Good: Value object with domain behavior
+struct Money: Equatable {
+    private let amount: Decimal
+    private let currency: Currency
+    
+    init(amount: Decimal, currency: Currency) {
+        self.amount = amount
+        self.currency = currency
+    }
+    
+    // Noun: returns the amount
+    func amount() -> Decimal {
+        amount  // Avoid return for single expressions
+    }
+    
+    // Noun: returns the currency
+    func currency() -> Currency {
+        currency  // Avoid return for single expressions
+    }
+    
+    // Verb: mutates the receiver by adding money
+    func add(_ other: Money) throws -> Money {
+        guard currency == other.currency else {
+            throw DomainError.currencyMismatch
+        }
+        Money(amount: amount + other.amount, currency: currency)  // Avoid return for single expressions
+    }
+}
+```
+
+#### Entities
+```swift
+// ✅ Good: Entity with identity and domain behavior
+struct Customer: Equatable {
+    private let id: CustomerId
+    private var name: String
+    private var email: EmailAddress
+    private var balance: Money
+    
+    init(id: CustomerId, name: String, email: EmailAddress, balance: Money) {
+        self.id = id
+        self.name = name
+        self.email = email
+        self.balance = balance
+    }
+    
+    // Noun: returns the customer ID
+    func id() -> CustomerId {
+        id  // Avoid return for single expressions
+    }
+    
+    // Verb: mutates the receiver by updating the name
+    func updateName(_ newName: String) {
+        self.name = newName
+    }
+    
+    // Verb: mutates the receiver by processing a payment
+    func processPayment(_ amount: Money) throws {
+        guard balance.amount() >= amount.amount() else {
+            throw DomainError.insufficientFunds
+        }
+        self.balance = try balance.add(amount.multiply(-1))
+    }
+}
+```
+
+#### Domain Services
+```swift
+// ✅ Good: Domain service for operations that span multiple entities
+struct PaymentProcessor {
+    private let customerRepository: CustomerRepository
+    private let transactionLogger: TransactionLogger
+    
+    init(customerRepository: CustomerRepository, transactionLogger: TransactionLogger) {
+        self.customerRepository = customerRepository
+        self.transactionLogger = transactionLogger
+    }
+    
+    // Verb: processes a payment (mutates the system state)
+    func processPayment(customerId: CustomerId, amount: Money) throws {
+        let customer = try customerRepository.findById(customerId)
+        try customer.processPayment(amount)
+        try customerRepository.save(customer)
+        try transactionLogger.logPayment(customerId: customerId, amount: amount)
+    }
+}
+```
+
+#### Ubiquitous Language in Tests
+```swift
+// ✅ Good: Domain-focused test names
+func test_customer_hasSufficientFunds_whenBalanceExceedsPaymentAmount() throws {
+    let sut = Customer(
+        id: CustomerId("123"),
+        name: "John Doe",
+        email: try! EmailAddress("john@example.com"),
+        balance: Money(amount: 100, currency: .usd)
+    )
+    
+    let payment = Money(amount: 50, currency: .usd)
+    
+    XCTAssertNoThrow(try sut.processPayment(payment))
+}
+
+func test_customer_hasInsufficientFunds_whenBalanceIsLessThanPaymentAmount() throws {
+    let sut = Customer(
+        id: CustomerId("123"),
+        name: "John Doe",
+        email: try! EmailAddress("john@example.com"),
+        balance: Money(amount: 30, currency: .usd)
+    )
+    
+    let payment = Money(amount: 50, currency: .usd)
+    
+    XCTAssertThrowsError(try sut.processPayment(payment)) { error in
+        XCTAssertEqual(error as? DomainError, .insufficientFunds)
+    }
+}
+
+// ❌ Bad: Programming-focused test names
+func test_processPayment_returnsError_whenBalanceIsInsufficient() {
+    // Implementation-focused, not domain-focused
+}
+```
+
+### DDD Integration with TDD and Microobjects
+
+#### Building Domain Objects with TDD
+```swift
+// Step 1: Test domain behavior
+func test_customer_hasSufficientFunds_whenBalanceExceedsPaymentAmount() throws {
+    let sut = Customer(
+        id: CustomerId("123"),
+        name: "John Doe",
+        email: try! EmailAddress("john@example.com"),
+        balance: Money(amount: 100, currency: .usd)
+    )
+    
+    let payment = Money(amount: 50, currency: .usd)
+    
+    XCTAssertNoThrow(try sut.processPayment(payment))
+}
+
+// Step 2: Implement minimal domain object
+struct Customer {
+    private let id: CustomerId
+    private var balance: Money
+    
+    init(id: CustomerId, name: String, email: EmailAddress, balance: Money) {
+        self.id = id
+        self.balance = balance
+    }
+    
+    func processPayment(_ amount: Money) throws {
+        // Minimal implementation
+    }
+}
+
+// Step 3: Add more domain behavior tests
+func test_customer_hasInsufficientFunds_whenBalanceIsLessThanPaymentAmount() throws {
+    // Test insufficient funds scenario
+}
+
+// Step 4: Implement domain logic
+struct Customer {
+    private let id: CustomerId
+    private var balance: Money
+    
+    init(id: CustomerId, name: String, email: EmailAddress, balance: Money) {
+        self.id = id
+        self.balance = balance
+    }
+    
+    func processPayment(_ amount: Money) throws {
+        guard balance.amount() >= amount.amount() else {
+            throw DomainError.insufficientFunds
+        }
+        self.balance = try balance.add(amount.multiply(-1))
+    }
+}
+```
+
+#### Microobjects in Domain Context
+```swift
+// ✅ Good: Domain microobjects with proper naming
+struct Order {
+    private let id: OrderId
+    private var items: [OrderItem]
+    private var status: OrderStatus
+    
+    init(id: OrderId, items: [OrderItem]) {
+        self.id = id
+        self.items = items
+        self.status = .pending
+    }
+    
+    // Noun: returns the total amount
+    func totalAmount() -> Money {
+        items.reduce(Money(amount: 0, currency: .usd)) { total, item in
+            try! total.add(item.subtotal())
+        }  // Avoid return for single expressions
+    }
+    
+    // Verb: mutates the receiver by confirming the order
+    func confirm() {
+        self.status = .confirmed
+    }
+    
+    // Verb: mutates the receiver by adding an item
+    func addItem(_ item: OrderItem) {
+        self.items.append(item)
+    }
+}
+
+// ✅ Good: Domain service using microobjects
+struct OrderProcessor {
+    private let inventoryService: InventoryService
+    private let paymentProcessor: PaymentProcessor
+    
+    init(inventoryService: InventoryService, paymentProcessor: PaymentProcessor) {
+        self.inventoryService = inventoryService
+        self.paymentProcessor = paymentProcessor
+    }
+    
+    // Verb: processes the order (mutates system state)
+    func processOrder(_ order: Order, customer: Customer) throws {
+        try inventoryService.reserveItems(for: order)
+        try paymentProcessor.processPayment(customerId: customer.id(), amount: order.totalAmount())
+        order.confirm()
+    }
+}
+```
+
+---
+
+## Your Preferences
+
+### Code Formatting
+- **Indentation**: 4 spaces (no tabs)
+- **Line Length**: 120 characters
+- **Naming**: camelCase for variables/functions/constants, PascalCase for types
+- **Avoid `-er` in class and type names**: Bad: `CashFormatter`, Good: `Cash`, `USDCash`, `CashInUSD`
+
+### Swift Style
+- **Type Inference**: Prefer type inference over explicit annotations
+- **Optionals**: Use `guard let` or `if let` in production, `try XCTUnwrap`/`try #require` in tests
+- **Value Types**: Prefer structs over classes in production code
+- **Classes**: When using a class, declare it `final` unless it needs subclassing
+- **Dependency Injection**: Through initializers
+- **Avoid `return` statements**: For single expressions, omit `return`
+- **Use if let shorthand**: `if let name` instead of `if let name = name`
+- **Avoid getters and setters**: In structs, make properties non-private instead of adding getter methods
+- **Modern Swift Features**: Use `async/await`, prefer SwiftUI, use property wrappers, use result builders
+- **Concurrency**: Prefer actors, then structured concurrency
+- **Async Error Handling**: `async throws` → Result types → custom errors
+- **Testing**: Prefer Swift Testing, except for SwiftUI views (use XCTest with ViewInspector)
+- **Dependencies**: Prefer Swift Package Manager
+- **Test Data**: Use Construction Builder pattern for nested structs
+
+### Architecture & Organization
+- **Architecture**: Choose based on project needs
+- **File Structure**: Multiple related types OK until they grow large
+- **Imports**: Alphabetically ordered, `@testable import` first in tests
+- **Extensions**: Use to separate concerns
+- **Comments**: Prefer literate code over comments, avoid `// MARK:`
+
+### Testing
+- **Approach**: TDD done right - express tests about desired behavior, not implementation details
+- **Naming**: Descriptive with `test_` prefix for XCTest
+- **Objects**: Real objects preferred, stubs for external inputs, spies for outputs
+- **Test Names**: Express domain concepts, avoid programming terms
+- **Function Naming**: 
+  - Production functions that return something: use nouns
+  - Production functions that mutate the receiver: use verbs
+- **Test Organization**: Place tests next to code under test in a folder named Tests
+- **Test Variables**: Name the system under test `sut`
+
+### Error Handling
+- **Priority**: Throwing functions → Result types → optionals
+- **Logging**: Print statements
+- **Error Types**: Custom domain errors
+
+### Performance
+- **Priority**: Readability over performance
+- **Memory**: Use weak references to prevent retain cycles
+- **Attributes**: Avoid performance attributes like `@inlinable`, `@frozen`
+
+---
+
+## Common Suggestions
+
+### Code Quality
+- Use meaningful variable names that describe their purpose
+- Keep functions small and focused on a single responsibility
+- Prefer immutable values (`let`) over mutable ones (`var`)
+- Use `guard` statements for early returns and validation
+- Leverage Swift's type system to prevent runtime errors
+
+### Swift Best Practices
+- Use `map`, `filter`, `reduce` for functional programming patterns
+- Prefer `switch` statements over multiple `if-else` chains
+- Use `lazy` properties for expensive computations
+- Leverage protocol extensions for shared functionality
+- Use `@available` for API compatibility
+
+### Testing Best Practices
+- Write tests that describe behavior, not implementation
+- Use descriptive test names that read like specifications
+- Test edge cases and error conditions
+- Keep tests independent and isolated
+- Use setup/teardown methods for common test data
+
+### Error Handling
+- Create specific error types for different failure scenarios
+- Use `do-catch` blocks for comprehensive error handling
+- Consider using `Result` types for operations that can fail
+- Provide meaningful error messages for debugging
+
+---
+
+## Advanced Suggestions for Growth
+
+### Architecture Patterns
+- **Clean Architecture**: Separate concerns into layers (Domain, Use Cases, Presentation)
+- **SOLID Principles**: Apply Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
+- **Composition over Inheritance**: Use protocols and composition for flexibility
+- **Repository Pattern**: Abstract data access behind protocols
+
+### Swift Advanced Features
+- **Property Wrappers**: Create custom property wrappers for common patterns
+- **Result Builders**: Use for DSL-like APIs (like SwiftUI's ViewBuilder)
+- **Key Paths**: Use for type-safe property access and transformations
+- **Combine Framework**: For reactive programming and data flow
+- **Concurrency**: Use async/await for modern asynchronous code
+
+### Performance Optimization
+- **Value Semantics**: Understand when to use structs vs classes
+- **Copy-on-Write**: Implement for custom value types
+- **Memory Management**: Use Instruments to profile memory usage
+- **Algorithm Complexity**: Choose appropriate data structures and algorithms
+
+### Testing Advanced Patterns
+- **Property-Based Testing**: Use frameworks like SwiftCheck for generative testing
+- **Snapshot Testing**: For UI components and complex data structures
+- **Integration Testing**: Test complete workflows and system interactions
+- **Performance Testing**: Measure and track performance regressions
+
+### Code Organization
+- **Feature-Based Structure**: Organize by features rather than technical layers
+- **Dependency Injection**: Use protocols for testability and flexibility
+- **Modular Architecture**: Break large apps into modules/frameworks
+- **API Design**: Design APIs that are easy to use correctly and hard to use incorrectly
+
+### Swift Ecosystem
+- **Package Manager**: Use Swift Package Manager for dependencies
+- **Documentation**: Generate documentation with DocC
+- **Linting**: Use SwiftLint for consistent code style
+- **Continuous Integration**: Automate testing and code quality checks
+
+### Advanced Swift Concepts
+- **Generics**: Use for type-safe, reusable code
+- **Protocols with Associated Types**: For flexible, generic protocols
+- **Opaque Types**: Use `some` and `any` for type abstraction
+- **Macros**: Create compile-time code generation (Swift 5.9+)
+- **Custom Operators**: Define operators for domain-specific operations
+
+### Debugging and Profiling
+- **LLDB**: Master command-line debugging
+- **Instruments**: Profile performance, memory, and other metrics
+- **Symbolication**: Understand crash reports and stack traces
+- **Network Debugging**: Use tools like Charles Proxy or Network Link Conditioner
+
+### Code Review Practices
+- **Pair Programming**: Collaborate on complex problems
+- **Code Reviews**: Focus on design, not just syntax
+- **Refactoring**: Continuously improve code quality
+- **Technical Debt**: Balance new features with code maintenance
+
+---
+
+## Tools and Resources
+
+### Recommended Tools
+- **Xcode**: Latest version for best Swift support
+- **SwiftLint**: Code style enforcement
+- **SwiftFormat**: Automatic code formatting
+- **Instruments**: Performance profiling
+- **Git**: Version control with meaningful commit messages
+
+### Learning Resources
+- **Swift.org**: Official documentation and guides
+- **WWDC Sessions**: Apple's annual developer conference
+- **Swift Forums**: Community discussions and Q&A
+- **Open Source Projects**: Study well-written Swift codebases
+- **Books**: "Swift Programming Language", "Advanced Swift"
+- **Kent Beck's Works**: "Test-Driven Development", "Tidy First"
+- **Steve Kuo's Works**: Microobjects and SmallTalk-inspired design
+
+### Community
+- **Swift Evolution**: Follow language evolution proposals
+- **Local Meetups**: Connect with other Swift developers
+- **Open Source Contributions**: Contribute to Swift projects
+- **Blogs and Podcasts**: Stay updated with Swift ecosystem
+
+---
+
+## Quick Reference
+
+### Naming Conventions
+```swift
+// Variables and functions
+let userName = "John"
+func calculateTotal() -> Double
+
+// Constants
+let maxRetryCount = 3
+
+// Types
+struct UserProfile { }
+class NetworkManager { }
+enum NetworkError { }
+
+// Test methods
+func test_shouldReturnUser_whenValidIdProvided() { }
+```
+
+### Common Patterns
+```swift
+// Guard for early returns
+guard let user = currentUser else {
+    return
+}
+
+// Result type for operations that can fail
+func fetchUser(id: String) -> Result<User, NetworkError>
+
+// Protocol-oriented programming
+protocol UserRepository {
+    func getUser(id: String) async throws -> User
+}
+
+// Dependency injection
+class UserService {
+    private let repository: UserRepository
+    
+    init(repository: UserRepository) {
+        self.repository = repository
+    }
+}
+```
+
+### TDD Cycle Quick Reference
+1. **Red**: Write a failing test with domain language
+2. **Green**: Write minimal code to pass
+3. **Refactor**: Improve structure (Tidy First)
+4. **Commit**: Separate structural from behavioral changes
+5. **Repeat**: Next increment
+
+### Microobjects Quick Reference
+- **Ask, Don't Tell**: `user.shouldReceiveAdultNotifications()` not `user.age >= 18`
+- **Tell, Don't Ask**: `user.sendAppropriateNotification(service)` not `if user.isAdult { service.send() }`
+- **Fail Fast**: Validate inputs immediately, throw errors for invalid state
+- **Self-Documenting**: Code should read like prose, avoid comments
+- **Function Naming**: 
+  - Nouns for functions that return something: `totalAmount()`, `isAdult()`
+  - Verbs for functions that mutate: `processPayment()`, `confirm()`
+
+### Domain-Driven Design Quick Reference
+- **Ubiquitous Language**: Use domain terms consistently across code and tests
+- **Value Objects**: Immutable objects representing domain concepts
+- **Entities**: Objects with identity that can change over time
+- **Domain Services**: Operations spanning multiple entities
+- **Test Names**: Express domain concepts, avoid programming terms
+
+### Modern Swift Quick Reference
+- **Async/Await**: Use `async throws` → Result types → custom errors
+- **Concurrency**: Prefer actors, then structured concurrency
+- **Property Wrappers**: Create custom wrappers for common patterns
+- **Result Builders**: Use for DSL-like APIs
+- **Testing**: Swift Testing for domain logic, XCTest + ViewInspector for SwiftUI
+- **Test Data**: Use Construction Builder pattern for nested structs
+- **File Organization**: Separate Domain from UI, organize by features within each
+- **Test Organization**: Tests next to code in Tests folder
+- **Test Variables**: Use `sut` for system under test
+- **Classes**: Declare classes `final` unless they need subclassing
+
+Remember: This guide should evolve with your experience and the Swift ecosystem. Regularly review and update your practices based on new learnings and project requirements.
