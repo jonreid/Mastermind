@@ -17,7 +17,7 @@ struct GameScreen: TestableView {
             HStack {
                 VStack() {
                     ForEach(1...1, id: \.self) { round in
-                        RoundView(round: round, game: game, feedbackPegs: $feedbackPegs)
+                        RoundView(round: round, game: game, feedbackPegs: feedbackPegs)
                     }
                 }
                 VStack {

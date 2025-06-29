@@ -3,12 +3,12 @@ import SwiftUI
 struct RoundView: View {
     private let round: Int
     @State private var game: Game
-    @Binding var feedbackPegs: [FeedbackPeg]
+    private let feedbackPegs: [FeedbackPeg]
 
-    init(round: Int, game: Game, feedbackPegs: Binding<[FeedbackPeg]>) {
+    init(round: Int, game: Game, feedbackPegs: [FeedbackPeg]) {
         self.round = round
         self.game = game
-        self._feedbackPegs = feedbackPegs
+        self.feedbackPegs = feedbackPegs
     }
 
     var body: some View {
