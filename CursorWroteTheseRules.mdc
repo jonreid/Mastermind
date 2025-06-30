@@ -394,45 +394,6 @@ final class UserViewTests: XCTestCase {
 }
 ```
 
-#### File Organization
-```swift
-// ✅ Good: Domain and UI separation with feature-based organization
-// Domain/
-//   ├── User/
-//   │   ├── User.swift
-//   │   ├── UserRepository.swift
-//   │   ├── UserService.swift
-//   │   └── Tests/
-//   │       ├── UserTests.swift
-//   │       ├── UserRepositoryTests.swift
-//   │       └── UserServiceTests.swift
-//   └── Order/
-//       ├── Order.swift
-//       ├── OrderRepository.swift
-//       ├── OrderService.swift
-//       └── Tests/
-//           ├── OrderTests.swift
-//           ├── OrderRepositoryTests.swift
-//           └── OrderServiceTests.swift
-// UI/
-//   ├── User/
-//   │   ├── UserView.swift
-//   │   ├── UserListView.swift
-//   │   ├── UserDetailView.swift
-//   │   └── Tests/
-//   │       ├── UserViewTests.swift
-//   │       ├── UserListViewTests.swift
-//   │       └── UserDetailViewTests.swift
-//   └── Order/
-//       ├── OrderView.swift
-//       ├── OrderListView.swift
-//       ├── OrderDetailView.swift
-//       └── Tests/
-//           ├── OrderViewTests.swift
-//           ├── OrderListViewTests.swift
-//           └── OrderDetailViewTests.swift
-```
-
 ### Tidy First in Swift
 ```swift
 // Before: Mixed concerns in one method
@@ -1167,7 +1128,6 @@ struct OrderProcessor {
 
 ### Testing Advanced Patterns
 - **Property-Based Testing**: Use frameworks like SwiftCheck for generative testing
-- **Snapshot Testing**: For UI components and complex data structures
 - **Integration Testing**: Test complete workflows and system interactions
 - **Performance Testing**: Measure and track performance regressions
 
@@ -1305,8 +1265,6 @@ class UserService {
 - **Result Builders**: Use for DSL-like APIs
 - **Testing**: Swift Testing for domain logic, XCTest + ViewInspector for SwiftUI
 - **Test Data**: Use Construction Builder pattern for nested structs
-- **File Organization**: Separate Domain from UI, organize by features within each
-- **Test Organization**: Tests next to code in Tests folder
 - **Test Variables**: Use `sut` for system under test
 - **Classes**: Declare classes `final` unless they need subclassing
 
