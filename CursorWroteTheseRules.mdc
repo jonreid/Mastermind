@@ -5,439 +5,6 @@ alwaysApply: false
 ---
 # Swift Coding Style Guide
 
-## Kent Beck's TDD & Tidy First Methodology
-
-### Core Development Principles
-- **Always follow the TDD cycle**: Red → Green → Refactor
-- **Write the simplest failing test first**
-- **Implement the minimum code needed to make tests pass**
-- **Refactor only after tests are passing**
-- **Follow "Tidy First" approach**: Separate structural changes from behavioral changes
-- **Maintain high code quality throughout development**
-
-### TDD Methodology Guidance
-- **Start with failing tests**: Write a failing test that defines a small increment of functionality
-- **Meaningful test names**: Use descriptive names that express domain concepts, avoid programming terms
-- **Clear test failures**: Make failures informative and actionable
-- **Minimal implementation**: Write just enough code to make the test pass - no more
-- **Refactor after green**: Consider refactoring only when tests are passing
-- **Incremental development**: Repeat the cycle for new functionality
-- **Focus on behavior**: Express tests about desired behavior, not implementation details
-
-### Tidy First Approach
-**Separate all changes into two distinct types:**
-
-1. **STRUCTURAL CHANGES**: Rearranging code without changing behavior
-   - Renaming variables, functions, or types
-   - Extracting methods or classes
-   - Moving code between files or modules
-   - Reorganizing imports or file structure
-   - Adding or removing comments/documentation
-
-2. **BEHAVIORAL CHANGES**: Adding or modifying actual functionality
-   - New features or capabilities
-   - Bug fixes
-   - Performance improvements
-   - API changes
-
-**Rules:**
-- **Never mix** structural and behavioral changes in the same commit
-- **Always make structural changes first** when both are needed
-- **Validate structural changes** by running tests before and after
-- **Commit structural changes separately** from behavioral changes
-
-### Commit Discipline
-**Only commit when:**
-1. **ALL tests are passing**
-2. **ALL compiler/linter warnings have been resolved**
-3. **The change represents a single logical unit of work**
-4. **Commit messages clearly state** whether the commit contains structural or behavioral changes
-
-**Commit Strategy:**
-- Use small, frequent commits rather than large, infrequent ones
-- Separate structural commits from behavioral commits
-- Clear commit messages indicating change type
-
-### Code Quality Standards
-- **Eliminate duplication ruthlessly**
-- **Express intent clearly** through naming and structure
-- **Make dependencies explicit**
-- **Keep methods small** and focused on a single responsibility
-- **Minimize state and side effects**
-- **Use the simplest solution** that could possibly work
-
-### Refactoring Guidelines
-- **Refactor only when tests are passing** (in the "Green" phase)
-- **Use established refactoring patterns** with their proper names
-- **Make one refactoring change at a time**
-- **Run tests after each refactoring step**
-- **Prioritize refactorings** that remove duplication or improve clarity
-
-### Example TDD Workflow
-When approaching a new feature:
-
-1. **Write a simple failing test** for a small part of the feature
-2. **Implement the bare minimum** to make it pass
-3. **Run tests to confirm they pass** (Green)
-4. **Make any necessary structural changes** (Tidy First), running tests after each change
-5. **Commit structural changes separately**
-6. **Add another test** for the next small increment of functionality
-7. **Repeat until the feature is complete**, committing behavioral changes separately from structural ones
-
-### Swift-Specific TDD Practices
-```swift
-// Example: Building a Calculator incrementally
-
-// Step 1: Write the simplest failing test with domain-focused naming
-func test_calculator_returnsZero_whenNoNumbersProvided() throws {
-    let sut = Calculator()
-    let result = sut.sum()
-    XCTAssertEqual(result, 0)
-}
-
-// Step 2: Implement minimum code to pass
-struct Calculator {
-    // Noun: returns the sum
-    func sum() -> Int {
-        0  // Avoid return for single expressions
-    }
-}
-
-// Step 3: Add next test with domain language
-func test_calculator_returnsNumber_whenSingleNumberProvided() throws {
-    let sut = Calculator()
-    let result = sut.sum(5)
-    XCTAssertEqual(result, 5)
-}
-
-// Step 4: Refactor and extend implementation
-struct Calculator {
-    // Noun: returns the sum of the provided numbers
-    func sum(_ numbers: Int...) -> Int {
-        numbers.reduce(0, +)  // Avoid return for single expressions
-    }
-}
-```
-
-### Swift Preferences in Practice
-```swift
-// ✅ Good: Using if let shorthand
-func processUser(_ user: User?) {
-    if let user {  // Shorthand instead of if let user = user
-        user.handleNotification(service: notificationService)
-    }
-}
-
-// ✅ Good: Avoiding getters/setters in structs
-struct UserProfile {
-    let name: String  // Non-private property instead of getter method
-    let email: String
-    let age: Int
-    
-    // Only add methods for behavior, not for accessing properties
-    func isAdult() -> Bool {
-        age >= 18
-    }
-}
-
-// ❌ Bad: Unnecessary getter method
-struct UserProfile {
-    private let name: String
-    
-    func getName() -> String {  // Unnecessary getter
-        return name
-    }
-}
-
-// ✅ Good: Avoiding -er in type names
-struct Cash {  // Good: simple, descriptive
-    let amount: Decimal
-    let currency: Currency
-}
-
-struct USDCash {  // Good: specific currency
-    let amount: Decimal
-}
-
-// ❌ Bad: Using -er suffix
-struct CashFormatter {  // Bad: -er suffix
-    func format(_ amount: Decimal) -> String {
-        // formatting logic
-    }
-}
-```
-
-### Modern Swift Features and Patterns
-
-#### Async/Await and Concurrency
-```swift
-// ✅ Good: Using async/await with actors
-actor UserRepository {
-    private var users: [User] = []
-    
-    func addUser(_ user: User) {
-        users.append(user)
-    }
-    
-    func findUser(id: UserId) async throws -> User? {
-        users.first { $0.id() == id }
-    }
-}
-
-// ✅ Good: Structured concurrency with task groups
-func fetchMultipleUsers(ids: [UserId]) async throws -> [User] {
-    try await withThrowingTaskGroup(of: User.self) { group in
-        for id in ids {
-            group.addTask {
-                try await userRepository.findUser(id: id)
-            }
-        }
-        
-        var users: [User] = []
-        for try await user in group {
-            users.append(user)
-        }
-        return users
-    }
-}
-
-// ✅ Good: Async error handling priority
-func processUserData(_ data: Data) async throws -> User {
-    // async throws first
-    let user = try await userRepository.createUser(from: data)
-    return user
-}
-
-func processUserDataWithResult(_ data: Data) async -> Result<User, UserError> {
-    // Result types second
-    do {
-        let user = try await userRepository.createUser(from: data)
-        return .success(user)
-    } catch {
-        return .failure(.creationFailed(error))
-    }
-}
-```
-
-#### Property Wrappers and Result Builders
-```swift
-// ✅ Good: Custom property wrapper
-@propertyWrapper
-struct UserDefaultsBacked<T> {
-    private let key: String
-    private let defaultValue: T
-    
-    init(key: String, defaultValue: T) {
-        self.key = key
-        self.defaultValue = defaultValue
-    }
-    
-    var wrappedValue: T {
-        get {
-            UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: key)
-        }
-    }
-}
-
-// ✅ Good: Result builder for DSL-like APIs
-@resultBuilder
-struct ViewBuilder {
-    static func buildBlock(_ components: View...) -> [View] {
-        components
-    }
-}
-
-func makeView(@ViewBuilder content: () -> [View]) -> View {
-    let views = content()
-    return ContainerView(views: views)
-}
-```
-
-#### Construction Builder Pattern for Test Data
-```swift
-// ✅ Good: Construction Builder for nested structs
-struct UserBuilder {
-    private var id: UserId = UserId("test-123")
-    private var name: String = "Test User"
-    private var email: EmailAddress = try! EmailAddress("test@example.com")
-    private var age: Age = try! Age(25)
-    private var preferences: UserPreferences = UserPreferencesBuilder().build()
-    
-    func id(_ id: UserId) -> Self {
-        self.id = id
-        return self
-    }
-    
-    func name(_ name: String) -> Self {
-        self.name = name
-        return self
-    }
-    
-    func email(_ email: EmailAddress) -> Self {
-        self.email = email
-        return self
-    }
-    
-    func age(_ age: Age) -> Self {
-        self.age = age
-        return self
-    }
-    
-    func preferences(_ preferences: UserPreferences) -> Self {
-        self.preferences = preferences
-        return self
-    }
-    
-    func build() -> User {
-        User(
-            id: id,
-            name: name,
-            email: email,
-            age: age,
-            preferences: preferences
-        )
-    }
-}
-
-struct UserPreferencesBuilder {
-    private var theme: Theme = .light
-    private var notifications: Bool = true
-    private var language: Language = .english
-    
-    func theme(_ theme: Theme) -> Self {
-        self.theme = theme
-        return self
-    }
-    
-    func notifications(_ enabled: Bool) -> Self {
-        self.notifications = enabled
-        return self
-    }
-    
-    func language(_ language: Language) -> Self {
-        self.language = language
-        return self
-    }
-    
-    func build() -> UserPreferences {
-        UserPreferences(
-            theme: theme,
-            notifications: notifications,
-            language: language
-        )
-    }
-}
-
-// Usage in tests
-func test_user_hasCorrectPreferences() throws {
-    let sut = UserBuilder()
-        .name("John Doe")
-        .age(try! Age(30))
-        .preferences(
-            UserPreferencesBuilder()
-                .theme(.dark)
-                .notifications(false)
-                .build()
-        )
-        .build()
-    
-    XCTAssertEqual(sut.name(), "John Doe")
-    XCTAssertEqual(sut.age().years(), 30)
-    XCTAssertEqual(sut.preferences.theme, .dark)
-    XCTAssertFalse(sut.preferences.notifications)
-}
-```
-
-#### Testing with Swift Testing and XCTest
-```swift
-// ✅ Good: Swift Testing for domain logic
-import Testing
-
-@Suite struct UserTests {
-    @Test("user indicates adult when age is 18")
-    func testAdultUser() throws {
-        let sut = UserBuilder()
-            .age(try! Age(18))
-            .build()
-        
-        #expect(sut.isAdult())
-    }
-    
-    @Test("user indicates minor when age is 17")
-    func testMinorUser() throws {
-        let sut = UserBuilder()
-            .age(try! Age(17))
-            .build()
-        
-        #expect(!sut.isAdult())
-    }
-}
-
-// ✅ Good: XCTest with ViewInspector for SwiftUI views
-import XCTest
-import ViewInspector
-
-final class UserViewTests: XCTestCase {
-    func test_userView_displaysUserName() throws {
-        let sut = UserBuilder()
-            .name("John Doe")
-            .build()
-        
-        let view = UserView(user: sut)
-        let nameText = try view.inspect().find(text: "John Doe")
-        
-        XCTAssertNotNil(nameText)
-    }
-}
-```
-
-### Tidy First in Swift
-```swift
-// Before: Mixed concerns in one method
-func processUserData(_ data: [String: Any]) -> User {
-    // Validation logic mixed with transformation
-    guard let name = data["name"] as? String, !name.isEmpty else {
-        throw ValidationError.invalidName
-    }
-    
-    // Business logic mixed with data access
-    let age = data["age"] as? Int ?? 0
-    let isAdult = age >= 18
-    
-    return User(name: name, age: age, isAdult: isAdult)
-}
-
-// After: Structural changes (Tidy First)
-// 1. Extract validation
-private func validateName(_ data: [String: Any]) throws -> String {
-    guard let name = data["name"] as? String, !name.isEmpty else {
-        throw ValidationError.invalidName
-    }
-    return name
-}
-
-// 2. Extract business logic
-private func determineAdultStatus(age: Int) -> Bool {
-    return age >= 18
-}
-
-// 3. Clean main method
-func processUserData(_ data: [String: Any]) -> User {
-    let name = try validateName(data)
-    let age = data["age"] as? Int ?? 0
-    let isAdult = determineAdultStatus(age: age)
-    
-    return User(name: name, age: age, isAdult: isAdult)
-}
-```
-
-**Remember**: Always write one test at a time, make it run, then improve structure. Always run all tests (except long-running tests) each time.
-
----
-
 ## Steve Kuo's Microobjects Philosophy
 
 ### Core Philosophy
@@ -753,327 +320,6 @@ struct UserService {
 
 ---
 
-## Domain-Driven Design (DDD) Principles
-
-### Core DDD Concepts
-- **Ubiquitous Language**: Use domain terminology consistently across code, tests, and documentation
-- **Bounded Contexts**: Clearly define boundaries between different parts of the system
-- **Domain Models**: Create rich models that capture business rules and logic
-- **Value Objects**: Immutable objects that represent concepts from the domain
-- **Entities**: Objects with identity that can change over time
-- **Aggregates**: Clusters of related objects treated as a single unit
-- **Domain Services**: Operations that don't belong to a single entity or value object
-
-### Swift-Specific DDD Implementation
-
-#### Value Objects
-```swift
-// ✅ Good: Value object representing domain concept
-struct EmailAddress: Equatable {
-    private let value: String
-    
-    init(_ value: String) throws {
-        guard isValidEmail(value) else {
-            throw DomainError.invalidEmail
-        }
-        self.value = value
-    }
-    
-    // Noun: returns the email as a string
-    func stringValue() -> String {
-        value  // Avoid return for single expressions
-    }
-}
-
-// ✅ Good: Value object with domain behavior
-struct Money: Equatable {
-    private let amount: Decimal
-    private let currency: Currency
-    
-    init(amount: Decimal, currency: Currency) {
-        self.amount = amount
-        self.currency = currency
-    }
-    
-    // Noun: returns the amount
-    func amount() -> Decimal {
-        amount  // Avoid return for single expressions
-    }
-    
-    // Noun: returns the currency
-    func currency() -> Currency {
-        currency  // Avoid return for single expressions
-    }
-    
-    // Verb: mutates the receiver by adding money
-    func add(_ other: Money) throws -> Money {
-        guard currency == other.currency else {
-            throw DomainError.currencyMismatch
-        }
-        Money(amount: amount + other.amount, currency: currency)  // Avoid return for single expressions
-    }
-}
-```
-
-#### Entities
-```swift
-// ✅ Good: Entity with identity and domain behavior
-struct Customer: Equatable {
-    private let id: CustomerId
-    private var name: String
-    private var email: EmailAddress
-    private var balance: Money
-    
-    init(id: CustomerId, name: String, email: EmailAddress, balance: Money) {
-        self.id = id
-        self.name = name
-        self.email = email
-        self.balance = balance
-    }
-    
-    // Noun: returns the customer ID
-    func id() -> CustomerId {
-        id  // Avoid return for single expressions
-    }
-    
-    // Verb: mutates the receiver by updating the name
-    func updateName(_ newName: String) {
-        self.name = newName
-    }
-    
-    // Verb: mutates the receiver by processing a payment
-    func processPayment(_ amount: Money) throws {
-        guard balance.amount() >= amount.amount() else {
-            throw DomainError.insufficientFunds
-        }
-        self.balance = try balance.add(amount.multiply(-1))
-    }
-}
-```
-
-#### Domain Services
-```swift
-// ✅ Good: Domain service for operations that span multiple entities
-struct PaymentProcessor {
-    private let customerRepository: CustomerRepository
-    private let transactionLogger: TransactionLogger
-    
-    init(customerRepository: CustomerRepository, transactionLogger: TransactionLogger) {
-        self.customerRepository = customerRepository
-        self.transactionLogger = transactionLogger
-    }
-    
-    // Verb: processes a payment (mutates the system state)
-    func processPayment(customerId: CustomerId, amount: Money) throws {
-        let customer = try customerRepository.findById(customerId)
-        try customer.processPayment(amount)
-        try customerRepository.save(customer)
-        try transactionLogger.logPayment(customerId: customerId, amount: amount)
-    }
-}
-```
-
-#### Ubiquitous Language in Tests
-```swift
-// ✅ Good: Domain-focused test names
-func test_customer_hasSufficientFunds_whenBalanceExceedsPaymentAmount() throws {
-    let sut = Customer(
-        id: CustomerId("123"),
-        name: "John Doe",
-        email: try! EmailAddress("john@example.com"),
-        balance: Money(amount: 100, currency: .usd)
-    )
-    
-    let payment = Money(amount: 50, currency: .usd)
-    
-    XCTAssertNoThrow(try sut.processPayment(payment))
-}
-
-func test_customer_hasInsufficientFunds_whenBalanceIsLessThanPaymentAmount() throws {
-    let sut = Customer(
-        id: CustomerId("123"),
-        name: "John Doe",
-        email: try! EmailAddress("john@example.com"),
-        balance: Money(amount: 30, currency: .usd)
-    )
-    
-    let payment = Money(amount: 50, currency: .usd)
-    
-    XCTAssertThrowsError(try sut.processPayment(payment)) { error in
-        XCTAssertEqual(error as? DomainError, .insufficientFunds)
-    }
-}
-
-// ❌ Bad: Programming-focused test names
-func test_processPayment_returnsError_whenBalanceIsInsufficient() {
-    // Implementation-focused, not domain-focused
-}
-```
-
-### DDD Integration with TDD and Microobjects
-
-#### Building Domain Objects with TDD
-```swift
-// Step 1: Test domain behavior
-func test_customer_hasSufficientFunds_whenBalanceExceedsPaymentAmount() throws {
-    let sut = Customer(
-        id: CustomerId("123"),
-        name: "John Doe",
-        email: try! EmailAddress("john@example.com"),
-        balance: Money(amount: 100, currency: .usd)
-    )
-    
-    let payment = Money(amount: 50, currency: .usd)
-    
-    XCTAssertNoThrow(try sut.processPayment(payment))
-}
-
-// Step 2: Implement minimal domain object
-struct Customer {
-    private let id: CustomerId
-    private var balance: Money
-    
-    init(id: CustomerId, name: String, email: EmailAddress, balance: Money) {
-        self.id = id
-        self.balance = balance
-    }
-    
-    func processPayment(_ amount: Money) throws {
-        // Minimal implementation
-    }
-}
-
-// Step 3: Add more domain behavior tests
-func test_customer_hasInsufficientFunds_whenBalanceIsLessThanPaymentAmount() throws {
-    // Test insufficient funds scenario
-}
-
-// Step 4: Implement domain logic
-struct Customer {
-    private let id: CustomerId
-    private var balance: Money
-    
-    init(id: CustomerId, name: String, email: EmailAddress, balance: Money) {
-        self.id = id
-        self.balance = balance
-    }
-    
-    func processPayment(_ amount: Money) throws {
-        guard balance.amount() >= amount.amount() else {
-            throw DomainError.insufficientFunds
-        }
-        self.balance = try balance.add(amount.multiply(-1))
-    }
-}
-```
-
-#### Microobjects in Domain Context
-```swift
-// ✅ Good: Domain microobjects with proper naming
-struct Order {
-    private let id: OrderId
-    private var items: [OrderItem]
-    private var status: OrderStatus
-    
-    init(id: OrderId, items: [OrderItem]) {
-        self.id = id
-        self.items = items
-        self.status = .pending
-    }
-    
-    // Noun: returns the total amount
-    func totalAmount() -> Money {
-        items.reduce(Money(amount: 0, currency: .usd)) { total, item in
-            try! total.add(item.subtotal())
-        }  // Avoid return for single expressions
-    }
-    
-    // Verb: mutates the receiver by confirming the order
-    func confirm() {
-        self.status = .confirmed
-    }
-    
-    // Verb: mutates the receiver by adding an item
-    func addItem(_ item: OrderItem) {
-        self.items.append(item)
-    }
-}
-
-// ✅ Good: Domain service using microobjects
-struct OrderProcessor {
-    private let inventoryService: InventoryService
-    private let paymentProcessor: PaymentProcessor
-    
-    init(inventoryService: InventoryService, paymentProcessor: PaymentProcessor) {
-        self.inventoryService = inventoryService
-        self.paymentProcessor = paymentProcessor
-    }
-    
-    // Verb: processes the order (mutates system state)
-    func processOrder(_ order: Order, customer: Customer) throws {
-        try inventoryService.reserveItems(for: order)
-        try paymentProcessor.processPayment(customerId: customer.id(), amount: order.totalAmount())
-        order.confirm()
-    }
-}
-```
-
----
-
-## Your Preferences
-
-### Code Formatting
-- **Indentation**: 4 spaces (no tabs)
-- **Line Length**: 120 characters
-- **Naming**: camelCase for variables/functions/constants, PascalCase for types
-- **Avoid `-er` in class and type names**: Bad: `CashFormatter`, Good: `Cash`, `USDCash`, `CashInUSD`
-
-### Swift Style
-- **Type Inference**: Prefer type inference over explicit annotations
-- **Optionals**: Use `guard let` or `if let` in production, `try XCTUnwrap`/`try #require` in tests
-- **Value Types**: Prefer structs over classes in production code
-- **Classes**: When using a class, declare it `final` unless it needs subclassing
-- **Dependency Injection**: Through initializers
-- **Avoid `return` statements**: For single expressions, omit `return`
-- **Use if let shorthand**: `if let name` instead of `if let name = name`
-- **Avoid getters and setters**: In structs, make properties non-private instead of adding getter methods
-- **Modern Swift Features**: Use `async/await`, prefer SwiftUI, use property wrappers, use result builders
-- **Concurrency**: Prefer actors, then structured concurrency
-- **Async Error Handling**: `async throws` → Result types → custom errors
-- **Testing**: Prefer Swift Testing, except for SwiftUI views (use XCTest with ViewInspector)
-- **Dependencies**: Prefer Swift Package Manager
-- **Test Data**: Use Construction Builder pattern for nested structs
-
-### Architecture & Organization
-- **Architecture**: Choose based on project needs
-- **File Structure**: Multiple related types OK until they grow large
-- **Imports**: Alphabetically ordered, `@testable import` first in tests
-- **Extensions**: Use to separate concerns
-- **Comments**: Prefer literate code over comments, avoid `// MARK:`
-
-### Testing
-- **Approach**: TDD done right - express tests about desired behavior, not implementation details
-- **Naming**: Descriptive with `test_` prefix for XCTest
-- **Objects**: Real objects preferred, stubs for external inputs, spies for outputs
-- **Test Names**: Express domain concepts, avoid programming terms
-- **Function Naming**: 
-  - Production functions that return something: use nouns
-  - Production functions that mutate the receiver: use verbs
-- **Test Organization**: Place tests next to code under test in a folder named Tests
-- **Test Variables**: Name the system under test `sut`
-
-### Error Handling
-- **Priority**: Throwing functions → Result types → optionals
-- **Logging**: Print statements
-- **Error Types**: Custom domain errors
-
-### Performance
-- **Priority**: Readability over performance
-- **Memory**: Use weak references to prevent retain cycles
-- **Attributes**: Avoid performance attributes like `@inlinable`, `@frozen`
-
----
-
 ## Common Suggestions
 
 ### Code Quality
@@ -1089,6 +335,128 @@ struct OrderProcessor {
 - Use `lazy` properties for expensive computations
 - Leverage protocol extensions for shared functionality
 - Use `@available` for API compatibility
+
+#### Swift Preferences in Practice
+```swift
+// ✅ Good: Using if let shorthand
+func processUser(_ user: User?) {
+    if let user {  // Shorthand instead of if let user = user
+        user.handleNotification(service: notificationService)
+    }
+}
+
+// ✅ Good: Avoiding -er in type names
+struct Cash {  // Good: simple, descriptive
+    let amount: Decimal
+    let currency: Currency
+}
+
+struct USDCash {  // Good: specific currency
+    let amount: Decimal
+}
+
+// ❌ Bad: Using -er suffix
+struct CashFormatter {  // Bad: -er suffix
+    func format(_ amount: Decimal) -> String {
+        // formatting logic
+    }
+}
+```
+
+#### Construction Builder Pattern for Test Data
+```swift
+// ✅ Good: Construction Builder for nested structs
+struct UserBuilder {
+    private var id: UserId = UserId("test-123")
+    private var name: String = "Test User"
+    private var email: EmailAddress = try! EmailAddress("test@example.com")
+    private var age: Age = try! Age(25)
+    private var preferences: UserPreferences = UserPreferencesBuilder().build()
+    
+    func id(_ id: UserId) -> Self {
+        self.id = id
+        return self
+    }
+    
+    func name(_ name: String) -> Self {
+        self.name = name
+        return self
+    }
+    
+    func email(_ email: EmailAddress) -> Self {
+        self.email = email
+        return self
+    }
+    
+    func age(_ age: Age) -> Self {
+        self.age = age
+        return self
+    }
+    
+    func preferences(_ preferences: UserPreferences) -> Self {
+        self.preferences = preferences
+        return self
+    }
+    
+    func build() -> User {
+        User(
+            id: id,
+            name: name,
+            email: email,
+            age: age,
+            preferences: preferences
+        )
+    }
+}
+
+struct UserPreferencesBuilder {
+    private var theme: Theme = .light
+    private var notifications: Bool = true
+    private var language: Language = .english
+    
+    func theme(_ theme: Theme) -> Self {
+        self.theme = theme
+        return self
+    }
+    
+    func notifications(_ enabled: Bool) -> Self {
+        self.notifications = enabled
+        return self
+    }
+    
+    func language(_ language: Language) -> Self {
+        self.language = language
+        return self
+    }
+    
+    func build() -> UserPreferences {
+        UserPreferences(
+            theme: theme,
+            notifications: notifications,
+            language: language
+        )
+    }
+}
+
+// Usage in tests
+func test_user_hasCorrectPreferences() throws {
+    let sut = UserBuilder()
+        .name("John Doe")
+        .age(try! Age(30))
+        .preferences(
+            UserPreferencesBuilder()
+                .theme(.dark)
+                .notifications(false)
+                .build()
+        )
+        .build()
+    
+    XCTAssertEqual(sut.name(), "John Doe")
+    XCTAssertEqual(sut.age().years(), 30)
+    XCTAssertEqual(sut.preferences.theme, .dark)
+    XCTAssertFalse(sut.preferences.notifications)
+}
+```
 
 ### Testing Best Practices
 - Write tests that describe behavior, not implementation
@@ -1179,7 +547,6 @@ struct OrderProcessor {
 - **Swift Forums**: Community discussions and Q&A
 - **Open Source Projects**: Study well-written Swift codebases
 - **Books**: "Swift Programming Language", "Advanced Swift"
-- **Kent Beck's Works**: "Test-Driven Development", "Tidy First"
 - **Steve Kuo's Works**: Microobjects and SmallTalk-inspired design
 
 ### Community
@@ -1234,13 +601,6 @@ class UserService {
     }
 }
 ```
-
-### TDD Cycle Quick Reference
-1. **Red**: Write a failing test with domain language
-2. **Green**: Write minimal code to pass
-3. **Refactor**: Improve structure (Tidy First)
-4. **Commit**: Separate structural from behavioral changes
-5. **Repeat**: Next increment
 
 ### Microobjects Quick Reference
 - **Ask, Don't Tell**: `user.shouldReceiveAdultNotifications()` not `user.age >= 18`
