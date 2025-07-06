@@ -2,7 +2,7 @@ import SwiftUI
 
 struct RoundView: View {
     private let round: Int
-    @State private var game: Game
+    private var game: Game
     private let feedbackPegs: [FeedbackPeg]
 
     init(round: Int, game: Game, feedbackPegs: [FeedbackPeg]) {
