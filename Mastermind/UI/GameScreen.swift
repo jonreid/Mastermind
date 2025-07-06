@@ -21,7 +21,7 @@ struct GameScreen: TestableView {
                     }
                 }
                 VStack {
-                    CodeChoicesView(game: $game)
+                    CodeChoicesView(game: game)
                     CheckButton(action: { feedbackPegs = game.feedbackPegsForGuess() })
                         .disabled(!game.canBeValidated)
                 }
@@ -40,7 +40,7 @@ struct GameScreen: TestableView {
 }
 
 private struct CodeChoicesView: View {
-    @Binding var game: Game
+    var game: Game
 
     var body: some View {
         VStack {
