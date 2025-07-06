@@ -7,10 +7,10 @@ private let blue = CodeChoice(color: .blue, codeValue: 3)
 
 struct FeedbackTests {
     @Test(arguments: [([red, green], 2), ([red, green, blue], 3)])
-    func totalCountIsSecretSize(code: [CodeChoice], expectedCount: Int) async throws {
+    func initialCountIsSecretSize(code: [CodeChoice], expectedCount: Int) async throws {
         let sut = makeSUT(code: code)
 
-        let feedback = sut.initialFeedback()
+        let feedback = Feedback.initial(size: code.count)
 
         #expect(feedback.totalCount == expectedCount)
     }
