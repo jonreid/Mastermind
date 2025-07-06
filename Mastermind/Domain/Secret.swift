@@ -22,7 +22,7 @@ struct Secret: CustomStringConvertible {
     }
 
     func initialFeedback() -> Feedback {
-        Secret.initialFeedback(size: size)
+        Feedback.initial(size: size)
     }
 
     func evaluate(_ guess: Guess) -> Feedback {

@@ -39,11 +39,6 @@ final class Game {
         secret.isGuessCorrect(guess)
     }
 
-    func initialFeedbackPegs() -> [FeedbackPeg] {
-        assert(secret.size == secretSize, "Call makeNewSecret() first")
-        return secret.initialFeedback().pegs
-    }
-
     func feedbackPegsForGuess() -> [FeedbackPeg] {
         secret.evaluate(rounds.currentGuess).pegs
     }

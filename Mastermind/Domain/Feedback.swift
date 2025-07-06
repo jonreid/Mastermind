@@ -3,7 +3,11 @@ struct Feedback {
     let inCorrectPosition: Int
     let inWrongPosition: Int
 
-    var pegs:  [FeedbackPeg] {
+    static func initial(size: Int) -> Feedback {
+        Feedback(totalCount: size, inCorrectPosition: 0, inWrongPosition: 0)
+    }
+
+    var pegs: [FeedbackPeg] {
        var result: [FeedbackPeg] = []
        result.append(contentsOf: Array.init(repeating: .correct, count: inCorrectPosition))
        result.append(contentsOf: Array.init(repeating: .misplaced, count: inWrongPosition))
