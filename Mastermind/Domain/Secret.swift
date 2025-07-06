@@ -21,10 +21,6 @@ struct Secret: CustomStringConvertible {
         code.count
     }
 
-    func initialFeedback() -> Feedback {
-        Feedback.initial(size: size)
-    }
-
     func evaluate(_ guess: Guess) -> Feedback {
         var inCorrectPosition = 0
         var inWrongPosition = 0
