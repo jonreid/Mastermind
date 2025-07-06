@@ -1,6 +1,14 @@
 struct Secret: CustomStringConvertible {
     private let code: [CodeChoice]
 
+    static func initialFeedback(size: Int) -> Feedback {
+        Feedback(
+            totalCount: size,
+            inCorrectPosition: 0,
+            inWrongPosition: 0
+        )
+    }
+
     init(code: [CodeChoice]) {
         self.code = code
     }
@@ -14,11 +22,7 @@ struct Secret: CustomStringConvertible {
     }
 
     func initialFeedback() -> Feedback {
-        Feedback(
-            totalCount: size,
-            inCorrectPosition: 0,
-            inWrongPosition: 0
-        )
+        Secret.initialFeedback(size: size)
     }
 
     func evaluate(_ guess: Guess) -> Feedback {
