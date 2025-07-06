@@ -9,7 +9,7 @@ struct GameScreen: TestableView {
     init(game: Game) {
         self.game = game
         game.makeNewSecret()
-        self.feedbackPegs = game.initialFeedbackPegs()
+        self.feedbackPegs = Secret.initialFeedback(size: game.secretSize).pegs
     }
 
     var body: some View {

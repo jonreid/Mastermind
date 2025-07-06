@@ -3,7 +3,7 @@ import SwiftUI
 @Observable
 final class Game {
     private let secretMaker: SecretMaker
-    private let secretSize: Int
+    let secretSize: Int
     let codeChoices: CodeChoices
     var rounds: Rounds
     var secret = Secret(code: [])
