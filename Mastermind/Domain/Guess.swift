@@ -4,7 +4,7 @@ import Observation
 final class Guess {
     private var code: [CodeChoice?]
 
-    init(secretSize: Int) {
+    init(secretSize: Int, initialFeedbackPegs: [FeedbackPeg] = []) {
         code = Array(repeating: nil, count: secretSize)
     }
 
