@@ -5,8 +5,8 @@ struct RoundView: View {
     private var game: Game
     private let feedbackPegs: [FeedbackPeg]
 
-    init(round: Int, game: Game, feedbackPegs: [FeedbackPeg]) {
-        self.round = round
+    init(roundNumber: Int, game: Game, feedbackPegs: [FeedbackPeg]) {
+        self.round = roundNumber
         self.game = game
         self.feedbackPegs = feedbackPegs
     }

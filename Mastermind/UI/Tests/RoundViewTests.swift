@@ -22,7 +22,7 @@ final class RoundViewTests: XCTestCase, Sendable {
         let game = try Game(numberOfCodeChoices: 4, secretSize: 4, SecretMaker.createNull())
         game.makeNewSecret()
         let feedbackPegs = Secret.initialFeedback(size: game.secretSize).pegs
-        return RoundView(round: round, game: game, feedbackPegs: feedbackPegs)
+        return RoundView(roundNumber: round, game: game, feedbackPegs: feedbackPegs)
     }
 }
 
