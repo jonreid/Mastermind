@@ -2,8 +2,8 @@ final class Rounds {
     var rounds: [Round]
     var currentRound: Int = 0
 
-    init(guesses: [Round]) {
-        self.rounds = guesses
+    init(rounds: [Round]) {
+        self.rounds = rounds
     }
 
     var currentGuess: Round {
