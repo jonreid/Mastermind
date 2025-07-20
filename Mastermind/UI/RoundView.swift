@@ -1,19 +1,19 @@
 import SwiftUI
 
 struct RoundView: View {
-    private let round: Int
+    private let roundNumber: Int
     private var game: Game
     private let feedbackPegs: [FeedbackPeg]
 
     init(roundNumber: Int, game: Game, feedbackPegs: [FeedbackPeg]) {
-        self.round = roundNumber
+        self.roundNumber = roundNumber
         self.game = game
         self.feedbackPegs = feedbackPegs
     }
 
     var body: some View {
         HStack {
-            CodeGuessView(guess: game.currentGuess, round: round)
+            CodeGuessView(guess: game.currentGuess, round: roundNumber)
             FeedbackView(feedbackPegs: feedbackPegs)
         }
     }
