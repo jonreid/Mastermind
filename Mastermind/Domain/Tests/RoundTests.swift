@@ -5,7 +5,7 @@ final class RoundTests: XCTestCase {
     private let choice0 = CodeChoice(color: .red, codeValue: 1)
     private let choice1 = CodeChoice(color: .green, codeValue: 2)
 
-    func test_createGuess_setsGuessSize() throws {
+    func test_createRound_setsGuessSize() throws {
         let sut = makeSUT(secretSize: 4)
 
         XCTAssertNil(sut[0])
