@@ -23,11 +23,6 @@ private struct CodeGuessView: View {
     let guess: Guess
     let roundNumber: Int
 
-    init(guess: Guess, roundNumber: Int) {
-        self.guess = guess
-        self.roundNumber = roundNumber
-    }
-
     var body: some View {
         HStack {
             Text("\(roundNumber)").accessibilityIdentifier("roundNumber")
