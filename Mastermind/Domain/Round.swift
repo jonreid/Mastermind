@@ -3,9 +3,11 @@ import Observation
 @Observable
 final class Round {
     private var code: [CodeChoice?]
+    var feedbackPegs: [FeedbackPeg]
 
-    init(secretSize: Int, initialFeedbackPegs: [FeedbackPeg] = []) {
+    init(secretSize: Int) {
         code = Array(repeating: nil, count: secretSize)
+        feedbackPegs = Feedback.initial(size: secretSize).pegs
     }
 
     var size: Int {
