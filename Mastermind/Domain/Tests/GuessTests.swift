@@ -61,7 +61,7 @@ final class GuessTests: XCTestCase {
         XCTAssertTrue(sut.isComplete)
     }
 
-    private func makeSUT(secretSize: Int) -> Guess {
-        Guess(secretSize: secretSize)
+    private func makeSUT(secretSize: Int) -> Round {
+        Round(secretSize: secretSize)
     }
 }

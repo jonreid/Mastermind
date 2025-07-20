@@ -1,7 +1,7 @@
 import Observation
 
 @Observable
-final class Guess {
+final class Round {
     private var code: [CodeChoice?]
 
     init(secretSize: Int, initialFeedbackPegs: [FeedbackPeg] = []) {

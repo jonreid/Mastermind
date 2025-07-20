@@ -81,8 +81,8 @@ struct FeedbackTests {
         Secret(code: code)
     }
 
-    private func makeGuess(code: [CodeChoice]) -> Guess {
-        let guess = Guess(secretSize: code.count)
+    private func makeGuess(code: [CodeChoice]) -> Round {
+        let guess = Round(secretSize: code.count)
         for choice in code {
             guess.placeChoiceInNextSlot(choice)
         }

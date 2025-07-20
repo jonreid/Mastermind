@@ -21,7 +21,7 @@ struct Secret: CustomStringConvertible {
         code.count
     }
 
-    func evaluate(_ guess: Guess) -> Feedback {
+    func evaluate(_ guess: Round) -> Feedback {
         var inCorrectPosition = 0
         var inWrongPosition = 0
         for (index, secret) in code.enumerated() {
@@ -39,7 +39,7 @@ struct Secret: CustomStringConvertible {
     }
 
 
-    func matches(_ guess: Guess) -> Bool {
+    func matches(_ guess: Round) -> Bool {
         guard code.count == guess.size else {
             return false
         }

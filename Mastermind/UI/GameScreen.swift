@@ -55,7 +55,7 @@ private struct CodeChoicesView: View {
 private struct CodeChoiceView: View {
     var codePeg: CodeChoice
     var codeChoiceId: Int
-    var guess: Guess
+    var guess: Round
 
     var body: some View {
         Button(action: {

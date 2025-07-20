@@ -8,7 +8,7 @@ final class Game {
     var rounds: Rounds
     var secret = Secret(code: [])
 
-    var currentGuess: Guess {
+    var currentGuess: Round {
         rounds.currentGuess
     }
 
@@ -24,7 +24,7 @@ final class Game {
         self.secretMaker = secretMaker
         self.secretSize = secretSize
         try codeChoices = CodeChoiceGenerator.generate(from: codeColors, take: numberOfCodeChoices)
-        rounds = Rounds(guesses: [Guess(secretSize: secretSize)])
+        rounds = Rounds(guesses: [Round(secretSize: secretSize)])
     }
 
     func codeChoice(_ index: Int) -> CodeChoice {

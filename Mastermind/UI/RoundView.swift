@@ -20,7 +20,7 @@ struct RoundView: View {
 }
 
 private struct CodeGuessView: View {
-    let guess: Guess
+    let guess: Round
     let roundNumber: Int
 
     var body: some View {
