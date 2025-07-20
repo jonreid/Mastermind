@@ -1,7 +1,7 @@
 @testable import Mastermind
 import XCTest
 
-final class GuessTests: XCTestCase {
+final class RoundTests: XCTestCase {
     private let choice0 = CodeChoice(color: .red, codeValue: 1)
     private let choice1 = CodeChoice(color: .green, codeValue: 2)
 
