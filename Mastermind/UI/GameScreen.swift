@@ -2,14 +2,12 @@ import SwiftUI
 
 struct GameScreen: TestableView {
     @State private var game: Game
-    @State private var feedbackPegs: [FeedbackPeg]
 
     var viewInspectorHook: ((Self) -> Void)?
 
     init(game: Game) {
         self.game = game
         game.makeNewSecret()
-        self.feedbackPegs = Secret.initialFeedback(size: game.secretSize).pegs
     }
 
     var body: some View {
@@ -17,12 +15,12 @@ struct GameScreen: TestableView {
             HStack {
                 VStack() {
                     ForEach(1...1, id: \.self) { roundNumber in
-                        RoundView(roundNumber: roundNumber, game: game, feedbackPegs: feedbackPegs)
+                        RoundView(roundNumber: roundNumber, game: game, feedbackPegs: game.feedbackPegs)
                     }
                 }
                 VStack {
                     CodeChoicesView(game: game)
-                    CheckButton(action: { feedbackPegs = game.feedbackPegsForGuess() })
+                    CheckButton(action: { _ = game.feedbackPegsForGuess() })
                         .disabled(!game.canBeValidated)
                 }
                 .frame(width: 50)
