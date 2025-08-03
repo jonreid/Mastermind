@@ -40,6 +40,6 @@ final class Game {
     }
 
     func updateFeedbackPegsForGuess() {
-        currentGuess.feedbackPegs = secret.evaluate(rounds.currentGuess).pegs
+        currentGuess.updateFeedbackPegs(for: secret)
     }
 }

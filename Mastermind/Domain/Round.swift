@@ -35,4 +35,8 @@ final class Round {
     func contains(_ choice: CodeChoice) -> Bool {
         guess.contains { $0 == choice }
     }
+
+    func updateFeedbackPegs(for secret: Secret) {
+        feedbackPegs = secret.evaluate(self).pegs
+    }
 }
