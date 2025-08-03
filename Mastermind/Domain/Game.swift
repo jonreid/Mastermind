@@ -41,8 +41,7 @@ final class Game {
         secret.isGuessCorrect(guess)
     }
 
-    func feedbackPegsForGuess() -> [FeedbackPeg] {
+    func updateFeedbackPegsForGuess() {
         feedbackPegs = secret.evaluate(rounds.currentGuess).pegs
-        return feedbackPegs
     }
 }
