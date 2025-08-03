@@ -7,7 +7,6 @@ final class Game {
     let codeChoices: CodeChoices
     var rounds: Rounds
     var secret = Secret(code: [])
-    var feedbackPegs: [FeedbackPeg]
 
     var currentGuess: Round {
         rounds.currentGuess
@@ -26,7 +25,6 @@ final class Game {
         self.secretSize = secretSize
         try codeChoices = CodeChoiceGenerator.generate(from: codeColors, take: numberOfCodeChoices)
         rounds = Rounds(rounds: [Round(secretSize: secretSize)])
-        self.feedbackPegs = Secret.initialFeedback(size: secretSize).pegs
     }
 
     func codeChoice(_ index: Int) -> CodeChoice {
@@ -42,6 +40,6 @@ final class Game {
     }
 
     func updateFeedbackPegsForGuess() {
-        feedbackPegs = secret.evaluate(rounds.currentGuess).pegs
+        currentGuess.feedbackPegs = secret.evaluate(rounds.currentGuess).pegs
     }
 }
