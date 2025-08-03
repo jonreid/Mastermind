@@ -39,7 +39,7 @@ final class Game {
         secret.isGuessCorrect(guess)
     }
 
-    func updateFeedbackPegsForGuess() {
+    func score() {
         currentGuess.updateFeedbackPegs(for: secret)
     }
 }
