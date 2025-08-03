@@ -36,7 +36,7 @@ final class Round {
         guess.contains { $0 == choice }
     }
 
-    func updateFeedbackPegs(for secret: Secret) {
+    func score(for secret: Secret) {
         feedbackPegs = secret.evaluate(self).pegs
     }
 }

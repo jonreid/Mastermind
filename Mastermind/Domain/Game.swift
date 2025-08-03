@@ -40,6 +40,6 @@ final class Game {
     }
 
     func score() {
-        currentGuess.updateFeedbackPegs(for: secret)
+        currentGuess.score(for: secret)
     }
 }
