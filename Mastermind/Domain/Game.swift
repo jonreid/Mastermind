@@ -9,7 +9,7 @@ final class Game {
     var secret = Secret(code: [])
 
     var currentRound: Round {
-        rounds.currentRound
+        rounds.round(at: 0)
     }
 
     var canBeValidated: Bool {
