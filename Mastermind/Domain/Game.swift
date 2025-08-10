@@ -9,11 +9,11 @@ final class Game {
     var secret = Secret(code: [])
 
     var canBeValidated: Bool {
-        rounds.round(at: 0).isComplete
+        rounds.round(0).isComplete
     }
 
     var isWin: Bool {
-        secret.matches(rounds.round(at: 0))
+        secret.matches(rounds.round(0))
     }
 
     init(numberOfCodeChoices: Int, secretSize: Int, _ secretMaker: SecretMaker) throws {
@@ -36,6 +36,6 @@ final class Game {
     }
 
     func score() {
-        rounds.round(at: 0).score(for: secret)
+        rounds.round(0).score(for: secret)
     }
 }

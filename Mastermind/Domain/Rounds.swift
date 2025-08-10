@@ -6,7 +6,7 @@ final class Rounds {
         self.rounds = rounds
     }
 
-    func round(at index: Int) -> Round {
+    func round(_ index: Int) -> Round {
         rounds[index]
     }
 }
