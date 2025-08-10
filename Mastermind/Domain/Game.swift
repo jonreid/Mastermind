@@ -9,7 +9,7 @@ final class Game {
     var secret = Secret(code: [])
 
     var currentGuess: Round {
-        rounds.currentGuess
+        rounds.currentRound
     }
 
     var canBeValidated: Bool {
@@ -17,7 +17,7 @@ final class Game {
     }
 
     var isWin: Bool {
-        secret.matches(rounds.currentGuess)
+        secret.matches(rounds.currentRound)
     }
 
     init(numberOfCodeChoices: Int, secretSize: Int, _ secretMaker: SecretMaker) throws {

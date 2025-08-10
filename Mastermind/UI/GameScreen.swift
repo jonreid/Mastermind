@@ -43,7 +43,7 @@ private struct CodeChoicesView: View {
     var body: some View {
         VStack {
             ForEach(game.codeChoices.lastToFirst, id: \.codeValue) { codeChoice in
-                CodeChoiceView(codePeg: codeChoice, codeChoiceId: codeChoice.codeValue, guess: game.rounds.currentGuess)
+                CodeChoiceView(codePeg: codeChoice, codeChoiceId: codeChoice.codeValue, guess: game.rounds.currentRound)
             }
         }
         .accessibilityIdentifier("codeChoices")

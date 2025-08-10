@@ -6,7 +6,7 @@ final class Rounds {
         self.rounds = rounds
     }
 
-    var currentGuess: Round {
+    var currentRound: Round {
         rounds[roundNumber]
     }
 }
