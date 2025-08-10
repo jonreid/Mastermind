@@ -8,12 +8,12 @@ final class Game {
     var rounds: Rounds
     var secret = Secret(code: [])
 
-    var currentGuess: Round {
+    var currentRound: Round {
         rounds.currentRound
     }
 
     var canBeValidated: Bool {
-        currentGuess.isComplete
+        currentRound.isComplete
     }
 
     var isWin: Bool {
@@ -40,6 +40,6 @@ final class Game {
     }
 
     func score() {
-        currentGuess.score(for: secret)
+        currentRound.score(for: secret)
     }
 }
