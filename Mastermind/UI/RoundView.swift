@@ -14,7 +14,7 @@ struct RoundView: View {
     var body: some View {
         HStack {
             CodeGuessView(guess: game.currentRound, roundNumber: roundNumber)
-            FeedbackView(feedbackPegs: feedbackPegs)
+            FeedbackView(feedbackPegs: game.currentRound.feedbackPegs)
         }
     }
 }
