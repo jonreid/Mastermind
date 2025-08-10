@@ -5,14 +5,14 @@ import XCTest
 @MainActor
 final class RoundViewTests: XCTestCase, Sendable {
     func test_showsRoundNumber1() throws {
-        let sut = try makeSUT(round: 1)
+        let sut = try makeSUT(round: 0)
 
         let roundNumberView = try sut.inspect().round()
         XCTAssertEqual(try roundNumberView.string(), "1")
     }
 
     func test_showsRoundNumber2() throws {
-        let sut = try makeSUT(round: 2)
+        let sut = try makeSUT(round: 1)
 
         let roundNumberView = try sut.inspect().round()
         XCTAssertEqual(try roundNumberView.string(), "2")
