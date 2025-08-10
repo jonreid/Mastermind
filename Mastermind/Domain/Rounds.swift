@@ -7,6 +7,10 @@ final class Rounds {
     }
 
     var currentRound: Round {
-        rounds[currentRoundNumber]
+        round(at: currentRoundNumber)
+    }
+
+    func round(at index: Int) -> Round {
+        rounds[index]
     }
 }
