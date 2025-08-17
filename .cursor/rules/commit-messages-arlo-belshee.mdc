@@ -1,6 +1,5 @@
 ---
-description: 
-globs: 
+description: Commit messages
 alwaysApply: false
 ---
 # Commit Message Guidelines
