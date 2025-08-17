@@ -19,9 +19,9 @@ final class RoundViewTests: XCTestCase, Sendable {
     }
 
     private func makeSUT(round: Int) throws -> RoundView {
-        let game = try Game(numberOfCodeChoices: 4, secretSize: 4, numberOfRounds: 1, SecretMaker.createNull())
+        let game = try Game(numberOfCodeChoices: 4, secretSize: 4, numberOfRounds: 2, SecretMaker.createNull())
         game.makeNewSecret()
-        return RoundView(roundNumber: round, game: game)
+        return RoundView(game: game, roundIndex: round)
     }
 }
 
