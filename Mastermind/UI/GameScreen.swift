@@ -80,6 +80,6 @@ private extension CodeChoices {
 }
 
 #Preview {
-    let game = try! Game(numberOfCodeChoices: 4, secretSize: 4, SecretMaker.createNull())
+    let game = try! Game(numberOfCodeChoices: 4, secretSize: 4, numberOfRounds: 1, SecretMaker.createNull())
     return GameScreen(game: game)
 }

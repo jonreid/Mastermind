@@ -196,7 +196,7 @@ final class GameScreenTests: XCTestCase, Sendable {
     }
 
     private func makeGame(numberOfCodeChoices: Int = 4, secretSize: Int = 4) throws -> Game {
-        try Game(numberOfCodeChoices: numberOfCodeChoices, secretSize: secretSize, SecretMaker.createNull())
+        try Game(numberOfCodeChoices: numberOfCodeChoices, secretSize: secretSize, numberOfRounds: 1, SecretMaker.createNull())
     }
 
     private func makeSUT(_ game: Game) -> GameScreen {
