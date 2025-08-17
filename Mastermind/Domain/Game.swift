@@ -16,11 +16,11 @@ final class Game {
         secret.matches(rounds.round(0))
     }
 
-    init(numberOfCodeChoices: Int, secretSize: Int, _ secretMaker: SecretMaker) throws {
+    init(numberOfCodeChoices: Int, secretSize: Int, numberOfRounds: Int = 1, _ secretMaker: SecretMaker) throws {
         self.secretMaker = secretMaker
         self.secretSize = secretSize
         try codeChoices = CodeChoiceGenerator.generate(from: codeColors, take: numberOfCodeChoices)
-        rounds = Rounds(secretSize: secretSize, numberOfRounds: 1)
+        rounds = Rounds(secretSize: secretSize, numberOfRounds: numberOfRounds)
     }
 
     func codeChoice(_ index: Int) -> CodeChoice {
