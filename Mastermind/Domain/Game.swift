@@ -20,7 +20,7 @@ final class Game {
         self.secretMaker = secretMaker
         self.secretSize = secretSize
         try codeChoices = CodeChoiceGenerator.generate(from: codeColors, take: numberOfCodeChoices)
-        rounds = Rounds(rounds: [Round(secretSize: secretSize)])
+        rounds = Rounds(secretSize: secretSize)
     }
 
     func codeChoice(_ index: Int) -> CodeChoice {
