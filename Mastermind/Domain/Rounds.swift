@@ -2,7 +2,7 @@ final class Rounds {
     private let rounds: [Round]
 
     init(secretSize: Int, numberOfRounds: Int) {
-        self.rounds = (0..<numberOfRounds).map { _ in Round(secretSize: secretSize) }
+        self.rounds = (0..<numberOfRounds).map { roundNumber in Round(secretSize: secretSize, roundNumber: roundNumber) }
     }
 
     func round(_ index: Int) -> Round {

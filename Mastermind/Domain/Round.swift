@@ -4,8 +4,10 @@ import Observation
 final class Round {
     private var guess: [CodeChoice?]
     var feedbackPegs: [FeedbackPeg]
+    let roundNumber: Int
 
-    init(secretSize: Int) {
+    init(secretSize: Int, roundNumber: Int) {
+        self.roundNumber = roundNumber
         guess = Array(repeating: nil, count: secretSize)
         feedbackPegs = Feedback.initial(size: secretSize).pegs
     }
