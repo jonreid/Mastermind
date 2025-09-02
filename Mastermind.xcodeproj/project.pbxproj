@@ -43,8 +43,8 @@
 				"UI/Tests/FeedbackPeg+ColorTests.swift",
 				UI/Tests/FeedbackViewTests.swift,
 				UI/Tests/GameScreenTests.swift,
+				UI/Tests/InspectChangingView.swift,
 				UI/Tests/RoundViewTests.swift,
-				UI/Tests/UpdateTestableView.swift,
 			);
 			target = 0F7025142B72E88B006327F4 /* Mastermind */;
 		};
@@ -61,8 +61,8 @@
 				"UI/Tests/FeedbackPeg+ColorTests.swift",
 				UI/Tests/FeedbackViewTests.swift,
 				UI/Tests/GameScreenTests.swift,
+				UI/Tests/InspectChangingView.swift,
 				UI/Tests/RoundViewTests.swift,
-				UI/Tests/UpdateTestableView.swift,
 			);
 			target = 0F7025292B72E913006327F4 /* MastermindTests */;
 		};
