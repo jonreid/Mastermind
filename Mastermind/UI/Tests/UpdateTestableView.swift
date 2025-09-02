@@ -7,7 +7,8 @@ import ViewInspector
 import XCTest
 
 extension XCTestCase {
-    @MainActor func inspectChangingView<V: TestableView>(
+    @MainActor
+    func inspectChangingView<V: TestableView>(
         _ sut: inout V,
         action: @escaping ((InspectableView<ViewType.View<V>>) throws -> Void),
         file: StaticString = #filePath,
