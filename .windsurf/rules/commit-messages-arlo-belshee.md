@@ -1,7 +1,8 @@
 ---
+trigger: model_decision
 description: Commit messages
-alwaysApply: false
 ---
+
 # Commit Message Guidelines
 
 ## Arlo Belshee's Commit Notation
