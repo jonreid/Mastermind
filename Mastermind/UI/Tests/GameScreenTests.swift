@@ -84,7 +84,7 @@ final class GameScreenTests: XCTestCase, Sendable {
     func test_checkButtonIsInitiallyDisabled() throws {
         let sut = makeSUT(game)
 
-        let isEnabled = try sut.inspect().find(viewWithAccessibilityIdentifier: "checkButton").button().isResponsive()
+        let isEnabled = try sut.inspectAndFind("checkButton").button().isResponsive()
 
         XCTAssertFalse(isEnabled)
     }
@@ -228,5 +228,25 @@ private extension InspectableView {
 
     func feedbackPegColor(_ peg: Int) throws -> Color? {
         try find(viewWithAccessibilityIdentifier: "feedback\(peg)").shape().foregroundColor()
+    }
+}
+
+extension View {
+    nonisolated
+    func inspectAndFind(
+        _ accessibilityIdentifier: String,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> InspectableView<ViewType.ClassifiedView> {
+        do {
+            return try inspect().find(viewWithAccessibilityIdentifier: accessibilityIdentifier)
+        } catch {
+            XCTFail(
+                "accessibilityIdentifier \"\(accessibilityIdentifier)\" not found: \(error)",
+                file: file,
+                line: line
+            )
+            throw error
+        }
     }
 }
