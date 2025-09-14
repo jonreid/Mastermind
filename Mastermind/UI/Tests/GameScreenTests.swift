@@ -195,8 +195,16 @@ final class GameScreenTests: XCTestCase, Sendable {
         XCTAssertEqual(gameOverText, "You lose! The secret was brown, black")
     }
 
-    private func makeGame(numberOfCodeChoices: Int = 4, secretSize: Int = 4) throws -> Game {
-        try Game(numberOfCodeChoices: numberOfCodeChoices, secretSize: secretSize, numberOfRounds: 2, SecretMaker.createNull())
+    func test_displaysCorrectNumberOfRounds() throws {
+        try XCTSkipIf(true, "To do next")
+        let sut = makeSUT(game)
+        
+        _ = try sut.inspect().find(viewWithId: "guess1-1")
+        _ = try sut.inspect().find(viewWithId: "guess2-1")
+    }
+    
+    private func makeGame(numberOfCodeChoices: Int = 4, secretSize: Int = 4, numberOfRounds: Int = 2) throws -> Game {
+        try Game(numberOfCodeChoices: numberOfCodeChoices, secretSize: secretSize, numberOfRounds: numberOfRounds, SecretMaker.createNull())
     }
 
     private func makeSUT(_ game: Game) -> GameScreen {
