@@ -18,6 +18,7 @@ Tests must be self-explanatory through names, structure, and helpers—without c
 ## Guidance: Preferred Alternatives
 - Use behavior-driven test names that read as specifications.
 - Structure tests into clear Arrange–Act–Assert sections using code, not comments.
+- Separate Arrange-Act-Assert sections with blank lines.
 - Extract expressive helpers and builders to eliminate the need for explanation.
 - Use data-driven cases where appropriate to avoid narrative comments.
 
@@ -39,7 +40,9 @@ func test_makesNewRowActiveAfterCheck() {
 ```swift
 func test_makesNewRowActiveAfterCheck() {
     let sut = GameScreenViewModel(rounds: .fixture())
+
     sut.check()
+
     XCTAssertEqual(sut.activeRowIndex, 1)
 }
 ```
@@ -48,7 +51,9 @@ func test_makesNewRowActiveAfterCheck() {
 ```swift
 func test_advancesToNextRow_afterCheck() {
     let sut = makeSUTWithSingleUncheckedRow()
+
     check(sut)
+
     assertAdvancesToNextRow(sut)
 }
 ```
@@ -65,4 +70,3 @@ func test_advancesToNextRow_afterCheck() {
   - Renaming tests to describe behavior.
   - Extracting well-named helpers/builders.
   - Reordering code to make Arrange–Act–Assert obvious.
-
