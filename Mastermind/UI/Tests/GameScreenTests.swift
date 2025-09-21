@@ -65,10 +65,10 @@ final class GameScreenTests: XCTestCase, Sendable {
         var color4: Color?
 
         inspectChangingView(&sut) { view in
-            try view.find(viewWithId: codeChoice1.codeValue).button().tap()
-            try view.find(viewWithId: codeChoice2.codeValue).button().tap()
-            try view.find(viewWithId: codeChoice3.codeValue).button().tap()
-            try view.find(viewWithId: codeChoice4.codeValue).button().tap()
+            try view.findView(id: codeChoice1.codeValue).button().tap()
+            try view.findView(id: codeChoice2.codeValue).button().tap()
+            try view.findView(id: codeChoice3.codeValue).button().tap()
+            try view.findView(id: codeChoice4.codeValue).button().tap()
             color1 = try view.colorOfGuess(id: "guess1-1")
             color2 = try view.colorOfGuess(id: "guess1-2")
             color3 = try view.colorOfGuess(id: "guess1-3")
@@ -98,10 +98,10 @@ final class GameScreenTests: XCTestCase, Sendable {
 
         var isEnabled = false
         inspectChangingView(&sut) { view in
-            try view.find(viewWithId: codeChoice1.codeValue).button().tap()
-            try view.find(viewWithId: codeChoice2.codeValue).button().tap()
-            try view.find(viewWithId: codeChoice3.codeValue).button().tap()
-            try view.find(viewWithId: codeChoice4.codeValue).button().tap()
+            try view.findView(id: codeChoice1.codeValue).button().tap()
+            try view.findView(id: codeChoice2.codeValue).button().tap()
+            try view.findView(id: codeChoice3.codeValue).button().tap()
+            try view.findView(id: codeChoice4.codeValue).button().tap()
 
             isEnabled = try view.checkButton().isResponsive()
         }
@@ -126,10 +126,10 @@ final class GameScreenTests: XCTestCase, Sendable {
         var feedbackPegColor: Color?
 
         inspectChangingView(&sut) { view in
-            try view.find(viewWithId: codeChoice1.codeValue).button().tap()
-            try view.find(viewWithId: codeChoice2.codeValue).button().tap()
-            try view.find(viewWithId: codeChoice3.codeValue).button().tap()
-            try view.find(viewWithId: codeChoice4.codeValue).button().tap()
+            try view.findView(id: codeChoice1.codeValue).button().tap()
+            try view.findView(id: codeChoice2.codeValue).button().tap()
+            try view.findView(id: codeChoice3.codeValue).button().tap()
+            try view.findView(id: codeChoice4.codeValue).button().tap()
             try view.checkButton().tap()
             feedbackPegColor = try view.feedbackPegColor(1)
         }
@@ -143,7 +143,7 @@ final class GameScreenTests: XCTestCase, Sendable {
         let codeChoice = game.codeChoice(0)
 
         inspectChangingView(&sut) { view in
-            try view.find(viewWithId: codeChoice.codeValue).button().tap()
+            try view.findView(id: codeChoice.codeValue).button().tap()
             XCTAssertNoThrow(try view.find(ViewType.Sheet.self))
         }
     }
@@ -155,9 +155,9 @@ final class GameScreenTests: XCTestCase, Sendable {
         let thirdCodeChoice = game.codeChoice(2)
 
         inspectChangingView(&sut) { view in
-            try view.find(viewWithId: firstCodeChoice.codeValue).button().tap()
-            try view.find(viewWithId: secondCodeChoice.codeValue).button().tap()
-            try view.find(viewWithId: thirdCodeChoice.codeValue).button().tap()
+            try view.findView(id: firstCodeChoice.codeValue).button().tap()
+            try view.findView(id: secondCodeChoice.codeValue).button().tap()
+            try view.findView(id: thirdCodeChoice.codeValue).button().tap()
             XCTAssertThrowsError(try view.find(ViewType.Sheet.self))
         }
     }
@@ -170,8 +170,8 @@ final class GameScreenTests: XCTestCase, Sendable {
         var gameOverText: String?
 
         inspectChangingView(&sut) { view in
-            try view.find(viewWithId: firstCodeChoice.codeValue).button().tap()
-            try view.find(viewWithId: secondCodeChoice.codeValue).button().tap()
+            try view.findView(id: firstCodeChoice.codeValue).button().tap()
+            try view.findView(id: secondCodeChoice.codeValue).button().tap()
             gameOverText = try view.find(ViewType.Sheet.self).text().string()
         }
 
@@ -187,8 +187,8 @@ final class GameScreenTests: XCTestCase, Sendable {
         var gameOverText: String?
 
         inspectChangingView(&sut) { view in
-            try view.find(viewWithId: secondCodeChoice.codeValue).button().tap()
-            try view.find(viewWithId: firstCodeChoice.codeValue).button().tap()
+            try view.findView(id: secondCodeChoice.codeValue).button().tap()
+            try view.findView(id: firstCodeChoice.codeValue).button().tap()
             gameOverText = try view.find(ViewType.Sheet.self).text().string()
         }
 
@@ -199,8 +199,8 @@ final class GameScreenTests: XCTestCase, Sendable {
         try XCTSkipIf(true, "To do next")
         let sut = makeSUT(game)
         
-        _ = try sut.inspect().find(viewWithId: "guess1-1")
-        _ = try sut.inspect().find(viewWithId: "guess2-1")
+        _ = try sut.inspect().findView(id: "guess1-1")
+        _ = try sut.inspect().findView(id: "guess2-1")
     }
     
     private func makeGame(numberOfCodeChoices: Int = 4, secretSize: Int = 4, numberOfRounds: Int = 2) throws -> Game {
@@ -217,8 +217,8 @@ private extension InspectableView {
         try findView(accessibilityIdentifier: "checkButton", file: file, line: line).button()
     }
 
-    func colorOfGuess(id: String) throws -> Color? {
-        try find(viewWithId: id).button().labelView().shape().foregroundColor()
+    func colorOfGuess(id: String, file: StaticString = #filePath, line: UInt = #line) throws -> Color? {
+        try findView(id: id, file: file, line: line).button().labelView().shape().foregroundColor()
     }
 
     func codeChoiceColor(_ index: Int, file: StaticString = #filePath, line: UInt = #line) throws -> Color? {
@@ -241,7 +241,7 @@ extension InspectableView {
             return try find(viewWithAccessibilityIdentifier: accessibilityIdentifier)
         } catch {
             XCTFail(
-                "accessibilityIdentifier \"\(accessibilityIdentifier)\" not found: \(error)",
+                "view with accessibility identifier \"\(accessibilityIdentifier)\" not found: \(error)",
                 file: file,
                 line: line
             )
@@ -258,7 +258,7 @@ extension InspectableView {
             return try find(viewWithId: id)
         } catch {
             XCTFail(
-                "id \"\(id)\" not found: \(error)",
+                "view with id \"\(id)\" not found: \(error)",
                 file: file,
                 line: line
             )
