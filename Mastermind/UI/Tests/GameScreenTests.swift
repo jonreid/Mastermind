@@ -64,15 +64,15 @@ final class GameScreenTests: XCTestCase, Sendable {
         var color3: Color?
         var color4: Color?
 
-        inspectChangingView(&sut) { view in
-            try view.findView(id: codeChoice1.codeValue).button().tap()
-            try view.findView(id: codeChoice2.codeValue).button().tap()
-            try view.findView(id: codeChoice3.codeValue).button().tap()
-            try view.findView(id: codeChoice4.codeValue).button().tap()
-            color1 = try view.colorOfGuess(id: "guess1-1")
-            color2 = try view.colorOfGuess(id: "guess1-2")
-            color3 = try view.colorOfGuess(id: "guess1-3")
-            color4 = try view.colorOfGuess(id: "guess1-4")
+        inspectChangingView(&sut) { inspectableView in
+            try inspectableView.findView(id: codeChoice1.codeValue).button().tap()
+            try inspectableView.findView(id: codeChoice2.codeValue).button().tap()
+            try inspectableView.findView(id: codeChoice3.codeValue).button().tap()
+            try inspectableView.findView(id: codeChoice4.codeValue).button().tap()
+            color1 = try inspectableView.colorOfGuess(id: "guess1-1")
+            color2 = try inspectableView.colorOfGuess(id: "guess1-2")
+            color3 = try inspectableView.colorOfGuess(id: "guess1-3")
+            color4 = try inspectableView.colorOfGuess(id: "guess1-4")
         }
 
         XCTAssertEqual(color1, codeChoice1.color)
@@ -97,13 +97,13 @@ final class GameScreenTests: XCTestCase, Sendable {
         let codeChoice4 = game.codeChoice(3)
 
         var isEnabled = false
-        inspectChangingView(&sut) { view in
-            try view.findView(id: codeChoice1.codeValue).button().tap()
-            try view.findView(id: codeChoice2.codeValue).button().tap()
-            try view.findView(id: codeChoice3.codeValue).button().tap()
-            try view.findView(id: codeChoice4.codeValue).button().tap()
+        inspectChangingView(&sut) { inspectableView in
+            try inspectableView.findView(id: codeChoice1.codeValue).button().tap()
+            try inspectableView.findView(id: codeChoice2.codeValue).button().tap()
+            try inspectableView.findView(id: codeChoice3.codeValue).button().tap()
+            try inspectableView.findView(id: codeChoice4.codeValue).button().tap()
 
-            isEnabled = try view.checkButton().isResponsive()
+            isEnabled = try inspectableView.checkButton().isResponsive()
         }
 
         XCTAssertTrue(isEnabled)
@@ -125,13 +125,13 @@ final class GameScreenTests: XCTestCase, Sendable {
         let codeChoice4 = game.codeChoice(3)
         var feedbackPegColor: Color?
 
-        inspectChangingView(&sut) { view in
-            try view.findView(id: codeChoice1.codeValue).button().tap()
-            try view.findView(id: codeChoice2.codeValue).button().tap()
-            try view.findView(id: codeChoice3.codeValue).button().tap()
-            try view.findView(id: codeChoice4.codeValue).button().tap()
-            try view.checkButton().tap()
-            feedbackPegColor = try view.feedbackPegColor(1)
+        inspectChangingView(&sut) { inspectableView in
+            try inspectableView.findView(id: codeChoice1.codeValue).button().tap()
+            try inspectableView.findView(id: codeChoice2.codeValue).button().tap()
+            try inspectableView.findView(id: codeChoice3.codeValue).button().tap()
+            try inspectableView.findView(id: codeChoice4.codeValue).button().tap()
+            try inspectableView.checkButton().tap()
+            feedbackPegColor = try inspectableView.feedbackPegColor(1)
         }
 
         XCTAssertEqual(feedbackPegColor, Color.Pegs.correct)
@@ -142,9 +142,9 @@ final class GameScreenTests: XCTestCase, Sendable {
         var sut = makeSUT(game)
         let codeChoice = game.codeChoice(0)
 
-        inspectChangingView(&sut) { view in
-            try view.findView(id: codeChoice.codeValue).button().tap()
-            XCTAssertNoThrow(try view.find(ViewType.Sheet.self))
+        inspectChangingView(&sut) { inspectableView in
+            try inspectableView.findView(id: codeChoice.codeValue).button().tap()
+            XCTAssertNoThrow(try inspectableView.find(ViewType.Sheet.self))
         }
     }
 
@@ -154,11 +154,11 @@ final class GameScreenTests: XCTestCase, Sendable {
         let secondCodeChoice = game.codeChoice(1)
         let thirdCodeChoice = game.codeChoice(2)
 
-        inspectChangingView(&sut) { view in
-            try view.findView(id: firstCodeChoice.codeValue).button().tap()
-            try view.findView(id: secondCodeChoice.codeValue).button().tap()
-            try view.findView(id: thirdCodeChoice.codeValue).button().tap()
-            XCTAssertThrowsError(try view.find(ViewType.Sheet.self))
+        inspectChangingView(&sut) { inspectableView in
+            try inspectableView.findView(id: firstCodeChoice.codeValue).button().tap()
+            try inspectableView.findView(id: secondCodeChoice.codeValue).button().tap()
+            try inspectableView.findView(id: thirdCodeChoice.codeValue).button().tap()
+            XCTAssertThrowsError(try inspectableView.find(ViewType.Sheet.self))
         }
     }
 
@@ -169,10 +169,10 @@ final class GameScreenTests: XCTestCase, Sendable {
         let secondCodeChoice = game.codeChoice(1)
         var gameOverText: String?
 
-        inspectChangingView(&sut) { view in
-            try view.findView(id: firstCodeChoice.codeValue).button().tap()
-            try view.findView(id: secondCodeChoice.codeValue).button().tap()
-            gameOverText = try view.find(ViewType.Sheet.self).text().string()
+        inspectChangingView(&sut) { inspectableView in
+            try inspectableView.findView(id: firstCodeChoice.codeValue).button().tap()
+            try inspectableView.findView(id: secondCodeChoice.codeValue).button().tap()
+            gameOverText = try inspectableView.find(ViewType.Sheet.self).text().string()
         }
 
         XCTAssertEqual(gameOverText, "You win!")
@@ -186,10 +186,10 @@ final class GameScreenTests: XCTestCase, Sendable {
         let secondCodeChoice = game.codeChoice(1)
         var gameOverText: String?
 
-        inspectChangingView(&sut) { view in
-            try view.findView(id: secondCodeChoice.codeValue).button().tap()
-            try view.findView(id: firstCodeChoice.codeValue).button().tap()
-            gameOverText = try view.find(ViewType.Sheet.self).text().string()
+        inspectChangingView(&sut) { inspectableView in
+            try inspectableView.findView(id: secondCodeChoice.codeValue).button().tap()
+            try inspectableView.findView(id: firstCodeChoice.codeValue).button().tap()
+            gameOverText = try inspectableView.find(ViewType.Sheet.self).text().string()
         }
 
         XCTAssertEqual(gameOverText, "You lose! The secret was brown, black")
