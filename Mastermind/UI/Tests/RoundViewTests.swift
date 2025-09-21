@@ -27,6 +27,6 @@ final class RoundViewTests: XCTestCase, Sendable {
 
 private extension InspectableView {
     func round(file: StaticString = #filePath, line: UInt = #line) throws -> InspectableView<ViewType.Text> {
-        try findByAccessibilityIdentifier("roundNumber", file: file, line: line).text()
+        try findView(accessibilityIdentifier: "roundNumber", file: file, line: line).text()
     }
 }

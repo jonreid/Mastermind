@@ -84,7 +84,7 @@ final class GameScreenTests: XCTestCase, Sendable {
     func test_checkButtonIsInitiallyDisabled() throws {
         let sut = makeSUT(game)
 
-        let isEnabled = try sut.inspect().findByAccessibilityIdentifier("checkButton").button().isResponsive()
+        let isEnabled = try sut.inspect().findView(accessibilityIdentifier: "checkButton").button().isResponsive()
 
         XCTAssertFalse(isEnabled)
     }
@@ -214,7 +214,7 @@ final class GameScreenTests: XCTestCase, Sendable {
 
 private extension InspectableView {
     func checkButton(file: StaticString = #filePath, line: UInt = #line) throws -> InspectableView<ViewType.Button> {
-        try findByAccessibilityIdentifier("checkButton", file: file, line: line).button()
+        try findView(accessibilityIdentifier: "checkButton", file: file, line: line).button()
     }
 
     func colorOfGuess(id: String) throws -> Color? {
@@ -222,18 +222,18 @@ private extension InspectableView {
     }
 
     func codeChoiceColor(_ index: Int, file: StaticString = #filePath, line: UInt = #line) throws -> Color? {
-        let codeChoice = try findByAccessibilityIdentifier("codeChoices", file: file, line: line).vStack(0).forEach(0)[index]
+        let codeChoice = try findView(accessibilityIdentifier: "codeChoices", file: file, line: line).vStack(0).forEach(0)[index]
         return try codeChoice.find(ViewType.Button.self).labelView().shape().overlay().shape().foregroundColor()
     }
 
     func feedbackPegColor(_ peg: Int, file: StaticString = #filePath, line: UInt = #line) throws -> Color? {
-        try findByAccessibilityIdentifier("feedback\(peg)", file: file, line: line).shape().foregroundColor()
+        try findView(accessibilityIdentifier: "feedback\(peg)", file: file, line: line).shape().foregroundColor()
     }
 }
 
 extension InspectableView {
-    func findByAccessibilityIdentifier(
-        _ accessibilityIdentifier: String,
+    func findView(
+        accessibilityIdentifier: String,
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> InspectableView<ViewType.ClassifiedView> {

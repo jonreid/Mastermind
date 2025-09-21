@@ -52,6 +52,6 @@ private extension InspectableView {
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> InspectableView<ViewType.Shape> {
-        try findByAccessibilityIdentifier("feedback\(peg)", file: file, line: line).shape()
+        try findView(accessibilityIdentifier: "feedback\(peg)", file: file, line: line).shape()
     }
 }
