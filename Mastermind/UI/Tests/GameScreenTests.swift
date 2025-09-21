@@ -221,8 +221,8 @@ private extension InspectableView {
         try find(viewWithId: id).button().labelView().shape().foregroundColor()
     }
 
-    func codeChoiceColor(_ index: Int) throws -> Color? {
-        let codeChoice = try find(viewWithAccessibilityIdentifier: "codeChoices").vStack(0).forEach(0)[index]
+    func codeChoiceColor(_ index: Int, file: StaticString = #filePath, line: UInt = #line) throws -> Color? {
+        let codeChoice = try findByAccessibilityIdentifier("codeChoices", file: file, line: line).vStack(0).forEach(0)[index]
         return try codeChoice.find(ViewType.Button.self).labelView().shape().overlay().shape().foregroundColor()
     }
 
