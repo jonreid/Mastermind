@@ -84,7 +84,7 @@ final class GameScreenTests: XCTestCase, Sendable {
     func test_checkButtonIsInitiallyDisabled() throws {
         let sut = makeSUT(game)
 
-        let isEnabled = try sut.inspectAndFind("checkButton").button().isResponsive()
+        let isEnabled = try sut.inspect().findByAccessibilityIdentifier("checkButton").button().isResponsive()
 
         XCTAssertFalse(isEnabled)
     }
