@@ -226,8 +226,8 @@ private extension InspectableView {
         return try codeChoice.find(ViewType.Button.self).labelView().shape().overlay().shape().foregroundColor()
     }
 
-    func feedbackPegColor(_ peg: Int) throws -> Color? {
-        try find(viewWithAccessibilityIdentifier: "feedback\(peg)").shape().foregroundColor()
+    func feedbackPegColor(_ peg: Int, file: StaticString = #filePath, line: UInt = #line) throws -> Color? {
+        try findByAccessibilityIdentifier("feedback\(peg)", file: file, line: line).shape().foregroundColor()
     }
 }
 
