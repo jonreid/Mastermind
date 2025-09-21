@@ -231,17 +231,6 @@ private extension InspectableView {
     }
 }
 
-extension View {
-    nonisolated
-    func inspectAndFind(
-        _ accessibilityIdentifier: String,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) throws -> InspectableView<ViewType.ClassifiedView> {
-        return try inspect().findByAccessibilityIdentifier(accessibilityIdentifier, file: file, line: line)
-    }
-}
-
 extension InspectableView {
     func findByAccessibilityIdentifier(
         _ accessibilityIdentifier: String,
