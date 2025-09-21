@@ -43,12 +43,15 @@ private extension InspectableView {
         try pegShape(peg).foregroundColor()
     }
 
-    func pegStrokeColor(_ peg: Int) throws -> Color? {
-        try pegShape(peg).overlay().shape().fillShapeStyle(Color.self)
+    func pegStrokeColor(_ peg: Int, file: StaticString = #filePath, line: UInt = #line) throws -> Color? {
+        try pegShape(peg, file: file, line: line).overlay().shape().fillShapeStyle(Color.self)
     }
 
-    private func pegShape(_ peg: Int) throws -> InspectableView<ViewType.Shape> {
-        try find(viewWithAccessibilityIdentifier: "feedback\(peg)").shape()
+    private func pegShape(
+        _ peg: Int,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> InspectableView<ViewType.Shape> {
+        try findByAccessibilityIdentifier("feedback\(peg)", file: file, line: line).shape()
     }
 }
-
