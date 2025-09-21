@@ -248,4 +248,21 @@ extension InspectableView {
             throw error
         }
     }
+
+    func findView(
+        id: AnyHashable,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> InspectableView<ViewType.ClassifiedView> {
+        do {
+            return try find(viewWithId: id)
+        } catch {
+            XCTFail(
+                "id \"\(id)\" not found: \(error)",
+                file: file,
+                line: line
+            )
+            throw error
+        }
+    }
 }
