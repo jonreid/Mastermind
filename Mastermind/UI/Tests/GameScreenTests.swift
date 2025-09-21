@@ -213,8 +213,8 @@ final class GameScreenTests: XCTestCase, Sendable {
 }
 
 private extension InspectableView {
-    func checkButton() throws -> InspectableView<ViewType.Button> {
-        try find(viewWithAccessibilityIdentifier: "checkButton").button()
+    func checkButton(file: StaticString = #filePath, line: UInt = #line) throws -> InspectableView<ViewType.Button> {
+        try findByAccessibilityIdentifier("checkButton", file: file, line: line).button()
     }
 
     func colorOfGuess(id: String) throws -> Color? {
