@@ -238,8 +238,18 @@ extension View {
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> InspectableView<ViewType.ClassifiedView> {
+        return try inspect().findByAccessibilityIdentifier(accessibilityIdentifier, file: file, line: line)
+    }
+}
+
+extension InspectableView {
+    func findByAccessibilityIdentifier(
+        _ accessibilityIdentifier: String,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> InspectableView<ViewType.ClassifiedView> {
         do {
-            return try inspect().find(viewWithAccessibilityIdentifier: accessibilityIdentifier)
+            return try find(viewWithAccessibilityIdentifier: accessibilityIdentifier)
         } catch {
             XCTFail(
                 "accessibilityIdentifier \"\(accessibilityIdentifier)\" not found: \(error)",
