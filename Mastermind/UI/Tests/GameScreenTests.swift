@@ -213,6 +213,7 @@ final class GameScreenTests: XCTestCase, Sendable {
         _ = try inspectable.findView(id: "guess1-1")
         _ = try inspectable.findView(id: "guess2-1")
         _ = try inspectable.findView(id: "guess3-1")
+        XCTAssertThrowsError(try inspectable.find(viewWithId: "guess4-1"))
     }
 
     private func makeGame(numberOfCodeChoices: Int = 4, secretSize: Int = 4, numberOfRounds: Int = 2) throws -> Game {
