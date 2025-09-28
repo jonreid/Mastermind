@@ -14,7 +14,7 @@ struct GameScreen: TestableView {
         Color.background.ignoresSafeArea().overlay {
             HStack {
                 VStack() {
-                    ForEach(0...1, id: \.self) { roundNumber in
+                    ForEach(0...game.rounds.count - 1, id: \.self) { roundNumber in
                         RoundView(game: game, roundIndex: roundNumber)
                     }
                 }

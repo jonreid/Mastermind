@@ -5,6 +5,8 @@ final class Rounds {
         self.rounds = (0..<numberOfRounds).map { roundNumber in Round(secretSize: secretSize, roundNumber: roundNumber) }
     }
 
+    var count: Int { rounds.count }
+
     func round(_ index: Int) -> Round {
         rounds[index]
     }
