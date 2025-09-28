@@ -19,11 +19,10 @@ struct RoundView: View {
 
 private struct CodeGuessView: View {
     let round: Round
-    private var humanReadableRoundNumber: Int { round.roundNumber }
 
     var body: some View {
         HStack {
-            Text("\(humanReadableRoundNumber)").accessibilityIdentifier("roundNumber")
+            Text("\(round.roundNumber)").accessibilityIdentifier("roundNumber")
             ForEach(0 ..< round.size, id: \.self) { index in
                 Button(action: {}, label: {
                     Circle()
@@ -35,8 +34,8 @@ private struct CodeGuessView: View {
                         .foregroundColor(round[index]?.color ?? Color.unselected)
                         .frame(width: 40, height: 40)
                 })
-                .id("guess\(humanReadableRoundNumber)-\(index + 1)")
+                .id("guess\(round.roundNumber)-\(index + 1)")
             }
-        }.accessibilityIdentifier("round\(humanReadableRoundNumber)")
+        }.accessibilityIdentifier("round\(round.roundNumber)")
     }
 }
