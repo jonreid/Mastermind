@@ -196,7 +196,6 @@ final class GameScreenTests: XCTestCase, Sendable {
     }
 
     func test_displaysCorrectNumberOfRounds() throws {
-        try XCTSkipIf(true, "To do next")
         let sut = makeSUT(game)
         
         _ = try sut.inspect().findView(id: "guess1-1")
