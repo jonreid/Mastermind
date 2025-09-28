@@ -3,7 +3,7 @@ final class Rounds {
 
     init(secretSize: Int, numberOfRounds: Int) {
         self.rounds = (0..<numberOfRounds).map {
-            roundNumber in Round(secretSize: secretSize, roundNumber: roundNumber)
+            round in Round(secretSize: secretSize, roundNumber: round + 1)
         }
     }
 
