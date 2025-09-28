@@ -196,6 +196,7 @@ final class GameScreenTests: XCTestCase, Sendable {
     }
 
     func test_displaysTwoRounds() throws {
+        let game = try makeGame(numberOfRounds: 2)
         let sut = makeSUT(game)
         let inspectable = try sut.inspect()
 
