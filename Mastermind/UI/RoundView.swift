@@ -36,6 +36,6 @@ private struct CodeGuessView: View {
                 })
                 .id("guess\(round.roundNumber + 1)-\(index + 1)")
             }
-        }
+        }.accessibilityIdentifier("round\(round.roundNumber + 1)")
     }
 }

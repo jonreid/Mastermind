@@ -200,6 +200,9 @@ final class GameScreenTests: XCTestCase, Sendable {
         let sut = makeSUT(game)
         let inspectable = try sut.inspect()
 
+        _ = try inspectable.findView(accessibilityIdentifier: "round1")
+        _ = try inspectable.findView(accessibilityIdentifier: "round2")
+        XCTAssertThrowsError(try inspectable.find(viewWithAccessibilityLabel: "round3"))
         _ = try inspectable.findView(id: "guess1-1")
         _ = try inspectable.findView(id: "guess2-1")
         XCTAssertThrowsError(try inspectable.find(viewWithId: "guess3-1"))
