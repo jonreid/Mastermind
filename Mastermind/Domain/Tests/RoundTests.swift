@@ -62,6 +62,6 @@ final class RoundTests: XCTestCase {
     }
 
     private func makeSUT(secretSize: Int) -> Round {
-        Round(secretSize: secretSize, roundNumber: 0)
+        Round(secretSize: secretSize, roundNumber: RoundNumber(value: 1))
     }
 }

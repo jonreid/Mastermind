@@ -3,13 +3,13 @@ final class Rounds {
 
     init(secretSize: Int, numberOfRounds: Int) {
         self.rounds = (1...numberOfRounds).map {
-            roundNumber in Round(secretSize: secretSize, roundNumber: roundNumber)
+            roundNumber in Round(secretSize: secretSize, roundNumber: RoundNumber(value: roundNumber))
         }
     }
 
     var count: Int { rounds.count }
 
-    func round(_ index: Int) -> Round {
-        rounds[index]
+    func round(_ roundNumber: RoundNumber) -> Round {
+        rounds[roundNumber.value - 1]
     }
 }

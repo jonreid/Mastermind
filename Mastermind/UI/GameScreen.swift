@@ -14,8 +14,8 @@ struct GameScreen: TestableView {
         Color.background.ignoresSafeArea().overlay {
             HStack {
                 VStack() {
-                    ForEach(0...game.rounds.count - 1, id: \.self) { roundNumber in
-                        RoundView(game: game, roundIndex: roundNumber)
+                    ForEach(1...game.rounds.count, id: \.self) { roundNumber in
+                        RoundView(game: game, roundNumber: RoundNumber(value: roundNumber))
                     }
                 }
                 VStack {
@@ -43,7 +43,7 @@ private struct CodeChoicesView: View {
     var body: some View {
         VStack {
             ForEach(game.codeChoices.lastToFirst, id: \.codeValue) { codeChoice in
-                CodeChoiceView(codePeg: codeChoice, codeChoiceId: codeChoice.codeValue, guess: game.rounds.round(0))
+                CodeChoiceView(codePeg: codeChoice, codeChoiceId: codeChoice.codeValue, guess: game.rounds.round(RoundNumber(value: 1)))
             }
         }
         .accessibilityIdentifier("codeChoices")

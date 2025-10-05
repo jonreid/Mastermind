@@ -2,17 +2,17 @@ import SwiftUI
 
 struct RoundView: View {
     private var game: Game
-    private let roundIndex: Int
+    private let roundNumber: RoundNumber
 
-    init(game: Game, roundIndex: Int = 0) {
+    init(game: Game, roundNumber: RoundNumber = RoundNumber(value: 1)) {
         self.game = game
-        self.roundIndex = roundIndex
+        self.roundNumber = roundNumber
     }
 
     var body: some View {
         HStack {
-            CodeGuessView(round: game.rounds.round(roundIndex))
-            FeedbackView(feedbackPegs: game.rounds.round(roundIndex).feedbackPegs)
+            CodeGuessView(round: game.rounds.round(roundNumber))
+            FeedbackView(feedbackPegs: game.rounds.round(roundNumber).feedbackPegs)
         }
     }
 }
@@ -22,7 +22,7 @@ private struct CodeGuessView: View {
 
     var body: some View {
         HStack {
-            Text("\(round.roundNumber)").accessibilityIdentifier("roundNumber")
+            Text("\(round.roundNumber.value)").accessibilityIdentifier("roundNumber")
             ForEach(0 ..< round.size, id: \.self) { index in
                 Button(action: {}, label: {
                     Circle()
@@ -34,8 +34,8 @@ private struct CodeGuessView: View {
                         .foregroundColor(round[index]?.color ?? Color.unselected)
                         .frame(width: 40, height: 40)
                 })
-                .id("guess\(round.roundNumber)-\(index + 1)")
+                .id("guess\(round.roundNumber.value)-\(index + 1)")
             }
-        }.accessibilityIdentifier("round\(round.roundNumber)")
+        }.accessibilityIdentifier("round\(round.roundNumber.value)")
     }
 }
