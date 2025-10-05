@@ -6,7 +6,7 @@ struct CodeGuessView: View {
     var body: some View {
         HStack {
             Text("\(round.roundNumber.value)").accessibilityIdentifier("roundNumber")
-            ForEach(0 ..< round.pegCount, id: \.self) { index in
+            ForEach(0 ..< round.pegCount, id: \.self) { pegIndex in
                 Button(action: {}, label: {
                     Circle()
                         .padding(5)
@@ -14,10 +14,10 @@ struct CodeGuessView: View {
                             Circle()
                                 .strokeBorder(Color.unselected, lineWidth: 2)
                         )
-                        .foregroundColor(round[index]?.color ?? Color.unselected)
+                        .foregroundColor(round[pegIndex]?.color ?? Color.unselected)
                         .frame(width: 40, height: 40)
                 })
-                .id("guess\(round.roundNumber.value)-\(index + 1)")
+                .id("guess\(round.roundNumber.value)-\(pegIndex + 1)")
             }
         }.accessibilityIdentifier("round\(round.roundNumber.value)")
     }
