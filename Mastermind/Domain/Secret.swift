@@ -40,7 +40,7 @@ struct Secret: CustomStringConvertible {
 
 
     func matches(_ guess: Round) -> Bool {
-        guard code.count == guess.size else {
+        guard code.count == guess.pegCount else {
             return false
         }
         for (index, secret) in code.enumerated() {

@@ -17,7 +17,7 @@ final class RoundTests: XCTestCase {
     func test_size() throws {
         let sut = makeSUT(secretSize: 4)
 
-        XCTAssertEqual(sut.size, 4)
+        XCTAssertEqual(sut.pegCount, 4)
     }
 
     func test_placeChoiceInNextSlot() throws {

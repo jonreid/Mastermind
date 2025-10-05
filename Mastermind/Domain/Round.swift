@@ -12,7 +12,7 @@ final class Round {
         feedbackPegs = Feedback.initial(size: secretSize).pegs
     }
 
-    var size: Int {
+    var pegCount: Int {
         guess.count
     }
 
