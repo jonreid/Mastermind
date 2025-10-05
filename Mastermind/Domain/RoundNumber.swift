@@ -6,4 +6,8 @@ struct RoundNumber {
         assert(value <= 10)
         self.value = value
     }
+
+    var index: Int {
+        value - 1
+    }
 }

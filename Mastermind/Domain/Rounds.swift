@@ -10,6 +10,6 @@ final class Rounds {
     var count: Int { rounds.count }
 
     func round(_ roundNumber: RoundNumber) -> Round {
-        rounds[roundNumber.value - 1]
+        rounds[roundNumber.index]
     }
 }
