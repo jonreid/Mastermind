@@ -30,7 +30,7 @@ jobs:
 
   build-release:
     name: Build release
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
     - uses: actions/checkout@v4
     - name: Set up Xcode version
