@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 SCHEME='Mastermind'
 DESTINATION='platform=iOS Simulator,OS=18.5,name=iPhone 16'
@@ -8,4 +9,4 @@ if grep -R -n --include='*Tests.swift' -E '^\s*// (Arrange|Act|Assert|Given|When
   exit 1
 fi
 
-set -o pipefail && xcodebuild test -scheme $SCHEME -sdk iphonesimulator -destination "$DESTINATION" -disableAutomaticPackageResolution CODE_SIGNING_ALLOWED='NO' | xcbeautify
+xcodebuild test -scheme $SCHEME -sdk iphonesimulator -destination "$DESTINATION" -disableAutomaticPackageResolution CODE_SIGNING_ALLOWED='NO' | xcbeautify
