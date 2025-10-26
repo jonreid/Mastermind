@@ -9,4 +9,14 @@ if grep -R -n --include='*Tests.swift' -E '^\s*// (Arrange|Act|Assert|Given|When
   exit 1
 fi
 
-xcodebuild test -scheme $SCHEME -sdk iphonesimulator -destination "$DESTINATION" -disableAutomaticPackageResolution CODE_SIGNING_ALLOWED='NO' | xcbeautify
+TMP_OUTPUT=$(mktemp)
+if xcodebuild test -scheme $SCHEME -sdk iphonesimulator -destination "$DESTINATION" -disableAutomaticPackageResolution CODE_SIGNING_ALLOWED='NO' > "$TMP_OUTPUT" 2>&1; then
+  echo "✅ All tests passed."
+  EXIT_CODE=0
+else
+  cat "$TMP_OUTPUT"
+  echo "❌ Build failed."
+  EXIT_CODE=1
+fi
+rm "$TMP_OUTPUT"
+exit $EXIT_CODE
