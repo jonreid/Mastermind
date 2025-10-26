@@ -16,7 +16,7 @@ jobs:
     name: Build and test
     runs-on: macos-15
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: List runner info
       run: sw_vers && arch
     - name: List available Xcode versions
@@ -32,7 +32,7 @@ jobs:
     name: Build release
     runs-on: macos-15
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Set up Xcode version
       run: sudo xcode-select -s /Applications/Xcode_16.3.0.app/Contents/Developer
     - name: Build
