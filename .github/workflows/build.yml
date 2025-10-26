@@ -25,8 +25,8 @@ jobs:
       run: sudo xcode-select -s /Applications/Xcode_16.3.0.app/Contents/Developer
     - name: Show current version of Xcode
       run: xcodebuild -version
-    - name: Run tests
-      run: ./run_tests.sh
+    - name: Build and test
+      run: ./build_and_test.sh
 
   build-release:
     name: Build release
