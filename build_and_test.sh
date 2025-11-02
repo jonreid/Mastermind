@@ -14,9 +14,7 @@ if xcodebuild test -scheme $SCHEME -sdk iphonesimulator -destination "$DESTINATI
   read -r XCTEST_COUNT SWIFT_TEST_COUNT <<< $(
     awk '
       /Executed [0-9]+/ {
-        split($0, a, "Executed ")
-        split(a[2], b, " ")
-        xctest=b[1]
+        xctest=$2
       }
       /✔ Test run with/ {
         split($0, a, "with ")
