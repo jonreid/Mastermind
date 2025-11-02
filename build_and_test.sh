@@ -18,16 +18,13 @@ if xcodebuild test -scheme $SCHEME -sdk iphonesimulator -destination "$DESTINATI
         split(a[2], b, " ")
         xctest=b[1]
       }
-      /Test Suite .All tests. passed/ {
-        xctest_final=xctest
-      }
       /✔ Test run with/ {
         split($0, a, "with ")
         split(a[2], b, " ")
         swift=b[1]
       }
       END {
-        print xctest_final+0, swift+0
+        print xctest+0, swift+0
       }
     ' "$TMP_OUTPUT"
   )
