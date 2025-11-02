@@ -28,7 +28,7 @@ if xcodebuild test -scheme $SCHEME -sdk iphonesimulator -destination "$DESTINATI
   echo "✅ All tests passed: $TOTAL_TESTS tests."
   EXIT_CODE=0
 else
-  cat "$TMP_OUTPUT"
+  cat "$TMP_OUTPUT" | xcbeautify
   echo "❌ Build failed."
   EXIT_CODE=1
 fi
