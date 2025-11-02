@@ -17,9 +17,7 @@ if xcodebuild test -scheme $SCHEME -sdk iphonesimulator -destination "$DESTINATI
         xctest=$2
       }
       /✔ Test run with/ {
-        split($0, a, "with ")
-        split(a[2], b, " ")
-        swift=b[1]
+        swift=$5
       }
       END {
         print xctest+0, swift+0
