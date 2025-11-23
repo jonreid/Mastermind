@@ -63,3 +63,9 @@ Voice is best when the auditory experience is worth the wait.
 ## Running tests
 
 Run tests using the `build_and_test.sh` script.
+
+## Committing
+
+- Draft a commit message following .windsurf/rules/commit-messages-arlo-belshee.md
+- Ask me to approve the commit message.
+- Once I approve, run scripts/commit.sh
