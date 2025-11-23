@@ -19,6 +19,7 @@ This process is for creating unit tests for a new feature or bug fix. All produc
 5. Create the test file (or confirm the file in use). Validate the name and location.
 6. Write the outer test functions for each scenario (titles only, no implementation), all commented out.
 7. Validate the test list with the user.
+8. Commit.
 
 **Tip:** When resuming, always clarify which step you are on and offer to show the steps.
 
