@@ -68,4 +68,4 @@ Run tests using the `build_and_test.sh` script.
 
 - Draft a commit message following .windsurf/rules/commit-messages-arlo-belshee.md
 - Ask me to approve the commit message.
-- Once I approve, run scripts/commit.sh
+- Once I approve, run .windsurf/scripts/commit.sh
