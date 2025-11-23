@@ -2,10 +2,6 @@
 trigger: always_on
 ---
 
----
-trigger: always_on
----
-
 # Interaction
 
 **ALWAYS** start replies with STARTER_CHARACTER + space (default: 🍀). Stack emojis when requested, don't replace.  
