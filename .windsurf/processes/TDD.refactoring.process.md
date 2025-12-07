@@ -6,10 +6,9 @@ STARTER_CHARACTER = 🟣
 
 **ALWAYS** confirm file names and locations if unsure.
 
-**NEVER** make changes to Test code in this process.
+**NEVER** make changes to both production code and test code in this process.
 
-This process is for refactoring production code.
-
+This process is for refactoring production code, or for refactoring test code. Never both.
 
 ## Running tests when refactoring
 
@@ -22,11 +21,13 @@ Confirm the relevant test file and its location before starting.
 For each refactoring:
 
 1. Ask me to check that tests pass before the change.
-2. Choose and perform the simplest possible refactoring (one at a time).
-3. Ask me to confirm that tests pass after the change.
-4. Ask if I am ready to commit, or if I want to make more changes and go back to step 2. 
-5. Provide a status update after each refactor.
-˙
+1. Ask me if we are refactoring production code or test code.
+2. Ask me to check that tests pass before the change.
+3. Choose and perform the simplest possible refactoring (one at a time).
+4. Ask me to confirm that tests pass after the change.
+5. Ask if I am ready to commit, or if I want to make more changes and go back to step 2. 
+6. Provide a status update after each refactor.
+
 If a refactoring fails three times or no further refactoring is found, pause and check with the user.
 
 ## Code Style
