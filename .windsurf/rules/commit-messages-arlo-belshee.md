@@ -60,7 +60,7 @@ description: Commit messages
 | Risk | Type | Description |
 |------|------|-------------|
 | . a | Automatic formatting/generation |
-| . e | Environment (non-code) changes |
+| . e | Environment (non-code) changes, including .windsurf directory changes |
 | . t | Test-only changes |
 
 ## Key Concepts
