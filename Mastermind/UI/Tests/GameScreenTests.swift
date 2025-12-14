@@ -219,13 +219,14 @@ final class GameScreenTests: XCTestCase, Sendable {
         XCTAssertThrowsError(try inspectable.find(viewWithId: "guess4-1"))
     }
 
-    // func testRoundsDisplayInDescendingOrder() throws {
-    //     let game = try makeGame(numberOfRounds: 3)
-    //     let sut = makeSUT(game)
-    //     let inspectable = try sut.inspect()
-    //     
-    //     // Test implementation will go here
-    // }
+    func testRoundsDisplayInDescendingOrder() throws {
+        let game = try makeGame(numberOfRounds: 3)
+        let sut = makeSUT(game)
+        let inspectable = try sut.inspect()
+        
+        // Phase 1: Find the VStack that contains all rounds
+        let roundsVStack = try inspectable.findView(accessibilityIdentifier: "roundsContainer")
+    }
 
     private func makeGame(numberOfCodeChoices: Int = 4, secretSize: Int = 4, numberOfRounds: Int = 2) throws -> Game {
         try Game(numberOfCodeChoices: numberOfCodeChoices, secretSize: secretSize, numberOfRounds: numberOfRounds, SecretMaker.createNull())

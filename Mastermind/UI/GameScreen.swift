@@ -18,6 +18,7 @@ struct GameScreen: TestableView {
                         RoundView(game: game, roundNumber: RoundNumber(value: roundNumber))
                     }
                 }
+                .accessibilityIdentifier("roundsContainer")
                 VStack {
                     CodeChoicesView(game: game)
                     CheckButton(action: { game.score() })
