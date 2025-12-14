@@ -17,9 +17,10 @@ This process is for implementing production code for a new feature or bug fix.
    - Uncomment one test and implement it.
    - Run the tests.
    - Identify the first failing test.
+   - Show test results and ask to inspect the failure.
    - Implement only the production code necessary to make that test pass.
    - Run the tests again.
-   - After each successful run, ask the user if they would like to commit.
+   - After each successful run, ask me if I would like to commit.
 3. When all tests pass, recommend a final commit or review.
 
 ## Code Style
