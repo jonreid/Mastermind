@@ -1,4 +1,4 @@
-# TDD Production Code Refactoring Process
+# TDD Refactoring Process
 
 STARTER_CHARACTER = 🟣
 
@@ -10,6 +10,7 @@ STARTER_CHARACTER = 🟣
 
 This process is for refactoring production code, or for refactoring test code. Never both.
 
+
 ## Running tests when refactoring
 
 - When we are in the refactoring phase, **always** ask me to run tests in Xcode because it's faster. If it fails, I will ask you to run them in the terminal.
@@ -20,7 +21,6 @@ Confirm the relevant test file and its location before starting.
 
 For each refactoring:
 
-1. Ask me to check that tests pass before the change.
 1. Ask me if we are refactoring production code or test code.
 2. Ask me to check that tests pass before the change.
 3. Choose and perform the simplest possible refactoring (one at a time).
