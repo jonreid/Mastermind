@@ -23,12 +23,6 @@ This process is for creating unit tests for a new feature or bug fix. All produc
 
 **Tip:** When resuming, always clarify which step you are on and offer to show the steps.
 
-## SwiftUI Testing Approach
-
-For SwiftUI tests, work in two phases:
-1. **Phase 1:** Focus on finding the target element/subview - getting this to pass is sufficient work
-2. **Phase 2:** Once the element is found, write the remaining test code to query and verify it
-
 ---
 
 This process is designed for clarity and speed — focus on writing tests in the way you want to use the feature, even before the implementation exists.

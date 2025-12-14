@@ -25,3 +25,9 @@ This process is for implementing production code for a new feature or bug fix.
 ## Code Style
 - Prefer code that is self-explanatory and easy to read over comments.
 - Use functional helper methods instead of long methods.
+
+## SwiftUI Testing Approach
+
+For SwiftUI tests, work in two phases:
+1. **Phase 1:** Focus on finding the target element/subview - getting this to pass is sufficient work
+2. **Phase 2:** Once the element is found, write the remaining test code to query and verify it
