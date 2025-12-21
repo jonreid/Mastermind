@@ -228,6 +228,7 @@ final class GameScreenTests: XCTestCase, Sendable {
         let topRound = try roundsContainer.forEach(0)[0].findView(accessibilityIdentifier: "roundNumber").text().string()
         let bottomRound = try roundsContainer.forEach(0)[1].findView(accessibilityIdentifier: "roundNumber").text().string()
 
+        // This is a characterization test in the wrong order. Continue from here.
         XCTAssertEqual(topRound, "1")
         XCTAssertEqual(bottomRound, "2")
     }
