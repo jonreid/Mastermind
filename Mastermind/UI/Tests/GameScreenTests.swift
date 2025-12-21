@@ -224,11 +224,13 @@ final class GameScreenTests: XCTestCase, Sendable {
         let sut = makeSUT(game)
         let inspectable = try sut.inspect()
         
-        // Phase 1: Find the VStack that contains all rounds
-        let roundsVStack = try inspectable.findView(accessibilityIdentifier: "roundsContainer").vStack().forEach(0)
+        // Phase 1: Find the VStack that contains all rounds and extract the ForEach
+        let roundsContainer = try inspectable.findView(accessibilityIdentifier: "roundsContainer").vStack()
 
         // Phase 2: Verify rounds are displayed in descending order (3, 2, 1) by index
-//        _ = try roundsVStack.forEach()
+        let roundView1 = try roundsContainer.forEach(0)
+//        let roundView2 = try roundsContainer.forEach(1)
+//        let roundView3 = try roundsContainer.forEach(2)
     }
 
     private func makeGame(numberOfCodeChoices: Int = 4, secretSize: Int = 4, numberOfRounds: Int = 2) throws -> Game {
