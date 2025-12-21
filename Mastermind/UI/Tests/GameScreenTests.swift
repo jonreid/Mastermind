@@ -225,7 +225,7 @@ final class GameScreenTests: XCTestCase, Sendable {
         let inspectable = try sut.inspect()
         
         // Phase 1: Find the VStack that contains all rounds
-        let roundsVStack = try inspectable.findView(accessibilityIdentifier: "roundsContainer").vStack()
+        let roundsVStack = try inspectable.findView(accessibilityIdentifier: "roundsContainer").vStack().forEach(0)
 
         // Phase 2: Verify rounds are displayed in descending order (3, 2, 1) by index
 //        _ = try roundsVStack.forEach()
