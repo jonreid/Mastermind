@@ -220,7 +220,7 @@ final class GameScreenTests: XCTestCase, Sendable {
     }
 
     func testRoundsDisplayInDescendingOrder() throws {
-        let game = try makeGame(numberOfRounds: 3)
+        let game = try makeGame(numberOfRounds: 2)
         let sut = makeSUT(game)
         let inspectable = try sut.inspect()
         
@@ -228,9 +228,11 @@ final class GameScreenTests: XCTestCase, Sendable {
         let roundsContainer = try inspectable.findView(accessibilityIdentifier: "roundsContainer").vStack()
 
         // Phase 2: Verify rounds are displayed in descending order (3, 2, 1) by index
-        let roundView1 = try roundsContainer.forEach(0).findView(accessibilityIdentifier: "roundNumber").text()
+        let roundView1 = try roundsContainer.forEach(0)[0].findView(accessibilityIdentifier: "roundNumber").text()
+        let roundView2 = try roundsContainer.forEach(0)[1].findView(accessibilityIdentifier: "roundNumber").text()
 
         XCTAssertEqual(try roundView1.string(), "1")
+        XCTAssertEqual(try roundView2.string(), "2")
     }
 
     private func makeGame(numberOfCodeChoices: Int = 4, secretSize: Int = 4, numberOfRounds: Int = 2) throws -> Game {
