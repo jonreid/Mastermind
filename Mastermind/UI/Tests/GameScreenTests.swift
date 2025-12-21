@@ -228,9 +228,9 @@ final class GameScreenTests: XCTestCase, Sendable {
         let roundsContainer = try inspectable.findView(accessibilityIdentifier: "roundsContainer").vStack()
 
         // Phase 2: Verify rounds are displayed in descending order (3, 2, 1) by index
-        let roundView1 = try roundsContainer.forEach(0).findView(accessibilityIdentifier: "roundNumber")
-//        let roundView2 = try roundsContainer.forEach(1)
-//        let roundView3 = try roundsContainer.forEach(2)
+        let roundView1 = try roundsContainer.forEach(0).findView(accessibilityIdentifier: "roundNumber").text()
+
+        XCTAssertEqual(try roundView1.string(), "1")
     }
 
     private func makeGame(numberOfCodeChoices: Int = 4, secretSize: Int = 4, numberOfRounds: Int = 2) throws -> Game {
