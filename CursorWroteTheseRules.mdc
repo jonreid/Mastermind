@@ -1,0 +1,299 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Swift Coding Style Guide
+
+## Common Suggestions
+
+### Code Quality
+- Use meaningful variable names that describe their purpose
+- Keep functions small and focused on a single responsibility
+- Prefer immutable values (`let`) over mutable ones (`var`)
+- Use `guard` statements for early returns and validation
+- Leverage Swift's type system to prevent runtime errors
+
+### Swift Best Practices
+- Use `map`, `filter`, `reduce` for functional programming patterns
+- Prefer `switch` statements over multiple `if-else` chains
+- Use `lazy` properties for expensive computations
+- Leverage protocol extensions for shared functionality
+- Use `@available` for API compatibility
+
+#### Swift Preferences in Practice
+```swift
+// ✅ Good: Using if let shorthand
+func processUser(_ user: User?) {
+    if let user {  // Shorthand instead of if let user = user
+        user.handleNotification(service: notificationService)
+    }
+}
+
+// ✅ Good: Avoiding -er in type names
+struct Cash {  // Good: simple, descriptive
+    let amount: Decimal
+    let currency: Currency
+}
+
+struct USDCash {  // Good: specific currency
+    let amount: Decimal
+}
+
+// ❌ Bad: Using -er suffix
+struct CashFormatter {  // Bad: -er suffix
+    func format(_ amount: Decimal) -> String {
+        // formatting logic
+    }
+}
+```
+
+#### Construction Builder Pattern for Test Data
+```swift
+// ✅ Good: Construction Builder for nested structs
+struct UserBuilder {
+    private var id: UserId = UserId("test-123")
+    private var name: String = "Test User"
+    private var email: EmailAddress = try! EmailAddress("test@example.com")
+    private var age: Age = try! Age(25)
+    private var preferences: UserPreferences = UserPreferencesBuilder().build()
+    
+    func id(_ id: UserId) -> Self {
+        self.id = id
+        return self
+    }
+    
+    func name(_ name: String) -> Self {
+        self.name = name
+        return self
+    }
+    
+    func email(_ email: EmailAddress) -> Self {
+        self.email = email
+        return self
+    }
+    
+    func age(_ age: Age) -> Self {
+        self.age = age
+        return self
+    }
+    
+    func preferences(_ preferences: UserPreferences) -> Self {
+        self.preferences = preferences
+        return self
+    }
+    
+    func build() -> User {
+        User(
+            id: id,
+            name: name,
+            email: email,
+            age: age,
+            preferences: preferences
+        )
+    }
+}
+
+struct UserPreferencesBuilder {
+    private var theme: Theme = .light
+    private var notifications: Bool = true
+    private var language: Language = .english
+    
+    func theme(_ theme: Theme) -> Self {
+        self.theme = theme
+        return self
+    }
+    
+    func notifications(_ enabled: Bool) -> Self {
+        self.notifications = enabled
+        return self
+    }
+    
+    func language(_ language: Language) -> Self {
+        self.language = language
+        return self
+    }
+    
+    func build() -> UserPreferences {
+        UserPreferences(
+            theme: theme,
+            notifications: notifications,
+            language: language
+        )
+    }
+}
+
+// Usage in tests
+func test_user_hasCorrectPreferences() throws {
+    let sut = UserBuilder()
+        .name("John Doe")
+        .age(try! Age(30))
+        .preferences(
+            UserPreferencesBuilder()
+                .theme(.dark)
+                .notifications(false)
+                .build()
+        )
+        .build()
+    
+    XCTAssertEqual(sut.name(), "John Doe")
+    XCTAssertEqual(sut.age().years(), 30)
+    XCTAssertEqual(sut.preferences.theme, .dark)
+    XCTAssertFalse(sut.preferences.notifications)
+}
+```
+
+### Testing Best Practices
+- Write tests that describe behavior, not implementation
+- Use descriptive test names that read like specifications
+- Test edge cases and error conditions
+- Keep tests independent and isolated
+- Use setup/teardown methods for common test data
+
+### Error Handling
+- Create specific error types for different failure scenarios
+- Use `do-catch` blocks for comprehensive error handling
+- Consider using `Result` types for operations that can fail
+- Provide meaningful error messages for debugging
+
+---
+
+## Advanced Suggestions for Growth
+
+### Architecture Patterns
+- **Clean Architecture**: Separate concerns into layers (Domain, Use Cases, Presentation)
+- **SOLID Principles**: Apply Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
+- **Composition over Inheritance**: Use protocols and composition for flexibility
+- **Repository Pattern**: Abstract data access behind protocols
+
+### Swift Advanced Features
+- **Property Wrappers**: Create custom property wrappers for common patterns
+- **Result Builders**: Use for DSL-like APIs (like SwiftUI's ViewBuilder)
+- **Key Paths**: Use for type-safe property access and transformations
+- **Combine Framework**: For reactive programming and data flow
+- **Concurrency**: Use async/await for modern asynchronous code
+
+### Performance Optimization
+- **Value Semantics**: Understand when to use structs vs classes
+- **Copy-on-Write**: Implement for custom value types
+- **Memory Management**: Use Instruments to profile memory usage
+- **Algorithm Complexity**: Choose appropriate data structures and algorithms
+
+### Testing Advanced Patterns
+- **Property-Based Testing**: Use frameworks like SwiftCheck for generative testing
+- **Integration Testing**: Test complete workflows and system interactions
+- **Performance Testing**: Measure and track performance regressions
+
+### Code Organization
+- **Feature-Based Structure**: Organize by features rather than technical layers
+- **Dependency Injection**: Use protocols for testability and flexibility
+- **Modular Architecture**: Break large apps into modules/frameworks
+- **API Design**: Design APIs that are easy to use correctly and hard to use incorrectly
+
+### Swift Ecosystem
+- **Package Manager**: Use Swift Package Manager for dependencies
+- **Documentation**: Generate documentation with DocC
+- **Linting**: Use SwiftLint for consistent code style
+- **Continuous Integration**: Automate testing and code quality checks
+
+### Advanced Swift Concepts
+- **Generics**: Use for type-safe, reusable code
+- **Protocols with Associated Types**: For flexible, generic protocols
+- **Opaque Types**: Use `some` and `any` for type abstraction
+- **Macros**: Create compile-time code generation (Swift 5.9+)
+- **Custom Operators**: Define operators for domain-specific operations
+
+### Debugging and Profiling
+- **LLDB**: Master command-line debugging
+- **Instruments**: Profile performance, memory, and other metrics
+- **Symbolication**: Understand crash reports and stack traces
+- **Network Debugging**: Use tools like Charles Proxy or Network Link Conditioner
+
+### Code Review Practices
+- **Pair Programming**: Collaborate on complex problems
+- **Code Reviews**: Focus on design, not just syntax
+- **Refactoring**: Continuously improve code quality
+- **Technical Debt**: Balance new features with code maintenance
+
+---
+
+## Tools and Resources
+
+### Recommended Tools
+- **Xcode**: Latest version for best Swift support
+- **SwiftLint**: Code style enforcement
+- **SwiftFormat**: Automatic code formatting
+- **Instruments**: Performance profiling
+- **Git**: Version control with meaningful commit messages
+
+### Learning Resources
+- **Swift.org**: Official documentation and guides
+- **WWDC Sessions**: Apple's annual developer conference
+- **Swift Forums**: Community discussions and Q&A
+- **Open Source Projects**: Study well-written Swift codebases
+- **Books**: "Swift Programming Language", "Advanced Swift"
+
+### Community
+- **Swift Evolution**: Follow language evolution proposals
+- **Local Meetups**: Connect with other Swift developers
+- **Open Source Contributions**: Contribute to Swift projects
+- **Blogs and Podcasts**: Stay updated with Swift ecosystem
+
+---
+
+## Quick Reference
+
+### Naming Conventions
+```swift
+// Variables and functions
+let userName = "John"
+func calculateTotal() -> Double
+
+// Constants
+let maxRetryCount = 3
+
+// Types
+struct UserProfile { }
+class NetworkManager { }
+enum NetworkError { }
+
+// Test methods
+func test_shouldReturnUser_whenValidIdProvided() { }
+```
+
+### Common Patterns
+```swift
+// Guard for early returns
+guard let user = currentUser else {
+    return
+}
+
+// Result type for operations that can fail
+func fetchUser(id: String) -> Result<User, NetworkError>
+
+// Protocol-oriented programming
+protocol UserRepository {
+    func getUser(id: String) async throws -> User
+}
+
+// Dependency injection
+class UserService {
+    private let repository: UserRepository
+    
+    init(repository: UserRepository) {
+        self.repository = repository
+    }
+}
+```
+
+### Modern Swift Quick Reference
+- **Async/Await**: Use `async throws` → Result types → custom errors
+- **Concurrency**: Prefer actors, then structured concurrency
+- **Property Wrappers**: Create custom wrappers for common patterns
+- **Result Builders**: Use for DSL-like APIs
+- **Testing**: Swift Testing for domain logic, XCTest + ViewInspector for SwiftUI
+- **Test Data**: Use Construction Builder pattern for nested structs
+- **Test Variables**: Use `sut` for system under test
+- **Classes**: Declare classes `final` unless they need subclassing
+
+Remember: This guide should evolve with your experience and the Swift ecosystem. Regularly review and update your practices based on new learnings and project requirements.
