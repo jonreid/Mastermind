@@ -1,9 +1,9 @@
 ```mermaid
 graph TD
-    mastermind["Parent task"]
-    play-1-round["Task"]
-    play-10-rounds["Another task"]
-    player-makes-guess["Subtask"]
+    mastermind["Mastermind"]
+    play-1-round["Play 1 round"]
+    play-10-rounds["Play 10 rounds"]
+    player-makes-guess["Player makes guess"]
 
     mastermind --> play-1-round
     play-1-round --> player-makes-guess
@@ -17,8 +17,9 @@ graph TD
     classDef punt fill:#b5abf4
     classDef notes fill:#b8cffa
 
-		class play-10-rounds todo
-    class play-1-round in-progress
-    class player-makes-guess completed
     class mastermind parent-task
+    class play-10-rounds todo
+    class play-1-round todo
+    class player-makes-guess todo
+
 ```
