@@ -22,7 +22,7 @@ jobs:
     - name: List available Xcode versions
       run: ls /Applications | grep Xcode
     - name: Set up Xcode version
-      run: sudo xcode-select -s /Applications/Xcode_26.1.app/Contents/Developer
+      run: sudo xcode-select -s /Applications/Xcode_26.4.1.app/Contents/Developer
     - name: Show current version of Xcode
       run: xcodebuild -version
     - name: Build and test
@@ -30,10 +30,10 @@ jobs:
 
   build-release:
     name: Build release
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
     - uses: actions/checkout@v5
     - name: Set up Xcode version
-      run: sudo xcode-select -s /Applications/Xcode_26.1.app/Contents/Developer
+      run: sudo xcode-select -s /Applications/Xcode_26.4.1.app/Contents/Developer
     - name: Build
       run: ./build_release.sh
