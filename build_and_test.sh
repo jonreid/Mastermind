@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCHEME='Mastermind'
-DESTINATION='platform=iOS Simulator,OS=18.5,name=iPhone 16'
+DESTINATION='platform=iOS Simulator,OS=26.4.1,name=iPhone 17'
 
 if grep -R -n --include='*Tests.swift' -E '^\s*// (Arrange|Act|Assert|Given|When|Then)\b' . ; then
   echo "Error: Forbidden test comments detected. Remove these comments from tests."
