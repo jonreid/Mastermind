@@ -8,5 +8,5 @@ if git diff --cached --quiet; then
     echo "⚠️ Nothing to commit after formatting"
     exit 1
 fi
-swiftlint lint --quiet
+swiftlint lint --quiet --strict
 npx jscpd .
