@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct ProductionApp: App {
+struct MastermindApp: App {
     var body: some Scene {
         WindowGroup {
             if isProduction {
