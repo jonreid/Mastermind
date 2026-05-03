@@ -1,13 +1,13 @@
 ```mermaid
 graph TD
     mastermind["Mastermind"]
-    play-1-round["Play 1 round"]
-    play-10-rounds["Play 10 rounds"]
-    player-makes-guess["Player makes guess"]
+    setup-architecture["Set up architecture"]
+    create-swift-project["Create Swift project"]
+    setup-tests-github-actions["Set up tests on GitHub Actions"]
 
-    mastermind --> play-1-round
-    play-1-round --> player-makes-guess
-    mastermind --> play-10-rounds
+    mastermind --> setup-architecture
+    setup-architecture --> create-swift-project
+    setup-architecture --> setup-tests-github-actions
 
     classDef parent-task fill:#f4f6f8
     classDef todo fill:#fef7aa
@@ -18,8 +18,8 @@ graph TD
     classDef notes fill:#b8cffa
 
     class mastermind parent-task
-    class play-10-rounds todo
-    class play-1-round todo
-    class player-makes-guess todo
+    class setup-architecture in-progress
+    class create-swift-project in-progress
+    class setup-tests-github-actions todo
 
 ```
