@@ -5,18 +5,9 @@ graph TD
         legend-parent-task["Parent task"] --- legend-todo["To do"] --- legend-in-progress["In progress"] --- legend-completed["Completed"] --- legend-blocked["Blocked"] --- legend-punt["Punt"] --- legend-notes["Notes"]
     end
 
-    mastermind["Mastermind"]
-    setup-architecture["Set up architecture"]
-    create-swift-project["Create Swift project"]
-    setup-test-runner-script["Set up Swift project test runner script"]
-    setup-tests-github-actions["Set up tests on GitHub Actions"]
+    parent-node["Parent Task"]
 
-    legend ~~~ mastermind
-
-    mastermind --> setup-architecture
-    setup-architecture --> create-swift-project
-    setup-architecture --> setup-test-runner-script
-    setup-architecture --> setup-tests-github-actions
+    legend ~~~ parent-node
 
     classDef parent-task fill:#f4f6f8
     classDef todo fill:#fef7aa
@@ -26,6 +17,8 @@ graph TD
     classDef punt fill:#b5abf4
     classDef notes fill:#b8cffa
 
+    style legend color:#000000,font-size:18px,font-weight:bold
+
     class legend-parent-task parent-task
     class legend-todo todo
     class legend-in-progress in-progress
@@ -34,12 +27,5 @@ graph TD
     class legend-punt punt
     class legend-notes notes
 
-    style legend color:#000000,font-size:18px,font-weight:bold
-
-    class mastermind parent-task
-    class setup-architecture in-progress
-    class create-swift-project completed
-    class setup-test-runner-script in-progress
-    class setup-tests-github-actions todo
-
+    class parent-node parent-task
 ```

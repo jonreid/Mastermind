@@ -13,20 +13,8 @@ Visualize tasks as a discovery tree, where subtasks are child nodes.
 Open `discovery-tree.md`.
 
 If it doesn't exist, create it:
-- Start with `graph TD`
 - Ask the user: "What is the parent task?"
-- Add the parent node with class `parent-task`
-- Add classDefs:
-
-```
-classDef parent-task fill:#f4f6f8
-classDef todo fill:#fef7aa
-classDef in-progress fill:#f4b87f
-classDef completed fill:#8add95
-classDef blocked fill:#f1a2a0
-classDef punt fill:#b5abf4
-classDef notes fill:#b8cffa
-```
+- Use the template in `references/template-discovery-tree.md`, replacing `parent-node` and `Parent Task` with the parent task
 
 ### Step 2: Constraint
 
