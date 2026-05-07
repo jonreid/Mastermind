@@ -1,10 +1,19 @@
+---
+name: discovery-tree
+description: Visualizes tasks as a Discovery Tree using Mermaid diagrams. Use when planning or tracking multi-step work with parent and child task relationships.
+license: MIT
+metadata:
+  author: Jon Reid
+  version: "1.0"
+---
+
 # Discovery Tree
 
-STARTER_CHARACTER = 🌳
+STARTER_CHARACTER = 🌲
 
 ## Description
 
-Visualize tasks as a discovery tree, where subtasks are child nodes.
+Visualize tasks as a Discovery Tree, where subtasks are child nodes.
 
 ## Steps
 
@@ -36,7 +45,7 @@ Keep node names and user story labels in sync.
 
 ### Step 6: Mark as In-Progress
 
-Mark the chosen story as `todo`. Change all parent nodes to `todo` as well, except the root `parent-task`.
+Mark the chosen story as `in-progress`. Change all parent nodes to `in-progress` as well, except the root `parent-task`.
 
 ### Step 7: Complete
 
