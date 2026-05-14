@@ -145,3 +145,9 @@ opt_in_rules:
   - weak_delegate
   - xct_specific_matcher
   - yoda_condition
+
+file_types_order:
+  order:
+    - main_type
+    - extension
+    - supporting_type
