@@ -19,6 +19,8 @@
 
 ## Complete Commit Notation Reference
 
+(For LoC count production code only)
+
 ### Features
 | Risk | Type | Description | Criteria |
 |------|------|-------------|----------|
