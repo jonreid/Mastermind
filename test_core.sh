@@ -26,13 +26,13 @@ if cd MastermindCore && swift test > "$TMP_OUTPUT" 2>&1; then
     ' "$TMP_OUTPUT"
   )
   TOTAL_TESTS=$((XCTEST_COUNT + SWIFT_TEST_COUNT))
-  echo "✅ All tests passed: $TOTAL_TESTS tests."
+  echo "✅ All core tests passed: $TOTAL_TESTS tests."
 else
   cat "$TMP_OUTPUT"
   if grep -q "Test run.*failed\|Test Suite.*failed\|recorded an issue" "$TMP_OUTPUT"; then
-    echo "❌ Tests failed."
+    echo "❌ Core tests failed."
   else
-    echo "❌ Build failed."
+    echo "❌ Core build failed."
   fi
   exit 1
 fi
