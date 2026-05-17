@@ -39,10 +39,10 @@ graph TD
     style legend color:#000000,font-size:18px,font-weight:bold
 
     class mastermind parent-task
-    class setup-architecture in-progress
+    class setup-architecture completed
     class create-swift-project completed
     class setup-test-runner-script completed
-    class setup-tests-github-actions in-progress
+    class setup-tests-github-actions completed
 
 ```
 
