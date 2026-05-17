@@ -1,3 +1,5 @@
+Use skill "discovery-tree"
+
 ```mermaid
 graph TD
     subgraph legend["Legend"]
@@ -43,3 +45,4 @@ graph TD
     class setup-tests-github-actions todo
 
 ```
+

@@ -1,3 +1,5 @@
+Use skill "discovery-tree"
+
 ```mermaid
 graph TD
     subgraph legend["Legend"]
