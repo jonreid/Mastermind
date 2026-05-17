@@ -41,8 +41,8 @@ graph TD
     class mastermind parent-task
     class setup-architecture in-progress
     class create-swift-project completed
-    class setup-test-runner-script in-progress
-    class setup-tests-github-actions todo
+    class setup-test-runner-script completed
+    class setup-tests-github-actions in-progress
 
 ```
 
