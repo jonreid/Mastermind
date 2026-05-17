@@ -54,3 +54,45 @@ When the task is done:
 - Ask the user: "Any new stories to add next to this one?"
 - If not, go up one level in the tree
 - Loop back to Step 4
+
+## Optional Features
+
+### Side Notes
+
+A side note is a free-floating box not connected to the tree. Use it for reminders, open questions, or context that isn't a task. Only add when the user requests one.
+
+Trigger phrases (examples):
+- "Add a note to the discovery tree"
+- "Add a side note to the discovery tree"
+
+To add a side note:
+- Declare a node with a unique id, e.g. `note-1["Check API rate limits"]`
+- Apply the `notes` class: `class note-1 notes`
+- Optionally anchor it near another node with an invisible link: `parent-node ~~~ note-1` (no visible edge is drawn)
+- Place side notes after the legend block and before the `classDef` block
+
+#### Layout: max 5 per row
+
+Limit each row of side notes to 5; stack additional notes in new rows below.
+
+- Group every 5 notes into an invisible subgraph with `direction LR` and a blank label, e.g. `subgraph note-row-1[" "]`
+- Chain notes inside a row with invisible links: `note-1 ~~~ note-2 ~~~ note-3 ~~~ note-4 ~~~ note-5`
+- Chain rows top-to-bottom with invisible links: `note-row-1 ~~~ note-row-2`
+- Hide each row's border: `style note-row-1 fill:none,stroke:none`
+- Always close each subgraph with `end`
+
+Example (8 notes → row of 5, then row of 3):
+
+```
+subgraph note-row-1[" "]
+    direction LR
+    note-1 ~~~ note-2 ~~~ note-3 ~~~ note-4 ~~~ note-5
+end
+subgraph note-row-2[" "]
+    direction LR
+    note-6 ~~~ note-7 ~~~ note-8
+end
+note-row-1 ~~~ note-row-2
+style note-row-1 fill:none,stroke:none
+style note-row-2 fill:none,stroke:none
+```
