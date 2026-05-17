@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(approval-tests)",
+      "Skill(commit)",
+      "Skill(creating-process-files)",
+      "Skill(discovery-tree)",
+      "Skill(nullables)",
+      "Skill(refactoring)",
+      "Skill(tdd)",
+      "Skill(writing-bash-scripts)"
+    ],
+    "deny": [
+      "Bash(git add -A)",
+      "Bash(git push --force*)",
+    ]
+  }
+}
