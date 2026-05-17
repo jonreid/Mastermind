@@ -10,6 +10,8 @@ if grep -R -n --include='*Tests.swift' -E '^\s*// (Arrange|Act|Assert|Given|When
 fi
 
 TMP_OUTPUT=$(mktemp)
+trap 'rm -f "$TMP_OUTPUT"' EXIT
+
 if xcodebuild test -scheme $SCHEME -sdk iphonesimulator -destination "$DESTINATION" -disableAutomaticPackageResolution CODE_SIGNING_ALLOWED='NO' > "$TMP_OUTPUT" 2>&1; then
   read -r XCTEST_COUNT SWIFT_TEST_COUNT <<< $(
     awk '
@@ -26,11 +28,8 @@ if xcodebuild test -scheme $SCHEME -sdk iphonesimulator -destination "$DESTINATI
   )
   TOTAL_TESTS=$((XCTEST_COUNT + SWIFT_TEST_COUNT))
   echo "✅ All tests passed: $TOTAL_TESTS tests."
-  EXIT_CODE=0
 else
   cat "$TMP_OUTPUT" | xcbeautify --renderer github-actions | grep '^::' || true
   echo "❌ Build failed."
-  EXIT_CODE=1
+  exit 1
 fi
-rm "$TMP_OUTPUT"
-exit $EXIT_CODE
