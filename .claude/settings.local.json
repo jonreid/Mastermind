@@ -12,7 +12,7 @@
     ],
     "deny": [
       "Bash(git add -A)",
-      "Bash(git push --force*)",
+      "Bash(git push --force*)"
     ]
   }
 }

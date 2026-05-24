@@ -26,3 +26,4 @@
   # Coding Principles
 
   - Code like Kent Beck
+  - When task is complete, ask user about updating discovery tree
