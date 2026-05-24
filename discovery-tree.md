@@ -20,7 +20,10 @@ graph TD
     setup-architecture --> setup-test-runner-script
     setup-architecture --> setup-tests-github-actions
     mastermind --> core-gameplay["Core Gameplay"]
-    core-gameplay --> scoring["Scoring"]
+    core-gameplay --> play-game["Play New Game Creates Secret"]
+    core-gameplay --> enter-guess["Enter Guess"]
+
+    note-nullable-secret-maker["Nullable Secret Maker injected into Game"]
 
     classDef parent-task fill:#f4f6f8
     classDef todo fill:#fef7aa
@@ -46,7 +49,9 @@ graph TD
     class setup-test-runner-script completed
     class setup-tests-github-actions completed
     class core-gameplay in-progress
-    class scoring in-progress
+    class enter-guess todo
+    class play-game in-progress
+    class note-nullable-secret-maker notes
 
 ```
 
