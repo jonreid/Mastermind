@@ -11,7 +11,8 @@
       "Skill(writing-bash-scripts)",
       "Bash(./test_core.sh)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(swiftformat .)"
     ],
     "deny": [
       "Bash(git add -A)",

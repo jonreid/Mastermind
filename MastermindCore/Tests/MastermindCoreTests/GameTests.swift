@@ -2,7 +2,7 @@
 import Testing
 
 @Test
-func `CodeChoice with same value are equal`() throws {
+func `CodeChoice with same value are equal`() async throws {
     let first = CodeChoice(1)
     let second = CodeChoice(1)
 
@@ -10,7 +10,7 @@ func `CodeChoice with same value are equal`() throws {
 }
 
 @Test
-func `CodeChoices with different values are not equal`() throws {
+func `CodeChoices with different values are not equal`() async throws {
     let first = CodeChoice(1)
     let second = CodeChoice(2)
 

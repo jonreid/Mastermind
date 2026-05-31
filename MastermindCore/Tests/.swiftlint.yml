@@ -1,0 +1,4 @@
+disabled_rules:
+  - async_without_await
+  - force_unwrapping
+  - implicitly_unwrapped_optional
