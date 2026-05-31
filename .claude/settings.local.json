@@ -8,7 +8,10 @@
       "Skill(nullables)",
       "Skill(refactoring)",
       "Skill(tdd)",
-      "Skill(writing-bash-scripts)"
+      "Skill(writing-bash-scripts)",
+      "Bash(./test_core.sh)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ],
     "deny": [
       "Bash(git add -A)",

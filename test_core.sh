@@ -11,7 +11,7 @@ if cd MastermindCore && swift test > "$TMP_OUTPUT" 2>&1; then
         xctest=$2
         xctest_counted=1
       }
-      /Test run with [0-9]+ tests/ {
+      /Test run with [0-9]+ tests?/ {
         split($0, words, " ")
         for (i = 1; i <= length(words); i++) {
           if (words[i] == "with" && words[i+1] ~ /^[0-9]+$/) {
