@@ -1,4 +1,7 @@
 ```mermaid
+---
+title: Mastermind
+---
 graph TD
     subgraph legend["Legend"]
         direction LR

@@ -1,6 +1,7 @@
-Use skill "discovery-tree"
-
 ```mermaid
+---
+title: Project Title
+---
 graph TD
     subgraph legend["Legend"]
         direction LR
