@@ -42,8 +42,6 @@ graph TD
     class legend-punt punt
     class legend-notes notes
 
-    style legend color:#000000,font-size:18px,font-weight:bold
-
     class mastermind parent-task
     class setup-architecture completed
     class create-swift-project completed

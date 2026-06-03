@@ -20,8 +20,6 @@ graph TD
     classDef punt fill:#b5abf4
     classDef notes fill:#b8cffa
 
-    style legend color:#000000,font-size:18px,font-weight:bold
-
     class legend-parent-task parent-task
     class legend-todo todo
     class legend-in-progress in-progress
