@@ -22,49 +22,57 @@ Visualize tasks as a Discovery Tree, where subtasks are child nodes.
 Open `discovery-tree.md`.
 
 If it doesn't exist, create it:
-- Ask the user: "What is the project title?"
-- Ask the user: "What is the parent task?"
-- Use the template in `references/template-discovery-tree.md`, replacing `parent-node` and `Parent Task` with the parent task
+- Ask user "What is the project title?" and wait for input.
+- Then ask user: "What is the parent task?"
+- Use template in `references/template-discovery-tree.md`, replacing `parent-node` and `Parent Task` with parent task
 
 ### Step 2: Constraint
 
-The root `parent-task` node is never modified.
+Root `parent-task` node is never modified.
 
-### Step 3: Review
+### Step 3: Display
 
-Ask the user to review the current tree. Any new stories to add?
+Tree is a Mermaid graph. Display to user as ASCII using box-drawing characters. Represent state using emoji. Show legend line above the tree:
 
-### Step 4: Find Next Task
+`Legend: 🟡 To do  🔶 In progress  ✅ Completed  🔴 Blocked  🟣 Punt  🔵 Notes`
 
-Find the next `todo` story to work on. Ask the user to confirm.
+Show parent task without emoji.
 
-Keep stories ordered left-to-right in the diagram.
+### Step 4: Review
 
-### Step 5: Sync Names
+Ask user to review current tree. Any new stories to add?
+
+### Step 5: Find Next Task
+
+Find next `todo` story to work on. Ask user to confirm.
+
+Keep stories ordered left-to-right in diagram.
+
+### Step 6: Sync Names
 
 Keep node names and user story labels in sync.
 
-### Step 6: Mark as In-Progress
+### Step 7: Mark as In-Progress
 
-Mark the chosen story as `in-progress`. Change all parent nodes to `in-progress` as well, except the root `parent-task`.
+Mark chosen story as `in-progress`. Change all parent nodes to `in-progress` as well, except root `parent-task`.
 
-### Step 7: Complete
+### Step 8: Complete
 
-When the task is done:
+When task is done:
 - Mark it as `complete`
-- Ask the user: "Any new stories to add next to this one?"
-- If not, go up one level in the tree
+- Ask user: "Any new stories to add next to this one?"
+- If not, go up one level in tree
 - Loop back to Step 4
 
 ## Optional Features
 
 ### Side Notes
 
-A side note is a free-floating box not connected to the tree. Use it for reminders, open questions, or context that isn't a task. Only add when the user requests one.
+A side note is a free-floating box not connected to tree. Use it for reminders, open questions, or context that isn't a task. Only add when user requests one.
 
 Trigger phrases (examples):
-- "Add a note to the discovery tree"
-- "Add a side note to the discovery tree"
+- "Add note to discovery tree"
+- "Add side note to discovery tree"
 
 To list existing side notes (read-only), trigger phrases:
 - "What notes are on the tree?"
@@ -72,13 +80,13 @@ To list existing side notes (read-only), trigger phrases:
 
 Read each `notes`-classed node and report its id and label. Do not modify the file.
 
-If the trigger phrase does not include the note text (e.g. the user just says "add a side note" with no content), prompt the user: "What should the side note say?" Do not invent content or use a placeholder. Wait for the user's response before adding the node.
+If trigger phrase does not include note text (e.g. user just says "add a side note" with no content), prompt user: "What should the side note say?" Do not invent content or use a placeholder. Wait for user's response before adding node.
 
 To add a side note:
 - Declare a node with a unique id, e.g. `note-1["Check API rate limits"]`
-- Apply the `notes` class: `class note-1 notes`
+- Apply `notes` class: `class note-1 notes`
 - Optionally anchor it near another node with an invisible link: `parent-node ~~~ note-1` (no visible edge is drawn)
-- Place side notes after the legend block and before the `classDef` block
+- Place side notes after legend block and before `classDef` block
 
 #### Layout: choose by note count
 
@@ -116,10 +124,10 @@ style note-row-2 fill:none,stroke:none
 
 #### Editing and Removing Side Notes
 
-To **edit** a note, change only the label text in its node declaration (e.g. `note-1["New text"]`). Leave the id and `class` line unchanged.
+To **edit** a note, change only the label text in its node declaration (e.g. `note-1["New text"]`). Leave id and `class` line unchanged.
 
 To **remove** a note:
 - Delete its node declaration and its `class note-N notes` line.
-- Splice it out of the `~~~` chain so the remaining notes stay linked (e.g. removing `note-3` from `note-2 ~~~ note-3 ~~~ note-4` leaves `note-2 ~~~ note-4`).
-- Never renumber or reuse ids — leave gaps. Renumbering churns the diff for no benefit.
-- Re-balance rows so no row exceeds 5 and no row is empty: pull the first note of each later row up to fill the gap, then drop the layout down a tier if the total now fits (6+ → 2–5 → 1) per the count rules above. Delete any subgraph left empty and its `style`/chaining lines.
+- Splice it out of `~~~` chain so remaining notes stay linked (e.g. removing `note-3` from `note-2 ~~~ note-3 ~~~ note-4` leaves `note-2 ~~~ note-4`).
+- Never renumber or reuse ids — leave gaps. Renumbering churns diff for no benefit.
+- Re-balance rows so no row exceeds 5 and no row is empty: pull first note of each later row up to fill gap, then drop layout down a tier if total now fits (6+ → 2–5 → 1) per count rules above. Delete any subgraph left empty and its `style`/chaining lines.

@@ -16,7 +16,11 @@ Standardized process for creating meaningful Git commits using Arlo's notation.
 1. **Summarize Changes**
 
 2. **Update Discovery Tree**
-- If project has discovery-tree.md, use discovery-tree skill to summarize task state and ask user if anything should change
+
+If project has discovery-tree.md:
+- If changes are refactoring only and there is no refactoring step, skip to step 3 (draft commit message)
+- Otherwise use discovery-tree skill to summarize task state
+- Ask user what to change in discovery tree, if anything. Wait for response.
 
 3. **Draft Commit Message**
 - Read [Arlo's Commit Notation](~/.claude/skills/commit/references/commit-messages-arlo-belshee.md)
