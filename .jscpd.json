@@ -1,9 +1,7 @@
 {
-  "maxLines": 0,
-  "maxSize": 0,
-  "threshold": 0,
-  "reporters": ["consoleFull", "console"],
-  "ignore": ["**/.git", "**/MastermindCore/.build/**"],
+  "threshold": 2,
+  "reporters": ["console-full"],
+  "ignore": ["**/.git", "**/TripPrepCore/.build/**"],
   "gitignore": true,
   "format": ["swift"]
 }

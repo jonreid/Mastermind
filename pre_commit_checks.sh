@@ -9,4 +9,4 @@ if git diff --cached --quiet; then
     exit 1
 fi
 swiftlint lint --quiet --strict
-npx jscpd .
+npx jscpd -c .jscpd.json .
