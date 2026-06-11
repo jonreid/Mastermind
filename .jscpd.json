@@ -1,6 +1,6 @@
 {
   "threshold": 2,
-  "reporters": ["console-full"],
+  "reporters": ["console"],
   "ignore": ["**/.git", "**/TripPrepCore/.build/**"],
   "gitignore": true,
   "format": ["swift"]
