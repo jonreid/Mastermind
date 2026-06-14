@@ -43,4 +43,18 @@ func `create returns a Secret with 4 distinct values in range 1...6`() async thr
     #expect(secret.choices.allSatisfy { (1 ... 6).contains($0.value) })
 }
 
-// [TEST] playNewGame stores a secret on the game
+@Test
+func `new game has no secret`() async throws {
+    let game = Game()
+
+    #expect(game.secret == nil)
+}
+
+@Test
+func `playNewGame stores a secret on the game`() async throws {
+    var game = Game()
+
+    game.playNewGame()
+
+    #expect(game.secret != nil)
+}
