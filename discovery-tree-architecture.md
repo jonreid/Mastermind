@@ -8,17 +8,23 @@ graph TD
         legend-parent-task["Parent task"] --- legend-todo["To do"] --- legend-in-progress["In progress"] --- legend-completed["Completed"] --- legend-blocked["Blocked"] --- legend-punt["Punt"] --- legend-notes["Notes"]
     end
 
-    core-gameplay["Core Gameplay"]
-    play-game["Play New Game Creates Secret"]
-    enter-guess["Enter Guess"]
+    mastermind["Mastermind"]
+    setup-architecture["Set up architecture"]
+    create-swift-project["Create Swift project"]
+    setup-test-runner-script["Set up Swift project test runner script"]
+    setup-tests-github-actions["Set up tests on GitHub Actions"]
 
-    legend ~~~ core-gameplay
+    legend ~~~ mastermind
 
-    core-gameplay --> play-game
-    core-gameplay --> enter-guess
+    mastermind --> setup-architecture
+    setup-architecture --> create-swift-project
+    setup-architecture --> setup-test-runner-script
+    setup-architecture --> setup-tests-github-actions
+    mastermind --> core-gameplay["Core Gameplay"]
+    core-gameplay --> play-game["Play New Game Creates Secret"]
+    core-gameplay --> enter-guess["Enter Guess"]
 
     note-nullable-secret-maker["Nullable Secret Maker injected into Game"]
-    core-gameplay ~~~ note-nullable-secret-maker
 
     classDef parent-task fill:#f4f6f8
     classDef todo fill:#fef7aa
@@ -36,9 +42,15 @@ graph TD
     class legend-punt punt
     class legend-notes notes
 
-    class core-gameplay parent-task
-    class play-game in-progress
+    class mastermind parent-task
+    class setup-architecture completed
+    class create-swift-project completed
+    class setup-test-runner-script completed
+    class setup-tests-github-actions completed
+    class core-gameplay in-progress
     class enter-guess todo
+    class play-game in-progress
     class note-nullable-secret-maker notes
 
 ```
+

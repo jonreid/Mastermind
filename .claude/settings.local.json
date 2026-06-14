@@ -12,7 +12,8 @@
       "Bash(./test_core.sh)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(swiftformat .)"
+      "Bash(swiftformat .)",
+      "Bash(rtk ls *)"
     ],
     "deny": [
       "Bash(git add -A)",
