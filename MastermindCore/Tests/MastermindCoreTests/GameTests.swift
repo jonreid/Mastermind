@@ -35,5 +35,12 @@ func `createNull returns a Secret built from the given choices`() async throws {
     #expect(secret.choices == choices)
 }
 
-// [TEST] create returns a Secret with 4 distinct values in range 1...6
+@Test
+func `create returns a Secret with 4 distinct values in range 1...6`() async throws {
+    let secret = Secret.create()
+
+    #expect(secret.choices.count == 4)
+    #expect(secret.choices.allSatisfy { (1 ... 6).contains($0.value) })
+}
+
 // [TEST] playNewGame stores a secret on the game
