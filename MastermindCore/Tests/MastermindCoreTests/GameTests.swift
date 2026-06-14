@@ -44,6 +44,14 @@ func `create returns a Secret with 4 distinct values in range 1...6`() async thr
 }
 
 @Test
+func `create returns a Secret with distinct values`() async throws {
+    let secret = Secret.create()
+
+    let values = secret.choices.map(\.value)
+    #expect(Set(values).count == values.count)
+}
+
+@Test
 func `new game has no secret`() async throws {
     let game = Game()
 
