@@ -6,7 +6,6 @@ struct Secret {
     }
 
     static func create() -> Self {
-        let values = (1 ... 6).shuffled().prefix(4).map(CodeChoice.init)
-        return Self(choices: values)
+        ShuffleSecretMaker().make()
     }
 }

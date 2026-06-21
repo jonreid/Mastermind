@@ -14,11 +14,11 @@ graph TD
 
     legend ~~~ core-gameplay
 
+    inject-secret-maker["Inject Secret Maker"]
+
     core-gameplay --> play-game
     core-gameplay --> enter-guess
-
-    note-nullable-secret-maker["Nullable Secret Maker injected into Game"]
-    core-gameplay ~~~ note-nullable-secret-maker
+    play-game --> inject-secret-maker
 
     classDef parent-task fill:#f4f6f8
     classDef todo fill:#fef7aa
@@ -39,6 +39,6 @@ graph TD
     class core-gameplay parent-task
     class play-game in-progress
     class enter-guess todo
-    class note-nullable-secret-maker notes
+    class inject-secret-maker todo
 
 ```
