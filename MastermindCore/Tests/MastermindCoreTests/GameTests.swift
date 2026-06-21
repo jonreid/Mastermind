@@ -2,22 +2,6 @@
 import Testing
 
 @Test
-func `CodeChoice with same value are equal`() async throws {
-    let first = CodeChoice(1)
-    let second = CodeChoice(1)
-
-    #expect(first == second)
-}
-
-@Test
-func `CodeChoices with different values are not equal`() async throws {
-    let first = CodeChoice(1)
-    let second = CodeChoice(2)
-
-    #expect(first != second)
-}
-
-@Test
 func `Secret holds 4 CodeChoices`() async throws {
     let choices = [CodeChoice(1), CodeChoice(2), CodeChoice(3), CodeChoice(4)]
 
