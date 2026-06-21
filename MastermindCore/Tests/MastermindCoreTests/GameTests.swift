@@ -1,18 +1,20 @@
 @testable import MastermindCore
 import Testing
 
-@Test
-func `new game has no secret`() async throws {
-    let game = Game()
+final class GameTests: @unchecked Sendable {
+    @Test
+    func `new game has no secret`() async throws {
+        let game = Game()
 
-    #expect(game.secret == nil)
-}
+        #expect(game.secret == nil)
+    }
 
-@Test
-func `playNewGame stores a secret on the game`() async throws {
-    var game = Game()
+    @Test
+    func `playNewGame stores a secret on the game`() async throws {
+        var game = Game()
 
-    game.playNewGame()
+        game.playNewGame()
 
-    #expect(game.secret != nil)
+        #expect(game.secret != nil)
+    }
 }
