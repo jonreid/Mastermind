@@ -19,7 +19,8 @@ Standardized process for creating meaningful Git commits using Arlo's notation.
 
 If project has discovery-tree.md:
 - If changes are refactoring only and there is no refactoring step, skip to step 3 (draft commit message)
-- Otherwise use discovery-tree skill to summarize task state
+- Otherwise load discovery-tree skill
+- Summarize using ASCII drawing
 - Ask user what to change in discovery tree, if anything. Wait for response.
 
 3. **Draft Commit Message**
@@ -27,4 +28,5 @@ If project has discovery-tree.md:
 - **ALWAYS** ask the programmer to approve the commit message
 
 4. **Commit**
-- Stage files if necessary
+- Run `git status` to find any untracked new files that belong in this commit; stage them with `git add <file>`
+- Run `git commit -m "<message>"`
