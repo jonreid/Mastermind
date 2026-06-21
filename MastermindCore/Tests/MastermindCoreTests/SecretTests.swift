@@ -35,4 +35,16 @@ final class SecretTests: @unchecked Sendable {
         let values = secret.choices.map(\.value)
         #expect(Set(values).count == values.count)
     }
+
+    @Test
+    func `secret is random`() async throws {
+        let first = Secret.create()
+        var second = Secret.create()
+
+        if first.choices == second.choices {
+            second = Secret.create()
+        }
+
+        #expect(first.choices != second.choices)
+    }
 }
