@@ -1,5 +1,6 @@
 # Writing tests
 
+- Always use domain-centric test names
 - Prefer Swift Testing
   * Use natural language test name with back ticks
   * Declare each test `async throws`
