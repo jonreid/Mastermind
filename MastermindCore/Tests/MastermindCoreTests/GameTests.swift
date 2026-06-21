@@ -10,7 +10,7 @@ final class GameTests: @unchecked Sendable {
     }
 
     @Test
-    func `playNewGame stores a secret on the game`() async throws {
+    func `starting a new game creates a secret code`() async throws {
         var game = Game()
 
         game.playNewGame()

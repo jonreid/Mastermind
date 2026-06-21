@@ -3,7 +3,7 @@ import Testing
 
 final class SecretTests: @unchecked Sendable {
     @Test
-    func `Secret holds 4 CodeChoices`() async throws {
+    func `secret code contains 4 choices`() async throws {
         let choices = [CodeChoice(1), CodeChoice(2), CodeChoice(3), CodeChoice(4)]
 
         let secret = Secret(choices: choices)
@@ -12,7 +12,7 @@ final class SecretTests: @unchecked Sendable {
     }
 
     @Test
-    func `createNull returns a Secret built from the given choices`() async throws {
+    func `createNull uses the choices it was given`() async throws {
         let choices = [CodeChoice(1), CodeChoice(2), CodeChoice(3), CodeChoice(4)]
 
         let secret = Secret.createNull(choices)
@@ -21,7 +21,7 @@ final class SecretTests: @unchecked Sendable {
     }
 
     @Test
-    func `create returns a Secret with 4 distinct values in range 1...6`() async throws {
+    func `secret has 4 values each in range 1 to 6`() async throws {
         let secret = Secret.create()
 
         #expect(secret.choices.count == 4)
@@ -29,7 +29,7 @@ final class SecretTests: @unchecked Sendable {
     }
 
     @Test
-    func `create returns a Secret with distinct values`() async throws {
+    func `secret has no repeated values`() async throws {
         let secret = Secret.create()
 
         let values = secret.choices.map(\.value)
