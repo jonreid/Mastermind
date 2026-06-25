@@ -28,5 +28,6 @@ If project has discovery-tree.md:
 - **ALWAYS** ask the programmer to approve the commit message
 
 4. **Commit**
-- Run `git status` to find any untracked new files that belong in this commit; stage them with `git add <file>`
+- Run `git status` to find any untracked new files that belong in this commit
+- After staging files, check `git status` again to double-check
 - Run `git commit -m "<message>"`
