@@ -4,7 +4,7 @@ description: Visualizes tasks as a Discovery Tree using Mermaid diagrams. Use wh
 license: MIT
 metadata:
   author: Jon Reid
-  version: "1.1"
+  version: "1.2"
 ---
 
 # Discovery Tree
@@ -32,11 +32,14 @@ Root `parent-task` node is never modified.
 
 ### Step 3: Display
 
-Tree is a Mermaid graph. Display to user as ASCII using box-drawing characters. Represent state using emoji. Show legend line above the tree:
+Tree is a Mermaid graph. Display to user as ASCII using box-drawing characters. Represent state using emoji.
+
+Show project title in bold.
+Then show legend line above the tree:
 
 `Legend: 🟡 To do  🔶 In progress  ✅ Completed  🔴 Blocked  🟣 Punt  🔵 Notes`
 
-Show parent task without emoji.
+Then show tree, with no emoji for parent task.
 
 ### Step 4: Review
 

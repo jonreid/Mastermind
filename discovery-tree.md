@@ -5,7 +5,7 @@ title: Mastermind
 graph TD
     subgraph legend["Legend"]
         direction LR
-        legend-parent-task["Parent task"] --- legend-todo["To do"] --- legend-in-progress["In progress"] --- legend-completed["Completed"] --- legend-blocked["Blocked"] --- legend-punt["Punt"] --- legend-notes["Notes"]
+        legend-parent-task["Parent task"] ~~~ legend-todo["To do"] ~~~ legend-in-progress["In progress"] ~~~ legend-completed["Completed"] ~~~ legend-blocked["Blocked"] ~~~ legend-punt["Punt"] ~~~ legend-notes["Notes"]
     end
 
     core-gameplay["Core Gameplay"]
