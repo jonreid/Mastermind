@@ -10,11 +10,11 @@ graph TD
 
     core-gameplay["Core Gameplay"]
     play-game["Play New Game Creates Secret"]
-    enter-guess["Enter Guess"]
+    enter-guess["Evaluate Guess"]
 
     legend ~~~ core-gameplay
 
-    inject-secret-maker["Inject Secret Maker"]
+    inject-secret-maker["Make Secret Dumb"]
 
     core-gameplay --> play-game
     core-gameplay --> enter-guess
@@ -37,8 +37,8 @@ graph TD
     class legend-notes notes
 
     class core-gameplay parent-task
-    class play-game in-progress
-    class enter-guess todo
-    class inject-secret-maker todo
+    class play-game completed
+    class enter-guess in-progress
+    class inject-secret-maker completed
 
 ```
