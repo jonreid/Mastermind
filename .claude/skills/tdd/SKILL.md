@@ -57,7 +57,7 @@ STARTER_CHARACTER = 🔴 for red test, 🌱 for green, 🌀 when refactoring, al
 2. Test should be in format given-when-then (do not add as comments), with empty line separating them
 3. Think through the expected value BEFORE writing the assertion. Trace the logic step by step.
 4. Predict what will fail
-5. If MODE is human, ask user to review test
+5. Key point: If MODE is human, ask user to review test
 6. Run tests, see compilation error (if testing something new)
 7. Add minimal code to compile
 8. Predict assertion failure
