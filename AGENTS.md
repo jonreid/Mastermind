@@ -35,5 +35,3 @@ When you need my input on a decision:
 - First, pick option you think is best and propose it.
 Start that message with ⭐
 - Also list alternatives you rejected, each with brief reason why. Start each with ❌
-
-Then we can discuss.

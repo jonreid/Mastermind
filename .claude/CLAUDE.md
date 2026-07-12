@@ -1,6 +1,5 @@
 # Writing tests
 
-- Always use domain-centric test names
 - Prefer Swift Testing
   * Use natural language test name with back ticks
   * Declare each test `async throws`
@@ -8,6 +7,11 @@
   * For ViewInspector
   * For ApprovalTests
   * Declare each test `throws`
+
+# Test names
+
+- Use domain-centric test names, not programmer-centric
+- Remove articles from test names
 
 # Running tests
 

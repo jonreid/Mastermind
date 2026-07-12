@@ -1,136 +1,82 @@
-# Commit Message Guidelines
+# Arlo Belshee's Risk-Aware Commit Notation
 
-## Arlo Belshee's Commit Notation
+## Commit Message Format
+```
+[risk][space][intention][space][description]
+```
 
-### Risk Identifiers
-- **.** (Safe) - Proven safe, addresses all known and unknown risks
-- **^** (Validated) - Addresses all known risks with validation
-- **!** (Risky) - Some known risks remain unverified
-- **@** (Probably Broken) - No risk attestation
+## Risk Levels
 
-### Change Types
-- **f** feature
-- **b** bug fix
-- **r** refactoring
-- **d** documentation
-- **a** automated formatting
-- **e** environment
-- **t** test-only
+| Risk Level| Code | Correctness Guarantees |
+|-|-|-|
+| (Proven) Safe | `.`  | Intended Change, Known Invariants, Unknown Invariants |
+| Validated | `^` | Intended Change, Known Invariants |
+| Risky | `!` | Intended Change |
+| (Probably) Broken | `@` | No guarantees |
 
-## Complete Commit Notation Reference
+## Developer Intentions
 
-(For LoC count production code only)
+| Developer Intention | Code |
+|-|-|
+| Feature (1 behavior) | `f` |
+| Bugfix (1 behavior) | `b` |
+| Refactoring (1 code structure) | `r` |
+| Documentation | `d` |
+| Test-only | `t` |
+| Environment (non-code change) | `e` |
+
+## Commit Notation Reference
+
+LoC: count production code only
 
 ### Features
-| Risk | Type | Description | Criteria |
-|------|------|-------------|----------|
-| ! f | Feature (> 8 LoC) | Large feature changes |
-| ^ f | Feature (<= 8 LoC) | Small feature changes with validation |
-| . f | Feature (proven safe) | Automated or tool-generated changes |
-| @ f | Feature (no validation) | Unfinished or untested features |
+| Risk | Description |
+|-|-|
+| `. f` | Meets all criteria for `^ f` and developers are only users of feature. For example, extends build tooling or adds debug logging. |
+| `^ f` | Meets all of: Change is <= 8 LoC AND Feature was fully unit tested prior to this change AND Change includes new or changed unit tests to match intended behavior alteration |
+| `! f` | Change includes unit tests for new behavior |
+| `@ f` | No automated tests, or unfinished implementation |
 
 ### Bug Fixes
-| Risk | Type | Description | Criteria |
-|------|------|-------------|----------|
-| ! b | Bug fix (> 8 LoC) | Large bug fixes |
-| ^ b | Bug fix (<= 8 LoC) | Requires: customer review, <= 8 LoC, unit tests for old and new behavior |
-| . b | Bug fix (proven safe) | Developer-only functionality, build tooling, debug logging |
-| @ b | Bug fix (no validation) | No automatic tests or unfinished implementation |
+| Risk | Description |
+|-|-|
+| `. b` | Meets all criteria for `^ b` and developers are only users of fix. For example, fixes build tooling or corrects debug logging. |
+| `^ b` | Meets all of: Reviewed current and new behavior with customer representative AND Change is <= 8 LoC AND Bug's original (buggy) behavior was captured in a unit test prior to this change AND Change includes 1 changed unit test, matching intended behavior alteration |
+| `! b` | Change includes unit tests for new behavior |
+| `@ b` | No automated tests, or unfinished implementation
 
-### Refactoring
-| Risk | Type | Description | Criteria |
-|------|------|-------------|----------|
-| ! r | Manual refactoring | Identified single, named refactoring, but executed by editing code or without whole-project test coverage |
-| ^ r | Test-supported refactoring | Test-supported procedural refactoring with full-suite test runs |
-| . r | Proven refactoring | One of: automated refactoring via tool, scripted manual refactoring, formal methods, or entirely within test code |
-| @ r | Unverified refactoring | Remodeled by editing code, even in small chunks |
+### Refactoring or Remodeling
+| Risk | Description |
+|-|-|
+| `. r` | One of: Provable Refactoring OR Test-supported Procedural Refactoring entirely within test code |
+| `^ r` | Test-supported Procedural Refactoring |
+| `! r` | Identified single, named refactoring, but executed by editing code or without whole-project test coverage |
+| `@ r` | Remodeled by editing code, even in small chunks |
+
+#### Provable Refactorings
+Either:
+- automated refactoring via tool
+- change where compiling is proof enough
+
+#### Test-supported Procedural Refactorings
+1. Commit contains only a single refactoring
+2. Refactoring is named and published (e.g., in https://refactoring.com/catalog/)
+3. Either: Entire product is very highly tested, or you are working on new code that is not yet called
+4. You followed the published steps, including running full-suite test runs when indicated
+
+Start commit message with name of refactoring. 
 
 ### Documentation
-| Risk | Type | Description | Criteria |
-|------|------|-------------|----------|
-| ! d | Process-altering docs | Alters an important process |
-| ^ d | Dev-impacting docs | Dev-impacting only, but changes compilation or process |
-| . d | Safe documentation | Developer-visible documentation that does not change a process |
-| @ d | Unverified docs | Not verified or trying out process changes |
+| Risk | Type | Description |
+|-|-|-|
+| `. d` | Safe documentation | Developer-visible documentation that does not change a process |
+| `^ d` | Dev-impacting docs | Dev-impacting only, but changes compilation or process |
+| `! d` | Process-altering docs | Alters an important process |
+| `@ d` | Unverified docs | Not verified, or trying out process changes |
 
 ### Other Types
-| Risk | Type | Description |
-|------|------|-------------|
-| . a | Automatic formatting/generation |
-| . e | Environment (non-code) changes, including .windsurf directory changes |
-| . t | Test-only changes |
-
-## Key Concepts
-
-### Size Guidelines
-- **8 LoC Rule**: Features/bug fixes > 8 lines of code are automatically high risk (!)
-- **Small Changes**: Changes <= 8 LoC can be medium risk (^) with proper validation
-- **Test Changes**: Include test code in the line count
-
-### Risk Level Definitions
-- **Safe (.)**: Addresses all known and unknown risks through proven methods
-- **Validated (^)**: Addresses all known risks through testing and validation
-- **Risky (!)**: Some known risks remain unverified
-- **Probably Broken (@)**: No risk attestation or validation
-
-### Refactoring Types
-- **Provable Refactoring**: Automated tools, scripted manual steps, or formal methods
-- **Test-Supported Procedural Refactoring**: Named refactoring with full test coverage
-- **Manual Refactoring**: Hand-edited code without comprehensive test coverage
-
-## Examples
-
-### Features
-```
-^ f Add user authentication system (<= 8 LoC with tests)
-! f Implement complete payment processing workflow (> 8 LoC)
-. f Apply automated code generation for API endpoints
-@ f Start implementing user dashboard (unfinished)
-```
-
-### Bug Fixes
-```
-^ b Fix login validation error (<= 8 LoC, customer reviewed, tested)
-! b Resolve memory leak in image processing (> 8 LoC)
-. b Fix debug logging format (developer-only)
-@ b Attempt to fix calculation error (no tests)
-```
-
-### Refactoring
-```
-^ r Extract TDD methodology to dedicated rule file (test-supported)
-! r Restructure entire authentication module (manual, large scope)
-. r Apply automated code formatting to all Swift files
-@ r Start extracting method with no name (unfinished)
-```
-
-### Documentation
-```
-. d Update README with new installation steps
-^ d Update code review checklist (process change)
-! d Change deployment process documentation
-@ d Try new commit message format (experimental)
-```
-
-## Guidelines
-
-### When to Use Each Risk Level
-- **.** (Safe): Automated, proven, or tool-generated changes
-- **^** (Validated): Manual changes with comprehensive test coverage
-- **!** (Risky): Large changes or changes without full validation
-- **@** (Probably Broken): Unfinished, untested, or experimental changes
-
-### Best Practices
-- Keep commit messages concise and descriptive
-- Use present tense, imperative mood
-- Focus on what the change accomplishes
-- Include context when necessary
-- Separate risk and type with a space
-- Count all lines changed, including tests
-
-### Commit Message Format
-```
-[risk][space][type][space][description]
-```
-
-Follow this notation for all commits to maintain consistency and provide clear risk assessment. The goal is to enable safe, rapid deployment through risk-aware commit history.
+| Risk | Description |
+|-|-|
+| `. a` | Automatic formatting/generation |
+| `. e` | Environment (non-code) changes |
+| `. t` | Test-only changes |
