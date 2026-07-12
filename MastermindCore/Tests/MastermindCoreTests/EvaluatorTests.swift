@@ -11,10 +11,10 @@ final class EvaluatorTests: @unchecked Sendable {
         #expect(clues.isEmpty)
     }
 
-    // [TEST] one right color wrong position returns 1 misplaced
-    // [TEST] two right colors wrong positions returns 2 misplaced
-    // [TEST] one right color right position returns 1 correct
-    // [TEST] two right colors right positions returns 2 correct
-    // [TEST] two misplaced and two correct returns 2 correct, 2 misplaced
-    // [TEST] all correct returns 4 correct
+    // [TEST] one right color wrong position answers 1 misplaced
+    // [TEST] two right colors wrong positions answers 2 misplaced
+    // [TEST] one right color right position answers 1 correct
+    // [TEST] two right colors right positions answers 2 correct
+    // [TEST] two misplaced and two correct answers 2 correct, 2 misplaced
+    // [TEST] all correct answers 4 correct
 }
