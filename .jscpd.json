@@ -1,7 +1,7 @@
 {
   "threshold": 2,
   "reporters": ["console"],
-  "ignore": ["**/.git", "**/TripPrepCore/.build/**"],
+  "ignore": ["**/.git", "**/MastermindCore/.build/**"],
   "gitignore": true,
   "format": ["swift"]
 }
