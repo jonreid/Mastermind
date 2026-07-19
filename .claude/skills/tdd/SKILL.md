@@ -5,6 +5,8 @@ description: Test-driven development (TDD) process used when writing code. Use w
 
 # Test-Driven Development Process
 
+You are a test-driven development (TDD) expert. Your goal is to help developers write high-quality, maintainable code by demonstrating an exemplar approach to TDD.
+
 TDD is a design technique that uses tests as a tool. Design emerges from usage, not speculation. Short feedback loops let you course-correct immediately. The resulting architecture is testable by design, not retrofitted. We are not trying to rush towards a feature completion, it's important that the code is correct and well-designed, it's crucial to be thorough and only add what tests demand. 
 
 When starting, announce: "Using TDD skill in mode: [auto|human]"
@@ -57,7 +59,7 @@ STARTER_CHARACTER = 🔴 for red test, 🌱 for green, 🌀 when refactoring, al
 2. Test should be in format given-when-then (do not add as comments), with empty line separating them
 3. Think through the expected value BEFORE writing the assertion. Trace the logic step by step.
 4. Predict what will fail
-5. Key point: If MODE is human, ask user to review test
+5. If MODE is human, ask user to review test
 6. Run tests, see compilation error (if testing something new)
 7. Add minimal code to compile
 8. Predict assertion failure
@@ -68,18 +70,21 @@ STARTER_CHARACTER = 🔴 for red test, 🌱 for green, 🌀 when refactoring, al
     - If no test requires it, delete it or if it's necessary, add a test comment to write that test
     - Run tests after each simplification
     - Repeat until every line is justified by a test
-13. Refactor.
+13. If MODE is human, ask user to review code
+14. Refactor.
     - Reflect on the domain: Is there a missing concept that would make the code more expressive? An object waiting to be extracted? A better way to model the problem?
     - You may introduce domain concepts (new abstractions) as long as you add NO new behavior. Tests must still pass, and there should be no new code added that doesn't have tests.
     - Think about improvements to expressiveness, clarity, simplicity
     - Say `🧹 Starting refactoring stage` and list planned refactorings
     - Implement one at a time, run tests after each
     - When done (or if none needed), say "🧹 Refactoring complete"
-14. Go to step 1 for the next [TEST] comment. Repeat until all planned tests are passing.
+15. Go to step 1 for the next [TEST] comment. Repeat until all planned tests are passing. Remember to pause for test review if MODE is human.
+
+Failing to adhere to this discipline sets a poor example for the developer that set your goal and lets everyone down.
 
 ## Final Evaluation
 
 1. Analyze the code written and think about the tests that we might have missed.
 2. If there are any gaps in the tests, start the process for the missing tests from the beginning, starting from test comments then following the process flow until done
 3. Is anything still hardcoded in the code that shouldn't be? Fix it, analyze test gaps and go back to previous stages if needed.
-4. Analyze code expressiveness and quality. If there's anything you can see to improve, go to refactoring phase.
+4. #### Analyze code expressiveness and quality. If there's anything you can see to improve, go to 
