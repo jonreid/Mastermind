@@ -4,9 +4,9 @@ import Testing
 final class EvaluatorTests: @unchecked Sendable {
     @Test
     func `all wrong returns no clues`() async throws {
-        let sut = Evaluator(Secret(choices: [CodeChoice(2), CodeChoice(3), CodeChoice(4), CodeChoice(5)]))
+        let sut = makeSUT(2, 3, 4, 5)
 
-        let clues = sut.evaluate(Guess(choices: [CodeChoice(1), CodeChoice(1), CodeChoice(1), CodeChoice(1)]))
+        let clues = sut.evaluate(makeGuess(1, 1, 1, 1))
 
         #expect(clues.isEmpty)
     }
@@ -17,4 +17,14 @@ final class EvaluatorTests: @unchecked Sendable {
     // [TEST] two right colors right positions answers 2 correct
     // [TEST] two misplaced and two correct answers 2 correct, 2 misplaced
     // [TEST] all correct answers 4 correct
+
+    // swiftlint:disable identifier_name
+    private func makeSUT(_ a: Int, _ b: Int, _ c: Int, _ d: Int) -> Evaluator {
+        Evaluator(Secret(choices: [CodeChoice(a), CodeChoice(b), CodeChoice(c), CodeChoice(d)]))
+    }
+
+    private func makeGuess(_ a: Int, _ b: Int, _ c: Int, _ d: Int) -> Guess {
+        Guess(choices: [CodeChoice(a), CodeChoice(b), CodeChoice(c), CodeChoice(d)])
+    }
+    // swiftlint:enable identifier_name
 }
