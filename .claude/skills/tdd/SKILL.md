@@ -13,7 +13,7 @@ When starting, announce: "Using TDD skill in mode: [auto|human]"
 
 MODE (programmer specifies, default: human)
 - auto: DO NOT ask for confirmation or approval. Proceed through all steps without stopping.
-- human: wait for confirmation at key points
+- human: STOP AND WAIT for an explicit user response at steps 5 and 13, every single loop iteration. A prior "yes"/"continue" only approves that one test/code pair — it does not carry forward to the next test in the list. Never chain multiple red-green cycles into one turn without a human response in between.
 
 STARTER_CHARACTER = 🔴 for red test, 🌱 for green, 🌀 when refactoring, always followed by a space
 
@@ -26,6 +26,8 @@ STARTER_CHARACTER = 🔴 for red test, 🌱 for green, 🌀 when refactoring, al
    - First: Make it fail to compile (class/method doesn't exist)
    - Second: Make it compile but fail the assertion (return wrong value)
 5. Minimal code to pass - Just enough to make the test green. If no test requires it, don't write it.
+   - Prefer *fake it* (hardcode expected return value) when the general solution isn't immediately obvious. Let a second or third test force triangulation toward the real algorithm.
+   - Only write the "obvious implementation" directly when the general rule is trivially simple and faking it first would be pure theater.
 6. No comments in production code - Keep it clean unless specifically asked
 7. Run all tests every time - Not just the one you're working on
 8. Refactor at the first opportunity when the tests are green
@@ -68,9 +70,10 @@ STARTER_CHARACTER = 🔴 for red test, 🌱 for green, 🌀 when refactoring, al
 11. Predict whether the tests will pass and why. Run tests, see green
 12. Simplify. For each line/expression you just added, ask: "Does a failing test require this?"
     - If no test requires it, delete it or if it's necessary, add a test comment to write that test
+    - Also ask: "Is there a simpler implementation — even a hardcoded/faked one — that still satisfies every currently-passing test?" If yes, replace what you wrote with that simpler version. A general-looking algorithm is not "minimal" just because it happens to work.
     - Run tests after each simplification
     - Repeat until every line is justified by a test
-13. If MODE is human, ask user to review code
+13. If MODE is human, explain the change, then ask user to review code
 14. Refactor.
     - Reflect on the domain: Is there a missing concept that would make the code more expressive? An object waiting to be extracted? A better way to model the problem?
     - You may introduce domain concepts (new abstractions) as long as you add NO new behavior. Tests must still pass, and there should be no new code added that doesn't have tests.
