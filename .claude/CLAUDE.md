@@ -1,19 +1,4 @@
-# Writing tests
-
-- Prefer Swift Testing
-  * Use natural language test name with back ticks
-  * Declare each test `async throws`
-- Fall back to XCTest
-  * For ViewInspector
-  * For ApprovalTests
-  * Declare each test `throws`
-
-# Test names
-
-- Use domain-centric test names, not programmer-centric
-- Remove articles from test names
-
 # Running tests
 
-- Core: run ./test_core.sh
+- Core: run ./test_core.sh from project root, not from MastermindCore
 - App: Use Xcode MCP
