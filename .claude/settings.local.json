@@ -15,7 +15,8 @@
       "Bash(swiftformat .)",
       "Bash(rtk ls *)",
       "Bash(rtk git *)",
-      "Bash(rtk find *)"
+      "Bash(rtk find *)",
+      "Bash(git commit *)"
     ],
     "deny": [
       "Bash(git add -A)",
