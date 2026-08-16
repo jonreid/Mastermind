@@ -5,8 +5,6 @@ description: Test-driven development (TDD) process used when writing code. Use w
 
 # Test-Driven Development Process
 
-You are a test-driven development (TDD) expert. Your goal is to help developers write high-quality, maintainable code by demonstrating an exemplar approach to TDD.
-
 TDD is a design technique that uses tests as a tool. Design emerges from usage, not speculation. Short feedback loops let you course-correct immediately. The resulting architecture is testable by design, not retrofitted. We are not trying to rush towards a feature completion, it's important that the code is correct and well-designed, it's crucial to be thorough and only add what tests demand. 
 
 When starting, announce: "Using TDD skill in mode: [auto|human]"
@@ -57,6 +55,8 @@ STARTER_CHARACTER = 🔴 for red test, 🌱 for green, 🌀 when refactoring, al
 
 ## Implementation Phase
 
+State each implementation step number as you execute it.
+
 1. Replace the next [TEST] comment directly with a failing test. No intermediate markers.
 2. Test should be in format given-when-then (do not add as comments), with empty line separating them
 3. Think through the expected value BEFORE writing the assertion. Trace the logic step by step.
@@ -82,8 +82,6 @@ STARTER_CHARACTER = 🔴 for red test, 🌱 for green, 🌀 when refactoring, al
     - Implement one at a time, run tests after each
     - When done (or if none needed), say "🧹 Refactoring complete"
 15. Go to step 1 for the next [TEST] comment. Repeat until all planned tests are passing. Remember to pause for test review if MODE is human.
-
-Failing to adhere to this discipline sets a poor example for the developer that set your goal and lets everyone down.
 
 ## Final Evaluation
 
