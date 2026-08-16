@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Standardized process for creating meaningful git commits using Arlo's notation
+description: Git commit using Arlo's notation
 ---
 
 # Code Commit Workflow
@@ -24,7 +24,7 @@ If project has discovery-tree.md:
 - Ask user what to change in discovery tree, if anything. Wait for response.
 
 3. **Draft Commit Message**
-- Read [Arlo's Commit Notation](~/.claude/skills/commit/references/commit-messages-arlo-belshee.md)
+- Read [Arlo's Commit Notation](references/commit-messages-arlo-belshee.md) before drafting commit message
 - **ALWAYS** ask the programmer to approve the commit message
 
 4. **Commit**
