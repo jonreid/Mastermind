@@ -18,13 +18,11 @@ final class EvaluatorTests: @unchecked Sendable {
     // [TEST] two misplaced and two correct answers 2 correct, 2 misplaced
     // [TEST] all correct answers 4 correct
 
-    // swiftlint:disable identifier_name
-    private func makeSUT(_ a: Int, _ b: Int, _ c: Int, _ d: Int) -> Evaluator {
-        Evaluator(Secret(choices: [CodeChoice(a), CodeChoice(b), CodeChoice(c), CodeChoice(d)]))
+    private func makeSUT(_ choices: Int...) -> Evaluator {
+        Evaluator(Secret(choices: choices.map(CodeChoice.init)))
     }
 
     private func makeGuess(_ choices: Int...) -> Guess {
         Guess(choices: choices.map(CodeChoice.init))
     }
-    // swiftlint:enable identifier_name
 }
