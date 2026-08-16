@@ -23,8 +23,8 @@ final class EvaluatorTests: @unchecked Sendable {
         Evaluator(Secret(choices: [CodeChoice(a), CodeChoice(b), CodeChoice(c), CodeChoice(d)]))
     }
 
-    private func makeGuess(_ a: Int, _ b: Int, _ c: Int, _ d: Int) -> Guess {
-        Guess(choices: [CodeChoice(a), CodeChoice(b), CodeChoice(c), CodeChoice(d)])
+    private func makeGuess(_ choices: Int...) -> Guess {
+        Guess(choices: choices.map(CodeChoice.init))
     }
     // swiftlint:enable identifier_name
 }
