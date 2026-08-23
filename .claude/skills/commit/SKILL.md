@@ -25,7 +25,7 @@ If project has discovery-tree.md:
 
 3. **Draft Commit Message**
 - Read [Arlo's Commit Notation](references/commit-messages-arlo-belshee.md) before drafting commit message
-- **ALWAYS** ask the programmer to approve the commit message
+- Use AskUserQuestionTool for user to approve message or ask for changes
 
 4. **Commit**
 - Run `git status` to find any untracked new files that belong in this commit
