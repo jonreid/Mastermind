@@ -1,1 +1,3 @@
-enum Clue {}
+enum Clue: Equatable {
+    case misplaced
+}

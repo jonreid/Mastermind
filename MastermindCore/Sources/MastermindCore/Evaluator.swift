@@ -5,7 +5,7 @@ struct Evaluator {
         self.secret = secret
     }
 
-    func evaluate(_: Guess) -> [Clue] {
-        []
+    func evaluate(_ guess: Guess) -> [Clue] {
+        guess.choices.contains(where: secret.choices.contains) ? [.misplaced] : []
     }
 }

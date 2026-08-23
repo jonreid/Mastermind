@@ -11,10 +11,18 @@ final class EvaluatorTests: @unchecked Sendable {
         #expect(clues.isEmpty)
     }
 
-    // [TEST] one right color wrong position answers 1 misplaced
-    // [TEST] two right colors wrong positions answers 2 misplaced
-    // [TEST] one right color right position answers 1 correct
-    // [TEST] two right colors right positions answers 2 correct
+    @Test
+    func `one right peg wrong position answers 1 misplaced`() async throws {
+        let sut = makeSUT(2, 3, 4, 5)
+
+        let clues = sut.evaluate(makeGuess(3, 1, 1, 1))
+
+        #expect(clues == [.misplaced])
+    }
+
+    // [TEST] two right pegs wrong positions answers 2 misplaced
+    // [TEST] one right peg right position answers 1 correct
+    // [TEST] two right pegs right positions answers 2 correct
     // [TEST] two misplaced and two correct answers 2 correct, 2 misplaced
     // [TEST] all correct answers 4 correct
 
