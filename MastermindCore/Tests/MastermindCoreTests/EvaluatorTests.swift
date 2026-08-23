@@ -20,7 +20,15 @@ final class EvaluatorTests: @unchecked Sendable {
         #expect(clues == [.misplaced])
     }
 
-    // [TEST] two right pegs wrong positions answers 2 misplaced
+    @Test
+    func `two right pegs wrong positions answers 2 misplaced`() async throws {
+        let sut = makeSUT(2, 3, 4, 5)
+
+        let clues = sut.evaluate(makeGuess(3, 2, 1, 1))
+
+        #expect(clues == [.misplaced, .misplaced])
+    }
+
     // [TEST] one right peg right position answers 1 correct
     // [TEST] two right pegs right positions answers 2 correct
     // [TEST] two misplaced and two correct answers 2 correct, 2 misplaced

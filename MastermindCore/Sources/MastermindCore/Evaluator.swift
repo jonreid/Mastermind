@@ -6,6 +6,6 @@ struct Evaluator {
     }
 
     func evaluate(_ guess: Guess) -> [Clue] {
-        guess.choices.contains(where: secret.choices.contains) ? [.misplaced] : []
+        guess.choices.filter(secret.choices.contains).map { _ in .misplaced }
     }
 }
