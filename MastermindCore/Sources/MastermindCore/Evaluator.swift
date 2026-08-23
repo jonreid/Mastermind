@@ -6,9 +6,8 @@ struct Evaluator {
     }
 
     func evaluate(_ guess: Guess) -> [Clue] {
-        if guess.choices == [CodeChoice(2), CodeChoice(1), CodeChoice(1), CodeChoice(1)] {
-            return [.correct]
-        }
-        return guess.choices.filter(secret.choices.contains).map { _ in .misplaced }
+        let correctCount = zip(guess.choices, secret.choices).filter { $0 == $1 }.count
+        let misplacedCount = guess.choices.filter(secret.choices.contains).count - correctCount
+        return Array(repeating: .correct, count: correctCount) + Array(repeating: .misplaced, count: misplacedCount)
     }
 }
