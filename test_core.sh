@@ -28,7 +28,21 @@ if cd MastermindCore && swift test > "$TMP_OUTPUT" 2>&1; then
   TOTAL_TESTS=$((XCTEST_COUNT + SWIFT_TEST_COUNT))
   echo "✅ All core tests passed: $TOTAL_TESTS tests."
 else
-  grep -Ev 'Test ".*" passed after [0-9.]+ seconds\.$|Suite .* passed after [0-9.]+ seconds\.$|Test ".*" started\.$|Suite [A-Z][A-Za-z0-9_]* started\.$|^Test Case .* started\.$|^Test Case .* passed \([0-9.]+ seconds\)\.$|^Test Suite .* started at .*\.$|^Test Suite .* passed at .*\.$' "$TMP_OUTPUT"
+  NOISE_PATTERNS=(
+    'Suite [A-Z][A-Za-z0-9_]* started\.$'
+    'Test ".*" started\.$'
+    'Test ".*" passed after [0-9.]+ seconds\.$'
+    'Suite [A-Z][A-Za-z0-9_]* passed after [0-9.]+ seconds\.$'
+    "^Test Suite '[A-Z][A-Za-z0-9_. ]*' started at .*\\.\$"
+    '^Test Case .* started\.$'
+    '^Test Case .* passed \([0-9.]+ seconds\)\.$'
+    "^Test Suite '[A-Z][A-Za-z0-9_. ]*' passed at .*\\.\$"
+  )
+  GREP_ARGS=()
+  for pattern in "${NOISE_PATTERNS[@]}"; do
+    GREP_ARGS+=(-e "$pattern")
+  done
+  grep -Ev "${GREP_ARGS[@]}" "$TMP_OUTPUT"
   if grep -q "Test run.*failed\|Test Suite.*failed\|recorded an issue" "$TMP_OUTPUT"; then
     echo "❌ Core tests failed."
   else
