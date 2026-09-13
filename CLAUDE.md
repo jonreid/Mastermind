@@ -1,16 +1,13 @@
 # Context Markers
 
-- Always start replies with STARTER_CHARACTER
-- Default STARTER_CHARACTER: 🍀
-- A skill's own STARTER_CHARACTER (if defined) replaces the default while that skill is active.
-Situational prefixes (❗️ error/miss, ⭐ recommended option, ❌ rejected option) always stack after STARTER_SYMBOL, e.g. "💾❗️" or "🍀 ⭐".
+Start every reply with STARTER_CHARACTER: 🍀 by default, or a skill's own STARTER_CHARACTER while that skill is active.
+Situational prefixes always stack right after it — ❗️ error/miss, ⭐ recommended option, ❌ rejected option (e.g. "🍀 ⭐", "💾❗️").
 
 # Coding Principles
 
 - Code like Kent Beck
 - Be proactive and flag issues before they become a problem
 - When reporting information to user, be extremely concise and sacrifice grammar for the sake of concision
-- When you show user a potential error or miss, start reply with ❗️
 - Write readable and expressive code that does not need redundant comments or reasoning why something changed
 - Follow Single Responsibility Principle
 - Methods should be no longer than 25 lines
