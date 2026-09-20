@@ -1,6 +1,34 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+usage() {
+  cat >&2 <<'EOF'
+Usage: test_core.sh [--strings | -h]
+
+Run the MastermindCore test suite. Output stays small on either success
+or failure.
+
+Options:
+  --strings   Compile Localizable.xcstrings into the test bundle first.
+              Needed when tests assert on localized strings; without it,
+              lookups fall back to their keys instead of their values.
+  -h, --help  Show this help and exit.
+EOF
+}
+
+case "${1:-}" in
+  -h|--help)
+    usage
+    exit 0
+    ;;
+  --strings|"")
+    ;;
+  *)
+    usage
+    exit 1
+    ;;
+esac
+
 cd MastermindCore
 
 TMP_OUTPUT=$(mktemp)
@@ -12,7 +40,7 @@ compile_strings_bundle() {
   xcrun xcstringstool compile Sources/MastermindCore/Resources/Localizable.xcstrings --output-directory "$bundle"
 }
 
-run_tests() {
+build_and_test() {
   if [[ "${1:-}" == "--strings" ]]; then
     swift build --build-tests
     compile_strings_bundle
@@ -90,7 +118,7 @@ report_failure() {
   failure_verdict
 }
 
-if run_tests "${1:-}" > "$TMP_OUTPUT" 2>&1; then
+if build_and_test "${1:-}" > "$TMP_OUTPUT" 2>&1; then
   report_passed_tests
 else
   report_failure
