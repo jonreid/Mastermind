@@ -88,4 +88,4 @@ State each implementation step number as you execute it.
 1. Analyze the code written and think about the tests that we might have missed.
 2. If there are any gaps in the tests, start the process for the missing tests from the beginning, starting from test comments then following the process flow until done
 3. Is anything still hardcoded in the code that shouldn't be? Fix it, analyze test gaps and go back to previous stages if needed.
-4. #### Analyze code expressiveness and quality. If there's anything you can see to improve, go to 
+4. Analyze code expressiveness and quality. If there's anything you can see to improve, go to refactoring phase.
