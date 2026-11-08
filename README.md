@@ -1,7 +1,6 @@
 [![Build](https://github.com/jonreid/Mastermind/actions/workflows/build.yml/badge.svg)](https://github.com/jonreid/Mastermind/actions/workflows/build.yml)
 [![Bluesky](https://img.shields.io/bluesky/followers/qualitycoding.org)](https://bsky.app/profile/qualitycoding.org)
-[![Mastodon](https://img.shields.io/mastodon/follow/109765011064804734?domain=https%3A%2F%2Fiosdev.space
-)](https://iosdev.space/@qcoding)
+[![Mastodon](https://img.shields.io/mastodon/follow/109765011064804734?domain=https%3A%2F%2Fiosdev.space)](https://iosdev.space/@qcoding)
 [![GitHub](https://img.shields.io/github/stars/jonreid)](https://github.com/jonreid)
 
 # Mastermind (exploring TDD with SwiftUI)
