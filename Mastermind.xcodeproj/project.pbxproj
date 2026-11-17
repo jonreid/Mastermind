@@ -401,8 +401,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nalexn/ViewInspector.git";
 			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.10.1;
+				branch = 0.10.5;
+				kind = branch;
 			};
 		};
 		0F6949082D2AFD1100CC5211 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
