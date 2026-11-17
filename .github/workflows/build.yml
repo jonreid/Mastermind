@@ -14,7 +14,7 @@ concurrency:
 jobs:
   build:
     name: Build and test
-    runs-on: macos-27
+    runs-on: xcode-27
     steps:
     - uses: actions/checkout@v7
     - name: List runner info
@@ -30,7 +30,7 @@ jobs:
 
   build-release:
     name: Build release
-    runs-on: macos-26
+    runs-on: xcode-27
     steps:
     - uses: actions/checkout@v7
     - name: Set up Xcode version
