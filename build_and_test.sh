@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCHEME='Mastermind'
-DESTINATION='platform=iOS Simulator,OS=26.4.1,name=iPhone 17'
+DESTINATION='platform=iOS Simulator,OS=27.2,name=iPhone 17'
 
 if ! bash test_core.sh; then
   exit 1
